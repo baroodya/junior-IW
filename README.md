@@ -1,2 +1,2 @@
-# junior-IW
-A small website so that people can get to know me! This also allows me to sharpen my CSS and html skills.
+# Visual Statistics
+A set of small web based tutorials on Type I and Type II Errors, focused on visuals rather than text.
