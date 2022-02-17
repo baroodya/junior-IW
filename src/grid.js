@@ -1,21 +1,34 @@
-import styled from 'styled-components';
+const Grid = (props) => {
+   return (
+      <div 
+         id={props.id} 
+         className="Grid"
+         children={props.children}
+      />
+   );
+}
 
-export const Grid = styled.div`
-   width: 50%;
-   display: flex;
-   flex-direction: column;
-   align-items: end;
-`;
+const Row = (props) => {
+   return (
+      <div 
+         id={props.id} 
+         index={props.index}
+         className="Row"
+         children={props.children} 
+      />
+   );
+}
 
-export const Row = styled.div`
-   display: flex;
-   flex-direction: row;
-   transition: transform 1s;
-`;
+const Cell = (props) => {
+   return (
+      <div 
+      id={props.id} 
+      index={props.index}
+      className="Cell"
+      children={props.children}
+      onClick={props.onClick} 
+   />
+   )
+}
 
-export const Cell = styled.div`
-   display: flex;
-   width: 10px;
-   height: 10px;
-   cursor: pointer;
-`;
+export {Grid, Row, Cell}

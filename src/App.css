@@ -1,17 +1,17 @@
 .App {
   text-align: center;
+  background-color: #1f283a;
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(40px + 2vmin);
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: white;
 }
 
 .App-sub-header {
@@ -39,15 +39,12 @@
 }
 
 .Tutorial-body {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   font-size: calc(1px + 2vmin);
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: white;
 }
 
 .Tutorial-section {
@@ -67,6 +64,26 @@
 .Tutorial-visual {
   width: 60%;
   position: fixed;
+}
+
+.Cell {
+  display: flex;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+}
+
+.Row {
+  display: flex;
+  flex-direction: row;
+  transition: transform 1s;
+}
+
+.Grid {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 }
 
 @keyframes App-logo-spin {

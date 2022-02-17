@@ -1,6 +1,7 @@
 import './App.css';
 import {Grid, Row, Cell} from './grid.js';
-import personIcon from './person-icon.png'; 
+import personIcon from './person-icon.png';
+import {useSpring, animated} from 'react-spring';   
 
 function App() {
   function onArrowClick() {
@@ -10,15 +11,15 @@ function App() {
   }
 
   function moveRows(numRows, dist, end) {
-    console.log("move!");
+    // const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } });
     let grid = document.getElementById("tutorial-visual");
     for (const row of grid.childNodes) {
-      console.log(row);
+      let index = row.getAttribute("index");
       document.addEventListener('click', function(ev){
-        if (!end && row.key < numRows) {
+        if (!end && index < numRows) {
           row.style.transform = 'translateY('+dist+'px)';
         }
-        if (end && row.key > grid.childElementCount - numRows) {
+        if (end && index >= grid.childElementCount - numRows) {
           row.style.transform = 'translateY('+dist+'px)';
         }
     },false);
@@ -29,20 +30,19 @@ function App() {
     function makeRow() {
       let cells = [];
       for (let i = 0; i < 55; i++) {
-          cells.push(
-          <Cell key={i}  onClick={() => {moveRows(25, 100, true)}}>
+        let el = (
+          <Cell key={i} index={i} onClick={() => {moveRows(25, 50, true); moveRows(25, -50, false)}}>
             <img src={personIcon} alt="icon representing a person"/>
           </Cell>
-          );
+        );
+        cells.push(el);
       }
       return cells;
     }
     let rows = [];
     for (var i = 0; i < 50; i++) {
-        // note: we are adding a key prop here to allow react to uniquely identify each
-        // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
         let row = makeRow();
-        rows.push(<Row key={i}>{row}</Row>);
+        rows.push(<Row key={i} index={i}>{row}</Row>);
     }
     return rows;
   }
