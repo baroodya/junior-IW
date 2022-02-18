@@ -21,11 +21,11 @@
 }
 
 .arrow {
-  min-height: 5vh;
-  min-width: 5vh;
+  min-height: 4vh;
+  min-width: 4vh;
   border: solid white;
-  border-width: 0 10px 10px 0;
-  border-radius: 5px;
+  border-width: 0 8px 8px 0;
+  border-radius: 0px;
   position: fixed;
   
   display: flex;
