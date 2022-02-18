@@ -1,9 +1,13 @@
 import './App.css';
 import {Grid, Row, Cell} from './grid.js';
-import personIcon from './person-icon.png'; 
+import personIcon from './person-icon-16.png'; 
 
 let WINDOW_HEIGHT_PIXELS = window.innerHeight;
-let NUM_INFECTED_ROWS = 25;
+let NUM_ROWS = 40;
+let NUM_COLS = 40;
+let CELL_WIDTH = 4;
+let CELL_HEIGHT = 4;
+let NUM_INFECTED_ROWS = NUM_ROWS / (CELL_HEIGHT * 2);
 
 function App() {
   function onPageScroll() {
@@ -51,7 +55,7 @@ function App() {
   function makeRows() {
     function makeRow() {
       let cells = [];
-      for (let i = 0; i < 55; i++) {
+      for (let i = 0; i < NUM_COLS / CELL_WIDTH; i++) {
         let el = (
           <Cell key={i} index={i}>
             <img src={personIcon} alt="icon representing a person"/>
@@ -62,7 +66,7 @@ function App() {
       return cells;
     }
     let rows = [];
-    for (var i = 0; i < 50; i++) {
+    for (var i = 0; i < NUM_ROWS / CELL_HEIGHT; i++) {
         let row = makeRow();
         rows.push(<Row key={i} index={i}>{row}</Row>);
     }

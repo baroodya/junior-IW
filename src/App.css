@@ -70,8 +70,8 @@
 
 .Cell {
   display: flex;
-  width: 1.25vh;
-  height: 1.25vh;
+  width: 5vh;
+  height: 5vh;
   transition: background-color 1s ease;
 }
 
