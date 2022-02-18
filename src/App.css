@@ -6,7 +6,7 @@
 }
 
 .App-header {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,6 +25,8 @@
   border: solid white;
   border-width: 0 10px 10px 0;
   border-radius: 5px;
+  position: fixed;
+  bottom: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,8 +52,12 @@
 .Tutorial-section {
   display: flex;
   flex-direction: row;
-  align-content: center;
-  justify-content: center;
+  align-content: start;
+  justify-content: start;
+  padding-left: 5vw;
+  height: 100vh;
+  margin-top: -70vh;
+  margin-bottom: 70vh;
 }
 
 .Tutorial-text {
@@ -61,36 +67,28 @@
   justify-content: center;
 }
 
-.Tutorial-visual {
-  width: 60%;
-  position: fixed;
-}
-
 .Cell {
   display: flex;
-  width: 10px;
-  height: 10px;
-  cursor: pointer;
+  width: 1.25vh;
+  height: 1.25vh;
+  transition: background-color 1s ease;
 }
 
 .Row {
   display: flex;
   flex-direction: row;
-  transition: transform 1s;
+  transition: transform 0.01s;
+  margin-right: 5vw;
 }
 
 .Grid {
-  width: 50%;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 18.75vh; /* top = 1/2 * (100 - (numRows * cellHeight)) */
+  width: 100%;
+  height: 0%;
   display: flex;
   flex-direction: column;
-  align-items: end;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  align-items: flex-end;
+  margin-top: 10vh;
 }

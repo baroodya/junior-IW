@@ -3,11 +3,51 @@ import {Grid, Row, Cell} from './grid.js';
 import personIcon from './person-icon.png';
 import {useSpring, animated} from 'react-spring';   
 
+let TRANSLUCENT_RED = "rgba(255, 0, 0, 0.2)";
+let TRANSLUCENT_GREEN = "rgba(0, 255, 0, 0.2)";
+let WINDOW_HEIGHT_PIXELS = window.innerHeight;
+let NUM_INFECTED_ROWS = 25;
+
 function App() {
+  function onPageScroll() {
+    let scrollHeight = document.documentElement.scrollTop;
+
+
+    let slide1Sep = (scrollHeight - WINDOW_HEIGHT_PIXELS) / 16;
+    let slide1Opacity = (scrollHeight / WINDOW_HEIGHT_PIXELS - 1) / 4;
+
+    switch (true) {
+      // Slide 0
+      case (scrollHeight < WINDOW_HEIGHT_PIXELS): {
+        let grid = document.getElementById("tutorial-visual");
+        for (const row of grid.childNodes) {
+          row.style.transform = 'translateY(0px)';
+          row.style.background = 'rgba(0,255,0,0)';
+        }
+        break;
+      }
+
+      // Slide 1
+      case (scrollHeight <= 2 * WINDOW_HEIGHT_PIXELS): {
+        let grid = document.getElementById("tutorial-visual");
+        for (const row of grid.childNodes) {
+          let index = row.getAttribute("index");
+          if (index >= NUM_INFECTED_ROWS) {
+            row.style.transform = 'translateY('+slide1Sep+'px)';
+            row.style.background = 'rgba(255,0,0,'+slide1Opacity+')';
+          }
+          else {
+            row.style.transform = 'translateY('+(-slide1Sep)+'px)';
+            row.style.background = 'rgba(0,255,0,'+slide1Opacity+')';
+          }
+        }
+        break;
+      }
+    }
+  }
   function onArrowClick() {
-    let tutBody = document.getElementById("Tutorial-body");
-    
-    tutBody.scrollIntoView({behavior: 'smooth'});
+    let slideNum = Math.ceil(0.001 + document.documentElement.scrollTop / WINDOW_HEIGHT_PIXELS);
+    window.scroll({top: (slideNum) * WINDOW_HEIGHT_PIXELS, behavior: 'smooth'});
   }
 
   function moveRows(numRows, dist, end) {
@@ -15,14 +55,27 @@ function App() {
     let grid = document.getElementById("tutorial-visual");
     for (const row of grid.childNodes) {
       let index = row.getAttribute("index");
-      document.addEventListener('click', function(ev){
-        if (!end && index < numRows) {
-          row.style.transform = 'translateY('+dist+'px)';
-        }
-        if (end && index >= grid.childElementCount - numRows) {
-          row.style.transform = 'translateY('+dist+'px)';
-        }
-    },false);
+      if (!end && index < numRows) {
+        row.style.transform = 'translateY('+dist+'px)';
+      }
+      if (end && index >= grid.childElementCount - numRows) {
+        row.style.transform = 'translateY('+dist+'px)';
+      }
+    }
+  }
+
+  function changeColors(numRows, color, end) {
+    // const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } });
+    let grid = document.getElementById("tutorial-visual");
+    for (const row of grid.childNodes) {
+      let index = row.getAttribute("index");
+      console.log(row.style.background);
+      if (!end && index < numRows) {
+        row.style.background = color;
+      }
+      if (end && index >= grid.childElementCount - numRows) {
+        row.style.background = color;
+      }
     }
   }
 
@@ -31,7 +84,7 @@ function App() {
       let cells = [];
       for (let i = 0; i < 55; i++) {
         let el = (
-          <Cell key={i} index={i} onClick={() => {moveRows(25, 50, true); moveRows(25, -50, false)}}>
+          <Cell key={i} index={i}>
             <img src={personIcon} alt="icon representing a person"/>
           </Cell>
         );
@@ -46,7 +99,11 @@ function App() {
     }
     return rows;
   }
+
+  /*****************************************************************************************/
+
   let rows = makeRows();
+  window.onscroll = onPageScroll;
 
   return (
     <div className="App">
@@ -59,12 +116,28 @@ function App() {
           onClick={onArrowClick}/>
       </header>
       <div id="Tutorial-body" className="Tutorial-body">
+        <Grid id="tutorial-visual" className="tutorial-visual">
+              {rows}
+        </Grid>
         <div className="Tutorial-section">
           <div className="Tutorial-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mauris erat, vulputate tincidunt quam et, porttitor vestibulum elit. Nullam vel nibh ante. Suspendisse id aliquet ligula, nec iaculis neque. Quisque sed sagittis libero. Donec nec magna vestibulum enim facilisis pulvinar. Curabitur sed ante ac metus posuere dictum. Maecenas augue lectus, eleifend id orci non, ornare pellentesque sapien. Cras dignissim dolor id metus bibendum fringilla. Curabitur vitae odio lacus. Nunc sed sapien ut orci eleifend vulputate. Curabitur finibus lobortis augue sed laoreet. Sed venenatis lorem est. Vestibulum placerat magna vel tortor scelerisque, quis sodales libero consectetur. Proin porttitor ut sem ac elementum. Morbi vel eros odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum viverra feugiat urna, vel tempor ligula vulputate et. Pellentesque non quam et felis condimentum malesuada a id nisl. Etiam finibus mi nunc. Nam lobortis in eros et auctor.          </div>
-          <Grid id="tutorial-visual" className="tutorial-visual">
-            {rows}
-          </Grid>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mauris erat, vulputate tincidunt quam et, porttitor vestibulum elit. Nullam vel nibh ante. Suspendisse id aliquet ligula, nec iaculis neque. Quisque sed sagittis libero. Donec nec magna vestibulum enim facilisis pulvinar. Curabitur sed ante ac metus posuere dictum. Maecenas augue lectus, eleifend id orci non, ornare pellentesque sapien. Cras dignissim dolor id metus bibendum fringilla. Curabitur vitae odio lacus. Nunc sed sapien ut orci eleifend vulputate. Curabitur finibus lobortis augue sed laoreet. Sed venenatis lorem est. Vestibulum placerat magna vel tortor scelerisque, quis sodales libero consectetur. Proin porttitor ut sem ac elementum. Morbi vel eros odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum viverra feugiat urna, vel tempor ligula vulputate et. Pellentesque non quam et felis condimentum malesuada a id nisl. Etiam finibus mi nunc. Nam lobortis in eros et auctor.
+          </div>
+        </div>
+        <div className="Tutorial-section">
+          <div className="Tutorial-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mauris erat, vulputate tincidunt quam et, porttitor vestibulum elit. Nullam vel nibh ante. Suspendisse id aliquet ligula, nec iaculis neque. Quisque sed sagittis libero. Donec nec magna vestibulum enim facilisis pulvinar. Curabitur sed ante ac metus posuere dictum. Maecenas augue lectus, eleifend id orci non, ornare pellentesque sapien. Cras dignissim dolor id metus bibendum fringilla. Curabitur vitae odio lacus. Nunc sed sapien ut orci eleifend vulputate. Curabitur finibus lobortis augue sed laoreet. Sed venenatis lorem est. Vestibulum placerat magna vel tortor scelerisque, quis sodales libero consectetur. Proin porttitor ut sem ac elementum. Morbi vel eros odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum viverra feugiat urna, vel tempor ligula vulputate et. Pellentesque non quam et felis condimentum malesuada a id nisl. Etiam finibus mi nunc. Nam lobortis in eros et auctor.
+          </div>
+        </div>
+        <div className="Tutorial-section">
+          <div className="Tutorial-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mauris erat, vulputate tincidunt quam et, porttitor vestibulum elit. Nullam vel nibh ante. Suspendisse id aliquet ligula, nec iaculis neque. Quisque sed sagittis libero. Donec nec magna vestibulum enim facilisis pulvinar. Curabitur sed ante ac metus posuere dictum. Maecenas augue lectus, eleifend id orci non, ornare pellentesque sapien. Cras dignissim dolor id metus bibendum fringilla. Curabitur vitae odio lacus. Nunc sed sapien ut orci eleifend vulputate. Curabitur finibus lobortis augue sed laoreet. Sed venenatis lorem est. Vestibulum placerat magna vel tortor scelerisque, quis sodales libero consectetur. Proin porttitor ut sem ac elementum. Morbi vel eros odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum viverra feugiat urna, vel tempor ligula vulputate et. Pellentesque non quam et felis condimentum malesuada a id nisl. Etiam finibus mi nunc. Nam lobortis in eros et auctor.
+          </div>
+        </div>
+        <div className="Tutorial-section">
+          <div className="Tutorial-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mauris erat, vulputate tincidunt quam et, porttitor vestibulum elit. Nullam vel nibh ante. Suspendisse id aliquet ligula, nec iaculis neque. Quisque sed sagittis libero. Donec nec magna vestibulum enim facilisis pulvinar. Curabitur sed ante ac metus posuere dictum. Maecenas augue lectus, eleifend id orci non, ornare pellentesque sapien. Cras dignissim dolor id metus bibendum fringilla. Curabitur vitae odio lacus. Nunc sed sapien ut orci eleifend vulputate. Curabitur finibus lobortis augue sed laoreet. Sed venenatis lorem est. Vestibulum placerat magna vel tortor scelerisque, quis sodales libero consectetur. Proin porttitor ut sem ac elementum. Morbi vel eros odio. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum viverra feugiat urna, vel tempor ligula vulputate et. Pellentesque non quam et felis condimentum malesuada a id nisl. Etiam finibus mi nunc. Nam lobortis in eros et auctor.
+          </div>
         </div>
      </div>
     </div>

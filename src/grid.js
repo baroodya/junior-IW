@@ -10,7 +10,7 @@ const Grid = (props) => {
 
 const Row = (props) => {
    return (
-      <div 
+      <div
          id={props.id} 
          index={props.index}
          className="Row"
@@ -22,13 +22,13 @@ const Row = (props) => {
 const Cell = (props) => {
    return (
       <div 
-      id={props.id} 
-      index={props.index}
-      className="Cell"
-      children={props.children}
-      onClick={props.onClick} 
-   />
-   )
+         id={props.id} 
+         index={props.index}
+         className="Cell"
+         children={props.children}
+         onClick={props.onClick} 
+      />
+   );
 }
 
-export {Grid, Row, Cell}
+export {Grid, Row, Cell};
