@@ -1,10 +1,7 @@
 import './App.css';
 import {Grid, Row, Cell} from './grid.js';
-import personIcon from './person-icon.png';
-import {useSpring, animated} from 'react-spring';   
+import personIcon from './person-icon.png'; 
 
-let TRANSLUCENT_RED = "rgba(255, 0, 0, 0.2)";
-let TRANSLUCENT_GREEN = "rgba(0, 255, 0, 0.2)";
 let WINDOW_HEIGHT_PIXELS = window.innerHeight;
 let NUM_INFECTED_ROWS = 25;
 
@@ -14,7 +11,7 @@ function App() {
 
 
     let slide1Sep = (scrollHeight - WINDOW_HEIGHT_PIXELS) / 16;
-    let slide1Opacity = (scrollHeight / WINDOW_HEIGHT_PIXELS - 1) / 4;
+    let slide1Opacity = (scrollHeight / WINDOW_HEIGHT_PIXELS - 1) / 5;
 
     switch (true) {
       // Slide 0
@@ -43,40 +40,12 @@ function App() {
         }
         break;
       }
+      default: break;
     }
   }
   function onArrowClick() {
     let slideNum = Math.ceil(0.001 + document.documentElement.scrollTop / WINDOW_HEIGHT_PIXELS);
     window.scroll({top: (slideNum) * WINDOW_HEIGHT_PIXELS, behavior: 'smooth'});
-  }
-
-  function moveRows(numRows, dist, end) {
-    // const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } });
-    let grid = document.getElementById("tutorial-visual");
-    for (const row of grid.childNodes) {
-      let index = row.getAttribute("index");
-      if (!end && index < numRows) {
-        row.style.transform = 'translateY('+dist+'px)';
-      }
-      if (end && index >= grid.childElementCount - numRows) {
-        row.style.transform = 'translateY('+dist+'px)';
-      }
-    }
-  }
-
-  function changeColors(numRows, color, end) {
-    // const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } });
-    let grid = document.getElementById("tutorial-visual");
-    for (const row of grid.childNodes) {
-      let index = row.getAttribute("index");
-      console.log(row.style.background);
-      if (!end && index < numRows) {
-        row.style.background = color;
-      }
-      if (end && index >= grid.childElementCount - numRows) {
-        row.style.background = color;
-      }
-    }
   }
 
   function makeRows() {
