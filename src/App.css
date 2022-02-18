@@ -16,7 +16,8 @@
 
 .App-sub-header {
   font-size: calc(10px + 2vmin);
-  margin-bottom: 200px;
+  margin-top: 10vh; 
+  margin-bottom: -5vh;
 }
 
 .arrow {
