@@ -38,7 +38,7 @@ function App() {
       // Slide 1
       case scrollHeight <= 2 * WINDOW_HEIGHT_PIXELS: {
         let sep = (scrollHeight - WINDOW_HEIGHT_PIXELS) / 16;
-        let opacity = (scrollHeight / WINDOW_HEIGHT_PIXELS - 1) / 5;
+        let opacity = (scrollHeight / WINDOW_HEIGHT_PIXELS - 1) / 4;
 
         let grid = document.getElementById("tutorial-visual");
 
