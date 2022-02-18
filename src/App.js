@@ -47,9 +47,37 @@ function App() {
       default: break;
     }
   }
-  function onArrowClick() {
+
+  function onUpArrowClick() {
+    let slideNum = Math.floor(-0.001 + document.documentElement.scrollTop / WINDOW_HEIGHT_PIXELS);
+    let newHeight = (slideNum) * WINDOW_HEIGHT_PIXELS;
+    window.scroll({top: newHeight, behavior: 'smooth'});
+
+    checkArrowOpacity(newHeight);
+  }
+
+  function onDownArrowClick() {
     let slideNum = Math.ceil(0.001 + document.documentElement.scrollTop / WINDOW_HEIGHT_PIXELS);
-    window.scroll({top: (slideNum) * WINDOW_HEIGHT_PIXELS, behavior: 'smooth'});
+    let newHeight = (slideNum) * WINDOW_HEIGHT_PIXELS;
+    window.scroll({top: newHeight, behavior: 'smooth'});
+
+    checkArrowOpacity(newHeight);
+  }
+
+  function checkArrowOpacity(scrollHeight) {
+    let upArrow = document.getElementById("up-arrow");
+    let downArrow = document.getElementById("down-arrow");
+
+    if (scrollHeight / WINDOW_HEIGHT_PIXELS < 1) {
+      upArrow.style.opacity = 0;
+      downArrow.style.opacity = 1;
+    } else if ((document.documentElement.scrollHeight - scrollHeight) / WINDOW_HEIGHT_PIXELS < 1) {
+      upArrow.style.opacity = 1;
+      downArrow.style.opacity = 0;
+    } else {
+      upArrow.style.opacity = 1;
+      downArrow.style.opacity = 1;
+    }
   }
 
   function makeRows() {
@@ -81,12 +109,20 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <div 
+          id="up-arrow"
+          className="arrow up" 
+          onClick={onUpArrowClick}
+        />
         <p>
           Visual Statistics
         </p>
         <p className="App-sub-header">An Independent Work Project by Alex Baroody</p>
-        <div className="arrow down" 
-          onClick={onArrowClick}/>
+        <div 
+          id="down-arrow"
+          className="arrow down" 
+          onClick={onDownArrowClick}
+        />
       </header>
       <div id="Tutorial-body" className="Tutorial-body">
         <Grid id="tutorial-visual" className="tutorial-visual">
