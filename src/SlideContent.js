@@ -53,7 +53,7 @@ export const SlideContent = {
 `,
     5: `
     Now let’s consider a less common, more severe disease, one that 
-    infects only \\(10\%\\) of the population (\\(160\\) people). Because it is so 
+    infects only \\(10\\%\\) of the population (\\(160\\) people). Because it is so 
     rare, let’s say it has a sensitivity of \\(80\\%\\) and a specificity of \\(90\\%\\). 
     However, because it is so severe, everyone in the population tests 
     for it. This means that \\(128\\) infected people will test positive, \\(32\\) 

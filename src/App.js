@@ -7,7 +7,7 @@ import { MathJaxContext, MathJax } from "better-react-mathjax";
 /* Constants ******************************************************************/
 
 let WINDOW_HEIGHT_PIXELS = window.innerHeight;
-let WINDOW_WIDTH_PIXELS = window.innerWidth;
+// let WINDOW_WIDTH_PIXELS = window.innerWidth;
 let NUM_ROWS = 40;
 let NUM_COLS = 40;
 let CELL_WIDTH = 4;
@@ -139,7 +139,7 @@ function App() {
             for (const block of row.childNodes) {
               let blockIndex = block.getAttribute("index");
               if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
-                if (index == NUM_INFECTED_ROWS - 1 && blockIndex == 0) {
+                if (index === NUM_INFECTED_ROWS - 1 && blockIndex === 0) {
                   block.style.transform =
                     "translateX(" +
                     -(prevHorSep + sep) +
@@ -164,7 +164,7 @@ function App() {
               block.style.background = "rgba(255,0,0,0.5)";
               let blockIndex = block.getAttribute("index");
               if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
-                if (index < 10 && blockIndex == 0) {
+                if (index < 10 && blockIndex === 0) {
                   block.style.transform =
                     "translateX(" + -sep + "px) translateY(" + -sep + "px)";
                   block.style.background =
@@ -209,7 +209,7 @@ function App() {
             for (const block of row.childNodes) {
               let blockIndex = block.getAttribute("index");
               if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
-                if (index == NUM_INFECTED_ROWS - 1 && blockIndex == 0) {
+                if (index === NUM_INFECTED_ROWS - 1 && blockIndex === 0) {
                   block.style.transform =
                     "translateX(" +
                     -(prevHorSep - sep) +
@@ -234,7 +234,7 @@ function App() {
               block.style.background = "rgba(255,0,0,0.5)";
               let blockIndex = block.getAttribute("index");
               if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
-                if (index < 10 && blockIndex == 0) {
+                if (index < 10 && blockIndex === 0) {
                   block.style.transform =
                     "translateX(" +
                     (-prevVertSep + sep) +
@@ -366,7 +366,7 @@ function App() {
         }
 
         // prep math visual
-        if (scrollHeight == 5 * WINDOW_HEIGHT_PIXELS) {
+        if (scrollHeight === 5 * WINDOW_HEIGHT_PIXELS) {
           let math = document.getElementById("tutorial-visual-math");
           math.style.opacity = 1;
           math.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
