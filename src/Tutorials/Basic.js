@@ -10,7 +10,7 @@ let CELL_HEIGHT = 4;
 let NUM_INFECTED_ROWS = NUM_ROWS / (CELL_HEIGHT * 2);
 let NUM_INFECTED_ROWS_EX_2 = (9 * NUM_ROWS) / (CELL_HEIGHT * 10);
 
-const intoSlide1 = (scrollHeight, grid) => {
+const intoSlide2 = (scrollHeight, grid) => {
   let sep = (scrollHeight - WINDOW_HEIGHT_PIXELS) / 16;
   let opacity = (scrollHeight / WINDOW_HEIGHT_PIXELS - 1) / 2;
 
@@ -33,7 +33,7 @@ const intoSlide1 = (scrollHeight, grid) => {
   }
 };
 
-const intoSlide2 = (scrollHeight, grid, outline) => {
+const intoSlide3 = (scrollHeight, grid, outline) => {
   let prevVertSep = WINDOW_HEIGHT_PIXELS / 16;
   let sep = (scrollHeight - 2 * WINDOW_HEIGHT_PIXELS) / 16;
   // move from 0 red to 255 red
@@ -71,93 +71,62 @@ const intoSlide2 = (scrollHeight, grid, outline) => {
   }
 };
 
-const intoSlide3 = (scrollHeight, grid) => {};
-const intoSlide4 = (scrollHeight, grid) => {};
-const intoSlide5 = (scrollHeight, grid) => {};
-const intoSlide6 = (scrollHeight, grid) => {};
+const intoSlide4 = (scrollHeight, grid) => {
+  let prevHorSep = WINDOW_HEIGHT_PIXELS / 16;
+  let sep = (scrollHeight - 3 * WINDOW_HEIGHT_PIXELS) / 64;
+  // move from 175 green to 0 green
+  let subtractedGreen = 175 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 3) * 175;
+  // move from 175 green to 255 green
+  let addedGreenFromOrange =
+    175 + (scrollHeight / WINDOW_HEIGHT_PIXELS - 3) * 80;
 
-const onPageScrollBasic = (scrollHeight) => {
-  let grid = document.getElementById("tutorial-visual-grid");
-  let outline = document.getElementById("tutorial-visual-outline");
+  // move from 0 green to 255 green
+  let addedGreenFromRed = (scrollHeight / WINDOW_HEIGHT_PIXELS - 3) * 255;
+  // move from 255 red to 0 red
+  let subtractedRed = 255 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 3) * 255;
 
-  switch (true) {
-    // Slide 0 - Slide 1 Transition
-    case scrollHeight <= 2 * WINDOW_HEIGHT_PIXELS: {
-      intoSlide1(grid, scrollHeight);
-      break;
-    }
+  for (const row of grid.childNodes) {
+    let index = row.getAttribute("index");
 
-    // Slide 1 - 2 Transition
-    case scrollHeight <= 3 * WINDOW_HEIGHT_PIXELS: {
-      intoSlide2(scrollHeight, grid, outline);
-      break;
-    }
-
-    // Slide 3 - 4 Transition
-    case scrollHeight <= 4 * WINDOW_HEIGHT_PIXELS: {
-      let prevHorSep = WINDOW_HEIGHT_PIXELS / 16;
-      let sep = (scrollHeight - 3 * WINDOW_HEIGHT_PIXELS) / 64;
-      // move from 175 green to 0 green
-      let subtractedGreen =
-        175 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 3) * 175;
-      // move from 175 green to 255 green
-      let addedGreenFromOrange =
-        175 + (scrollHeight / WINDOW_HEIGHT_PIXELS - 3) * 80;
-
-      // move from 0 green to 255 green
-      let addedGreenFromRed = (scrollHeight / WINDOW_HEIGHT_PIXELS - 3) * 255;
-      // move from 255 red to 0 red
-      let subtractedRed = 255 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 3) * 255;
-
-      let grid = document.getElementById("tutorial-visual-grid");
-
-      for (const row of grid.childNodes) {
-        let index = row.getAttribute("index");
-
-        // Split half of uninfected people
-        if (index < NUM_INFECTED_ROWS) {
-          for (const block of row.childNodes) {
-            let blockIndex = block.getAttribute("index");
-            if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
-              if (index === NUM_INFECTED_ROWS - 1 && blockIndex === 0) {
-                block.style.transform =
-                  "translateX(" +
-                  -(prevHorSep + sep) +
-                  "px) translateY(" +
-                  sep +
-                  "px)";
-                block.style.background =
-                  "rgba(255," + subtractedGreen + ",0,0.5)";
-              } else {
-                block.style.background =
-                  "rgba(" +
-                  subtractedRed +
-                  "," +
-                  addedGreenFromOrange +
-                  ",0,0.5)";
-              }
-            }
-          }
-        } else {
-          row.style.background = "rgba(0,0,0,0)";
-          for (const block of row.childNodes) {
-            block.style.background = "rgba(255,0,0,0.5)";
-            let blockIndex = block.getAttribute("index");
-            if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
-              if (index < 10 && blockIndex === 0) {
-                block.style.transform =
-                  "translateX(" + -sep + "px) translateY(" + -sep + "px)";
-                block.style.background =
-                  "rgba(" + subtractedRed + "," + addedGreenFromRed + ",0,0.5)";
-              }
-            }
+    // Split half of uninfected people
+    if (index < NUM_INFECTED_ROWS) {
+      for (const block of row.childNodes) {
+        let blockIndex = block.getAttribute("index");
+        if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
+          if (index === NUM_INFECTED_ROWS - 1 && blockIndex === 0) {
+            block.style.transform =
+              "translateX(" +
+              -(prevHorSep + sep) +
+              "px) translateY(" +
+              sep +
+              "px)";
+            block.style.background = "rgba(255," + subtractedGreen + ",0,0.5)";
+          } else {
+            block.style.background =
+              "rgba(" + subtractedRed + "," + addedGreenFromOrange + ",0,0.5)";
           }
         }
       }
-      break;
+    } else {
+      row.style.background = "rgba(0,0,0,0)";
+      for (const block of row.childNodes) {
+        block.style.background = "rgba(255,0,0,0.5)";
+        let blockIndex = block.getAttribute("index");
+        if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
+          if (index < 10 && blockIndex === 0) {
+            block.style.transform =
+              "translateX(" + -sep + "px) translateY(" + -sep + "px)";
+            block.style.background =
+              "rgba(" + subtractedRed + "," + addedGreenFromRed + ",0,0.5)";
+          }
+        }
+      }
     }
-
-    // First quarter of slide 4 - 5 transition
+  }
+};
+const intoSlide5 = (scrollHeight, grid) => {
+  switch (true) {
+    // First quarter of transition
     case scrollHeight <= 4.25 * WINDOW_HEIGHT_PIXELS: {
       let prevHorSep = (5 * WINDOW_HEIGHT_PIXELS) / 64;
       let prevVertSep = WINDOW_HEIGHT_PIXELS / 64;
@@ -173,8 +142,6 @@ const onPageScrollBasic = (scrollHeight) => {
         255 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 4) * 4 * 255;
       // move from 0 red to 255 red
       let subtractedRed = (scrollHeight / WINDOW_HEIGHT_PIXELS - 4) * 4 * 255;
-
-      let grid = document.getElementById("tutorial-visual-grid");
 
       for (const row of grid.childNodes) {
         let index = row.getAttribute("index");
@@ -226,7 +193,7 @@ const onPageScrollBasic = (scrollHeight) => {
       break;
     }
 
-    // Second Quarter of Slide 4 - 5 transition
+    // Second Quarter of transition
     case scrollHeight <= 4.5 * WINDOW_HEIGHT_PIXELS: {
       let prevHorSep = WINDOW_HEIGHT_PIXELS / 16;
       let prevVertSep = WINDOW_HEIGHT_PIXELS / 16;
@@ -239,8 +206,6 @@ const onPageScrollBasic = (scrollHeight) => {
         175 + (scrollHeight / WINDOW_HEIGHT_PIXELS - 4.25) * 4 * (255 - 175);
       let outlineOpacity =
         1 - ((scrollHeight / WINDOW_HEIGHT_PIXELS - 4.25) * 4) ** 5;
-
-      let grid = document.getElementById("tutorial-visual-grid");
 
       let outline = document.getElementById("tutorial-visual-outline");
       outline.childNodes[0].style.opacity = outlineOpacity;
@@ -283,8 +248,6 @@ const onPageScrollBasic = (scrollHeight) => {
       let sep = ((scrollHeight - 4.5 * WINDOW_HEIGHT_PIXELS) * 4) / 16;
       let opacity = 0.5 - ((scrollHeight / WINDOW_HEIGHT_PIXELS - 4.5) * 4) / 2;
 
-      let grid = document.getElementById("tutorial-visual-grid");
-
       // Change position and opacity linearly over transition
       for (const row of grid.childNodes) {
         let index = row.getAttribute("index");
@@ -315,8 +278,6 @@ const onPageScrollBasic = (scrollHeight) => {
       let sep = ((scrollHeight - 4.75 * WINDOW_HEIGHT_PIXELS) * 4) / 16;
       let opacity = ((scrollHeight / WINDOW_HEIGHT_PIXELS - 4.75) * 4) / 2;
 
-      let grid = document.getElementById("tutorial-visual-grid");
-
       // Change position and opacity linearly over transition
       for (const row of grid.childNodes) {
         let index = row.getAttribute("index");
@@ -343,18 +304,50 @@ const onPageScrollBasic = (scrollHeight) => {
       }
       break;
     }
+  }
+};
+const intoSlide6 = (scrollHeight, grid) => {
+  let sep = scrollHeight - 5 * WINDOW_HEIGHT_PIXELS;
+
+  grid.style.transform = "translateY(" + -sep + "px)";
+
+  let math = document.getElementById("tutorial-visual-math");
+  math.style.transform = "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
+
+  document.getElementById("");
+};
+
+const onPageScrollBasic = (scrollHeight) => {
+  let grid = document.getElementById("tutorial-visual-grid");
+  let outline = document.getElementById("tutorial-visual-outline");
+
+  switch (true) {
+    // Slide 0 - Slide 1 Transition
+    case scrollHeight <= 2 * WINDOW_HEIGHT_PIXELS: {
+      intoSlide2(scrollHeight, grid);
+      break;
+    }
+
+    // Slide 1 - 2 Transition
+    case scrollHeight <= 3 * WINDOW_HEIGHT_PIXELS: {
+      intoSlide3(scrollHeight, grid, outline);
+      break;
+    }
+
+    // Slide 3 - 4 Transition
+    case scrollHeight <= 4 * WINDOW_HEIGHT_PIXELS: {
+      intoSlide4(scrollHeight, grid);
+      break;
+    }
+
+    case scrollHeight <= 5 * WINDOW_HEIGHT_PIXELS: {
+      intoSlide5(scrollHeight, grid);
+      break;
+    }
 
     // Slide 5 - 6 transition
     case scrollHeight <= 6 * WINDOW_HEIGHT_PIXELS: {
-      let sep = scrollHeight - 5 * WINDOW_HEIGHT_PIXELS;
-      let grid = document.getElementById("tutorial-visual-grid");
-      grid.style.transform = "translateY(" + -sep + "px)";
-
-      let math = document.getElementById("tutorial-visual-math");
-      math.style.transform =
-        "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
-
-      document.getElementById("");
+      intoSlide6(scrollHeight, grid);
       break;
     }
 

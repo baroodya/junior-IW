@@ -87,7 +87,6 @@ function App() {
 
   // Transition arrow opacities based on scroll height
   function setArrowVisibility(scrollHeight) {
-    console.log(scrollHeight / WINDOW_HEIGHT_PIXELS);
     let upArrow = document.getElementById("up-arrow");
     let downArrow = document.getElementById("down-arrow");
 
