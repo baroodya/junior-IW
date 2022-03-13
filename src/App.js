@@ -4,6 +4,7 @@ import personIcon from "./person-icon-16.png";
 import { SlideContent } from "./SlideContent.js";
 import { MathJaxContext, MathJax } from "better-react-mathjax";
 import { BasicTutorial, onPageScrollBasic } from "./Tutorials/Basic.js";
+import { InterTutorial, onPageScrollInter } from "./Tutorials/Inter.js";
 
 /* Constants ******************************************************************/
 
@@ -180,7 +181,8 @@ function App() {
           />
         </header>
         {/* Visual and Slides */}
-        <BasicTutorial grid={grid} />
+        {/* <BasicTutorial grid={grid} /> */}
+        <InterTutorial grid={grid} />
       </div>
     </MathJaxContext>
   );

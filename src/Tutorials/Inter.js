@@ -319,7 +319,7 @@ const intoSlide6 = (scrollHeight, grid) => {
   document.getElementById("");
 };
 
-const onPageScrollBasic = (scrollHeight) => {
+const onPageScrollInter = (scrollHeight) => {
   let grid = document.getElementById("tutorial-visual-grid");
   let outline = document.getElementById("tutorial-visual-outline");
 
@@ -357,7 +357,7 @@ const onPageScrollBasic = (scrollHeight) => {
       break;
   }
 };
-const BasicTutorial = ({ grid }) => {
+const InterTutorial = ({ grid }) => {
   return (
     <div id="Tutorial-body" className="Tutorial-body">
       <div class="Tutorial-visual">
@@ -381,36 +381,41 @@ const BasicTutorial = ({ grid }) => {
       </div>
       <div className="Tutorial-section">
         <div className="Tutorial-text">
-          <MathJax>{SlideContent["Basic"][1]}</MathJax>
+          <MathJax>{SlideContent["Inter"][1]}</MathJax>
         </div>
       </div>
       <div className="Tutorial-section">
         <div className="Tutorial-text">
-          <MathJax>{SlideContent["Basic"][2]}</MathJax>
+          <MathJax>{SlideContent["Inter"][2]}</MathJax>
         </div>
       </div>
       <div className="Tutorial-section">
         <div className="Tutorial-text">
-          <MathJax> {SlideContent["Basic"][3]} </MathJax>
+          <MathJax> {SlideContent["Inter"][3]} </MathJax>
         </div>
       </div>
       <div className="Tutorial-section">
         <div className="Tutorial-text">
-          <MathJax>{SlideContent["Basic"][4]}</MathJax>
+          <MathJax>{SlideContent["Inter"][4]}</MathJax>
         </div>
       </div>
       <div className="Tutorial-section">
         <div className="Tutorial-text">
-          <MathJax>{SlideContent["Basic"][5]}</MathJax>
+          <MathJax>{SlideContent["Inter"][5]}</MathJax>
+        </div>
+      </div>
+      <div className="Tutorial-section">
+        <div className="Tutorial-text">
+          <MathJax>{SlideContent["Inter"][6]}</MathJax>
         </div>
       </div>
       <div className="Tutorial-section last-section">
         <div className="Tutorial-text">
-          <MathJax>{SlideContent["Basic"][6]}</MathJax>
+          <MathJax>{SlideContent["Inter"][7]}</MathJax>
         </div>
       </div>
     </div>
   );
 };
 
-export { BasicTutorial, onPageScrollBasic };
+export { InterTutorial, onPageScrollInter };
