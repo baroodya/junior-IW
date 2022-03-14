@@ -20,6 +20,8 @@ const intoSlide2 = (scrollHeight, grid, outline) => {
   let littleSep = (scrollHeight - WINDOW_HEIGHT_PIXELS) / 64;
   let bigSep = (scrollHeight - WINDOW_HEIGHT_PIXELS) / 16;
 
+  let rotation = scrollHeight / WINDOW_HEIGHT_PIXELS - 1;
+
   let backgroundOpacity = (scrollHeight / WINDOW_HEIGHT_PIXELS - 1) * 0.5;
 
   for (const row of grid.childNodes) {
@@ -38,7 +40,9 @@ const intoSlide2 = (scrollHeight, grid, outline) => {
               -(bigSep + littleSep) +
               "px) translateY(" +
               (littleSep - bigSep) +
-              "px)";
+              "px) rotate(" +
+              rotation +
+              "turn)";
             block.style.background = "rgba(255,0,0," + backgroundOpacity + ")";
           } else {
             block.style.background = "rgba(0,255,0," + backgroundOpacity + ")";

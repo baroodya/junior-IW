@@ -74,6 +74,9 @@ const intoSlide3 = (scrollHeight, grid, outline) => {
 const intoSlide4 = (scrollHeight, grid) => {
   let prevHorSep = WINDOW_HEIGHT_PIXELS / 16;
   let sep = (scrollHeight - 3 * WINDOW_HEIGHT_PIXELS) / 64;
+
+  let rotation = scrollHeight / WINDOW_HEIGHT_PIXELS - 1;
+
   // move from 175 green to 0 green
   let subtractedGreen = 175 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 3) * 175;
   // move from 175 green to 255 green
@@ -99,7 +102,9 @@ const intoSlide4 = (scrollHeight, grid) => {
               -(prevHorSep + sep) +
               "px) translateY(" +
               sep +
-              "px)";
+              "px) rotate(" +
+              rotation +
+              "turn)";
             block.style.background = "rgba(255," + subtractedGreen + ",0,0.5)";
           } else {
             block.style.background =
