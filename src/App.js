@@ -14,10 +14,10 @@ let NUM_ROWS = 40;
 let NUM_COLS = 40;
 let CELL_WIDTH = 4;
 let CELL_HEIGHT = 4;
-let TOTAL_SLIDES = 7;
 let BASIC_SLIDES = 7;
-let INTER_SLIDES = 0;
+let INTER_SLIDES = 8;
 let ADV_SLIDES = 0;
+let TOTAL_SLIDES = BASIC_SLIDES + INTER_SLIDES + ADV_SLIDES;
 let TOTAL_HEIGHT = (TOTAL_SLIDES - 1) * WINDOW_HEIGHT_PIXELS; // start at height 0
 let BASIC_HEIGHT = (BASIC_SLIDES - 1) * WINDOW_HEIGHT_PIXELS;
 let INTER_HEIGHT = (INTER_SLIDES - 1) * WINDOW_HEIGHT_PIXELS;
@@ -46,12 +46,15 @@ function App() {
         break;
       }
       // Basic Tutorial
-      case scrollHeight <= BASIC_HEIGHT: {
-        onPageScrollBasic(scrollHeight);
-        break;
-      }
+      // TODO: Uncomment
+      // case scrollHeight <= BASIC_HEIGHT: {
+      //   onPageScrollBasic(scrollHeight);
+      //   break;
+      // }
 
+      // Intermediate Tutorial
       case scrollHeight <= INTER_HEIGHT: {
+        onPageScrollInter(scrollHeight);
         break;
       }
 

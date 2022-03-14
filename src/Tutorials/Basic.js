@@ -93,9 +93,7 @@ const intoSlide4 = (scrollHeight, grid) => {
       for (const block of row.childNodes) {
         let blockIndex = Number(block.getAttribute("index"));
         if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
-          console.log(typeof index);
           if (index === NUM_INFECTED_ROWS - 1 && blockIndex === 0) {
-            console.log("shift!");
             block.style.transform =
               "translateX(" +
               -(prevHorSep + sep) +
@@ -126,6 +124,7 @@ const intoSlide4 = (scrollHeight, grid) => {
     }
   }
 };
+
 const intoSlide5 = (scrollHeight, grid) => {
   switch (true) {
     // First quarter of transition
@@ -315,8 +314,6 @@ const intoSlide6 = (scrollHeight, grid) => {
 
   let math = document.getElementById("tutorial-visual-math");
   math.style.transform = "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
-
-  document.getElementById("");
 };
 
 const onPageScrollBasic = (scrollHeight) => {
@@ -342,6 +339,7 @@ const onPageScrollBasic = (scrollHeight) => {
       break;
     }
 
+    // Slide 4 - 5 Transition
     case scrollHeight <= 5 * WINDOW_HEIGHT_PIXELS: {
       intoSlide5(scrollHeight, grid);
       break;

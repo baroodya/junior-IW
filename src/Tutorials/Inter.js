@@ -10,80 +10,17 @@ let CELL_HEIGHT = 4;
 let NUM_INFECTED_ROWS = NUM_ROWS / (CELL_HEIGHT * 2);
 let NUM_INFECTED_ROWS_EX_2 = (9 * NUM_ROWS) / (CELL_HEIGHT * 10);
 
-const intoSlide2 = (scrollHeight, grid) => {
-  let sep = (scrollHeight - WINDOW_HEIGHT_PIXELS) / 16;
-  let opacity = (scrollHeight / WINDOW_HEIGHT_PIXELS - 1) / 2;
-
-  // Change position and opacity linearly over transition
-  for (const row of grid.childNodes) {
-    let index = row.getAttribute("index");
-
-    // split based on NUM_INFECTED_ROWS
-    if (index >= NUM_INFECTED_ROWS) {
-      row.style.transform = "translateY(" + sep + "px)";
-      row.style.background = "rgba(255,0,0," + opacity + ")";
-    } else {
-      row.style.transform = "translateY(" + -sep + "px)";
-      row.style.background = "rgba(0,255,0," + opacity + ")";
-    }
-
-    for (const block of row.childNodes) {
-      block.style.background = "rgba(0,0,0,0.0)";
-    }
-  }
-};
-
-const intoSlide3 = (scrollHeight, grid, outline) => {
-  let prevVertSep = WINDOW_HEIGHT_PIXELS / 16;
-  let sep = (scrollHeight - 2 * WINDOW_HEIGHT_PIXELS) / 16;
-  // move from 0 red to 255 red
-  let addedRed = ((2 * scrollHeight) / (3 * WINDOW_HEIGHT_PIXELS) - 1) * 255;
-  // move from 255 green to 175 green
-  let subtractedGreen =
-    255 - ((2 * scrollHeight) / (3 * WINDOW_HEIGHT_PIXELS) - 1) * (255 - 175);
+const intoSlide2 = (scrollHeight, grid, outline) => {
   let outlineOpacity =
-    ((scrollHeight - 2 * WINDOW_HEIGHT_PIXELS) / WINDOW_HEIGHT_PIXELS) ** 5;
+    ((scrollHeight - WINDOW_HEIGHT_PIXELS) / WINDOW_HEIGHT_PIXELS) ** 5;
 
   outline.childNodes[0].style.opacity = outlineOpacity;
   outline.childNodes[1].style.opacity = outlineOpacity;
 
-  for (const row of grid.childNodes) {
-    let index = row.getAttribute("index");
+  let littleSep = (scrollHeight - WINDOW_HEIGHT_PIXELS) / 64;
+  let bigSep = (scrollHeight - WINDOW_HEIGHT_PIXELS) / 16;
 
-    // Split half of uninfected people
-    if (index < NUM_INFECTED_ROWS) {
-      row.style.background = "rgba(0,0,0,0)";
-      for (const block of row.childNodes) {
-        let blockIndex = block.getAttribute("index");
-        if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
-          block.style.transform = "translateX(" + -sep + "px)";
-          block.style.background =
-            "rgba(" + addedRed + "," + subtractedGreen + ",0,0.5)";
-        } else {
-          block.style.transform = "translateX(" + sep + "px)";
-          block.style.background = "rgba(0,255,0,0.5)";
-        }
-      }
-    } else {
-      row.style.transform =
-        "translateY(" + prevVertSep + "px) translateX(" + -sep + "px)";
-    }
-  }
-};
-
-const intoSlide4 = (scrollHeight, grid) => {
-  let prevHorSep = WINDOW_HEIGHT_PIXELS / 16;
-  let sep = (scrollHeight - 3 * WINDOW_HEIGHT_PIXELS) / 64;
-  // move from 175 green to 0 green
-  let subtractedGreen = 175 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 3) * 175;
-  // move from 175 green to 255 green
-  let addedGreenFromOrange =
-    175 + (scrollHeight / WINDOW_HEIGHT_PIXELS - 3) * 80;
-
-  // move from 0 green to 255 green
-  let addedGreenFromRed = (scrollHeight / WINDOW_HEIGHT_PIXELS - 3) * 255;
-  // move from 255 red to 0 red
-  let subtractedRed = 255 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 3) * 255;
+  let backgroundOpacity = (scrollHeight / WINDOW_HEIGHT_PIXELS - 1) * 0.5;
 
   for (const row of grid.childNodes) {
     let index = Number(row.getAttribute("index"));
@@ -98,96 +35,185 @@ const intoSlide4 = (scrollHeight, grid) => {
             console.log("shift!");
             block.style.transform =
               "translateX(" +
-              -(prevHorSep + sep) +
+              -(bigSep + littleSep) +
               "px) translateY(" +
-              sep +
+              (littleSep - bigSep) +
               "px)";
-            block.style.background = "rgba(255," + subtractedGreen + ",0,0.5)";
+            block.style.background = "rgba(255,0,0," + backgroundOpacity + ")";
           } else {
-            block.style.background =
-              "rgba(" + subtractedRed + "," + addedGreenFromOrange + ",0,0.5)";
+            block.style.background = "rgba(0,255,0," + backgroundOpacity + ")";
+            block.style.transform =
+              "translateX(" + -bigSep + "px) translateY(" + -bigSep + "px)";
           }
+        } else {
+          block.style.transform =
+            "translateX(" + bigSep + "px) translateY(" + -bigSep + "px)";
         }
       }
     } else {
       row.style.background = "rgba(0,0,0,0)";
+      row.style.transform =
+        "translateX(" + -bigSep + "px) translateY(" + bigSep + "px)";
       for (const block of row.childNodes) {
-        block.style.background = "rgba(255,0,0,0.5)";
+        block.style.background = "rgba(255,0,0," + backgroundOpacity + ")";
         let blockIndex = Number(block.getAttribute("index"));
         if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
           if (index < 10 && blockIndex === 0) {
             block.style.transform =
-              "translateX(" + -sep + "px) translateY(" + -sep + "px)";
-            block.style.background =
-              "rgba(" + subtractedRed + "," + addedGreenFromRed + ",0,0.5)";
+              "translateX(" +
+              -littleSep +
+              "px) translateY(" +
+              -littleSep +
+              "px)";
+            block.style.background = "rgba(0,255,0," + backgroundOpacity + ")";
           }
         }
       }
     }
   }
+  // prep math visual
+  if (scrollHeight === 2 * WINDOW_HEIGHT_PIXELS) {
+    let math = document.getElementById("tutorial-visual-math");
+    math.style.opacity = 1;
+    math.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
+    let index = 0;
+    for (const equation of math.childNodes) {
+      if (index === 0) {
+        equation.style.display = "block";
+      } else {
+        equation.style.display = "none";
+      }
+      index++;
+    }
+  }
 };
-const intoSlide5 = (scrollHeight, grid) => {
+
+const intoSlide3 = (scrollHeight, grid, outline) => {
+  let sep = scrollHeight - 2 * WINDOW_HEIGHT_PIXELS;
+
+  grid.style.transform = "translateY(" + -sep + "px)";
+  outline.style.transform = "translateY(" + -sep + "px)";
+
+  let math = document.getElementById("tutorial-visual-math");
+  math.style.transform = "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
+  math.style.right = "18vw";
+  math.style.fontSize = "30px";
+
+  if (scrollHeight === 3 * WINDOW_HEIGHT_PIXELS) {
+    grid.style.transform = "translateY(" + sep + "px)";
+    outline.style.transform = "translateY(" + sep + "px)";
+    outline.style.opacity = 1;
+  }
+};
+
+const intoSlide4and6 = (scrollHeight, grid, outline, slide) => {
+  let sep = scrollHeight - (slide - 1) * WINDOW_HEIGHT_PIXELS;
+
+  grid.style.transform = "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
+  outline.style.transform =
+    "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
+
+  let math = document.getElementById("tutorial-visual-math");
+  math.style.transform = "translateY(" + -sep + "px)";
+
+  let properEquation = Number(slide == 6);
+  let index = 0;
+  for (const equation of math.childNodes) {
+    if (index === properEquation) {
+      equation.style.display = "block";
+    } else {
+      equation.style.display = "none";
+    }
+    index++;
+  }
+
+  if (scrollHeight === slide * WINDOW_HEIGHT_PIXELS && slide === 4) {
+    math.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
+    let index = 0;
+    for (const equation of math.childNodes) {
+      if (index === 1) {
+        equation.style.display = "block";
+      } else {
+        equation.style.display = "none";
+      }
+      index++;
+    }
+  }
+};
+
+const intoSlide5 = (scrollHeight, grid, outline) => {
+  let sep = scrollHeight - 4 * WINDOW_HEIGHT_PIXELS;
+
+  grid.style.transform = "translateY(" + -sep + "px)";
+  outline.style.transform = "translateY(" + -sep + "px)";
+
+  let math = document.getElementById("tutorial-visual-math");
+  math.style.transform = "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
+  math.style.right = "18vw";
+  math.style.fontSize = "30px";
+
+  if (scrollHeight === 5 * WINDOW_HEIGHT_PIXELS) {
+    grid.style.transform = "translateY(" + sep + "px)";
+    outline.style.transform = "translateY(" + sep + "px)";
+    outline.style.opacity = 1;
+  }
+};
+
+const intoSlide7 = (scrollHeight, grid, outline) => {
   switch (true) {
-    // First quarter of transition
-    case scrollHeight <= 4.25 * WINDOW_HEIGHT_PIXELS: {
+    // First Third of transition
+    case scrollHeight <= 6.33 * WINDOW_HEIGHT_PIXELS: {
       let prevHorSep = (5 * WINDOW_HEIGHT_PIXELS) / 64;
       let prevVertSep = WINDOW_HEIGHT_PIXELS / 64;
-      let sep = ((scrollHeight - 4 * WINDOW_HEIGHT_PIXELS) * 4) / 64;
-      // move from 0 green to 175 green
-      let subtractedGreen = (scrollHeight / WINDOW_HEIGHT_PIXELS - 4) * 4 * 175;
-      // move from 255 green to 175 green
-      let addedGreenFromOrange =
-        255 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 4) * 4 * 80;
-
+      let sep = ((scrollHeight - 6 * WINDOW_HEIGHT_PIXELS) * 3) / 64;
       // move from 255 green to 0 green
-      let addedGreenFromRed =
-        255 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 4) * 4 * 255;
-      // move from 0 red to 255 red
-      let subtractedRed = (scrollHeight / WINDOW_HEIGHT_PIXELS - 4) * 4 * 255;
+      let subtractedGreen =
+        255 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 6) * 3 * 255;
+      // move from 255 red to 0 red
+      let subtractedRed =
+        255 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 6) * 3 * 255;
+
+      let opacity = 0.5 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 6) * 3 * 0.5;
 
       for (const row of grid.childNodes) {
-        let index = row.getAttribute("index");
+        let index = Number(row.getAttribute("index"));
 
         // Split half of uninfected people
         if (index < NUM_INFECTED_ROWS) {
           for (const block of row.childNodes) {
-            let blockIndex = block.getAttribute("index");
+            let blockIndex = Number(block.getAttribute("index"));
             if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
               if (index === NUM_INFECTED_ROWS - 1 && blockIndex === 0) {
                 block.style.transform =
                   "translateX(" +
                   -(prevHorSep - sep) +
                   "px) translateY(" +
-                  (prevVertSep - sep) +
+                  (-3 * prevVertSep - sep) +
                   "px)";
                 block.style.background =
-                  "rgba(255," + subtractedGreen + ",0,0.5)";
+                  "rgba(" + subtractedRed + ",0,0," + opacity + ")";
               } else {
                 block.style.background =
-                  "rgba(" +
-                  subtractedRed +
-                  "," +
-                  addedGreenFromOrange +
-                  ",0,0.5)";
+                  "rgba(0," + subtractedGreen + ",0," + opacity + ")";
               }
             }
           }
         } else {
           row.style.background = "rgba(0,0,0,0)";
           for (const block of row.childNodes) {
-            block.style.background = "rgba(255,0,0,0.5)";
-            let blockIndex = block.getAttribute("index");
-            if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
-              if (index < 10 && blockIndex === 0) {
-                block.style.transform =
-                  "translateX(" +
-                  (-prevVertSep + sep) +
-                  "px) translateY(" +
-                  (-prevVertSep + sep) +
-                  "px)";
-                block.style.background =
-                  "rgba(" + subtractedRed + "," + addedGreenFromRed + ",0,0.5)";
-              }
+            let blockIndex = Number(block.getAttribute("index"));
+            if (index < 10 && blockIndex === 0) {
+              block.style.transform =
+                "translateX(" +
+                (-prevVertSep + sep) +
+                "px) translateY(" +
+                (-prevVertSep + sep) +
+                "px)";
+              block.style.background =
+                "rgba(0," + subtractedGreen + ",0," + opacity + ")";
+            } else {
+              block.style.background =
+                "rgba(" + subtractedRed + ",0,0," + opacity + ")";
             }
           }
         }
@@ -195,21 +221,15 @@ const intoSlide5 = (scrollHeight, grid) => {
       break;
     }
 
-    // Second Quarter of transition
-    case scrollHeight <= 4.5 * WINDOW_HEIGHT_PIXELS: {
+    // Second Third of transition
+    case scrollHeight <= 6.66 * WINDOW_HEIGHT_PIXELS: {
       let prevHorSep = WINDOW_HEIGHT_PIXELS / 16;
       let prevVertSep = WINDOW_HEIGHT_PIXELS / 16;
-      let sep = ((scrollHeight - 4.25 * WINDOW_HEIGHT_PIXELS) * 4) / 16;
-      // move from 255 red to 0 red
-      let addedRed =
-        255 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 4.25) * 4 * 255;
-      // move from 175 green to 255 green
-      let subtractedGreen =
-        175 + (scrollHeight / WINDOW_HEIGHT_PIXELS - 4.25) * 4 * (255 - 175);
-      let outlineOpacity =
-        1 - ((scrollHeight / WINDOW_HEIGHT_PIXELS - 4.25) * 4) ** 5;
+      let sep = ((scrollHeight - 6.33 * WINDOW_HEIGHT_PIXELS) * 3) / 16;
 
-      let outline = document.getElementById("tutorial-visual-outline");
+      let outlineOpacity =
+        1 - ((scrollHeight / WINDOW_HEIGHT_PIXELS - 6.33) * 3) ** 5;
+
       outline.childNodes[0].style.opacity = outlineOpacity;
       outline.childNodes[1].style.opacity = outlineOpacity;
 
@@ -219,17 +239,23 @@ const intoSlide5 = (scrollHeight, grid) => {
         // Split half of uninfected people
         if (index < NUM_INFECTED_ROWS) {
           row.style.background = "rgba(0,0,0,0)";
+          row.style.transform = "translateX(0px) translateY(0px)";
           for (const block of row.childNodes) {
             let blockIndex = block.getAttribute("index");
             if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
               block.style.transform =
-                "translateX(" + (-prevHorSep + sep) + "px)";
-              block.style.background =
-                "rgba(" + addedRed + "," + subtractedGreen + ",0,0.5)";
+                "translateX(" +
+                (-prevHorSep + sep) +
+                "px) translateY(" +
+                -prevVertSep +
+                "px)";
             } else {
               block.style.transform =
-                "translateX(" + (prevHorSep - sep) + "px)";
-              block.style.background = "rgba(0,255,0,0.5)";
+                "translateX(" +
+                (prevHorSep - sep) +
+                "px) translateY(" +
+                -prevVertSep +
+                "px)";
             }
           }
         } else {
@@ -244,27 +270,23 @@ const intoSlide5 = (scrollHeight, grid) => {
       break;
     }
 
-    // Third quarter of slide 4 - 5 transition
-    case scrollHeight <= 4.75 * WINDOW_HEIGHT_PIXELS: {
+    // Last Third of slide 4 - 5 transition
+    case scrollHeight <= 7 * WINDOW_HEIGHT_PIXELS: {
       let prevVertSep = WINDOW_HEIGHT_PIXELS / 16;
-      let sep = ((scrollHeight - 4.5 * WINDOW_HEIGHT_PIXELS) * 4) / 16;
-      let opacity = 0.5 - ((scrollHeight / WINDOW_HEIGHT_PIXELS - 4.5) * 4) / 2;
+      let sep = ((scrollHeight - 6.66 * WINDOW_HEIGHT_PIXELS) * 3) / 16;
 
       // Change position and opacity linearly over transition
       for (const row of grid.childNodes) {
         let index = row.getAttribute("index");
 
-        let outline = document.getElementById("tutorial-visual-outline");
         outline.childNodes[0].style.opacity = 0;
         outline.childNodes[1].style.opacity = 0;
 
         // split based on NUM_INFECTED_ROWS
         if (index >= NUM_INFECTED_ROWS) {
           row.style.transform = "translateY(" + (prevVertSep - sep) + "px)";
-          row.style.background = "rgba(255,0,0," + opacity + ")";
         } else {
           row.style.transform = "translateY(" + (-prevVertSep + sep) + "px)";
-          row.style.background = "rgba(0,255,0," + opacity + ")";
         }
 
         for (const block of row.childNodes) {
@@ -275,48 +297,11 @@ const intoSlide5 = (scrollHeight, grid) => {
       break;
     }
 
-    // Last quarter of slide 4 - 5 transition
-    case scrollHeight <= 5 * WINDOW_HEIGHT_PIXELS: {
-      let sep = ((scrollHeight - 4.75 * WINDOW_HEIGHT_PIXELS) * 4) / 16;
-      let opacity = ((scrollHeight / WINDOW_HEIGHT_PIXELS - 4.75) * 4) / 2;
-
-      // Change position and opacity linearly over transition
-      for (const row of grid.childNodes) {
-        let index = row.getAttribute("index");
-
-        // split based on NUM_INFECTED_ROWS
-        if (index < NUM_INFECTED_ROWS_EX_2) {
-          row.style.transform = "translateY(" + -sep + "px)";
-          row.style.background = "rgba(255,175,0," + opacity + ")";
-        } else {
-          row.style.transform = "translateY(" + sep + "px)";
-          row.style.background = "rgba(255,0,0," + opacity + ")";
-        }
-
-        for (const block of row.childNodes) {
-          block.style.background = "rgba(0,0,0,0.0)";
-        }
-      }
-
-      // prep math visual
-      if (scrollHeight === 5 * WINDOW_HEIGHT_PIXELS) {
-        let math = document.getElementById("tutorial-visual-math");
-        math.style.opacity = 1;
-        math.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
-      }
+    default: {
+      console.log("Oops!");
       break;
     }
   }
-};
-const intoSlide6 = (scrollHeight, grid) => {
-  let sep = scrollHeight - 5 * WINDOW_HEIGHT_PIXELS;
-
-  grid.style.transform = "translateY(" + -sep + "px)";
-
-  let math = document.getElementById("tutorial-visual-math");
-  math.style.transform = "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
-
-  document.getElementById("");
 };
 
 const onPageScrollInter = (scrollHeight) => {
@@ -324,9 +309,9 @@ const onPageScrollInter = (scrollHeight) => {
   let outline = document.getElementById("tutorial-visual-outline");
 
   switch (true) {
-    // Slide 0 - Slide 1 Transition
+    // Slide 0 - 1 Transition
     case scrollHeight <= 2 * WINDOW_HEIGHT_PIXELS: {
-      intoSlide2(scrollHeight, grid);
+      intoSlide2(scrollHeight, grid, outline);
       break;
     }
 
@@ -338,18 +323,25 @@ const onPageScrollInter = (scrollHeight) => {
 
     // Slide 3 - 4 Transition
     case scrollHeight <= 4 * WINDOW_HEIGHT_PIXELS: {
-      intoSlide4(scrollHeight, grid);
+      intoSlide4and6(scrollHeight, grid, outline, 4);
       break;
     }
 
+    // Slide 4 - 5 Transition
     case scrollHeight <= 5 * WINDOW_HEIGHT_PIXELS: {
-      intoSlide5(scrollHeight, grid);
+      intoSlide5(scrollHeight, grid, outline);
       break;
     }
 
-    // Slide 5 - 6 transition
+    // Slide 5 - 6 Transition
     case scrollHeight <= 6 * WINDOW_HEIGHT_PIXELS: {
-      intoSlide6(scrollHeight, grid);
+      intoSlide4and6(scrollHeight, grid, outline, 6);
+      break;
+    }
+
+    // Slide 6 - 7 Transition
+    case scrollHeight <= 7 * WINDOW_HEIGHT_PIXELS: {
+      intoSlide7(scrollHeight, grid, outline);
       break;
     }
 
@@ -372,10 +364,14 @@ const InterTutorial = ({ grid }) => {
         </Grid>
         <div id="tutorial-visual-math" class="visual-math">
           <MathJax>
-            {"Positive Predictive Value = \\(\\frac{128}{144 + 128}\\)"}
+            {
+              "\\(\\mathbb{P}\\{A|B\\} = \\frac{\\mathbb{P}\\{A \\cap B\\}}{\\mathbb{P}\\{B\\}}\\)"
+            }
           </MathJax>
           <MathJax>
-            {"Negative Predictive Value = \\(\\frac{1296}{1296 + 32}\\)"}
+            {
+              "\\(\\mathbb{P}\\{A|B\\} = \\frac{\\mathbb{P}\\{B|A\\} \\cdot \\mathbb{P}\\{A\\}}{\\mathbb{P}\\{B\\}}\\)"
+            }
           </MathJax>
         </div>
       </div>
