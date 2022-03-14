@@ -85,6 +85,8 @@ function App() {
     window.scroll({ top: newHeight, behavior: "smooth" });
 
     setArrowVisibility(newHeight);
+
+    return Promise.resolve;
   }
 
   // Scroll to next page when user clicks down arrow; check the arrow opacity
@@ -96,6 +98,8 @@ function App() {
     window.scroll({ top: newHeight, behavior: "smooth" });
 
     setArrowVisibility(newHeight);
+
+    return Promise.resolve;
   }
 
   // Transition arrow opacities based on scroll height
@@ -173,6 +177,20 @@ function App() {
 
   let grid = makeGrid();
   window.onscroll = onPageScroll;
+  document.onkeyup = function (event) {
+    switch (event.key) {
+      case "ArrowUp":
+        onUpArrowClick().then(() => {
+          return;
+        });
+      case "ArrowDown":
+        onDownArrowClick().then(() => {
+          return;
+        });
+      default:
+        break;
+    }
+  };
 
   /* HTML Rendering ***********************************************************/
 
