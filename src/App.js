@@ -14,14 +14,15 @@ let NUM_ROWS = 40;
 let NUM_COLS = 40;
 let CELL_WIDTH = 4;
 let CELL_HEIGHT = 4;
-let BASIC_SLIDES = 7;
+let TITLE_SLIDES = 1;
+let BASIC_SLIDES = 6;
 let INTER_SLIDES = 8;
 let ADV_SLIDES = 0;
-let TOTAL_SLIDES = BASIC_SLIDES + INTER_SLIDES + ADV_SLIDES;
+let TOTAL_SLIDES = TITLE_SLIDES + BASIC_SLIDES + INTER_SLIDES + ADV_SLIDES;
 let TOTAL_HEIGHT = (TOTAL_SLIDES - 1) * WINDOW_HEIGHT_PIXELS; // start at height 0
-let BASIC_HEIGHT = (BASIC_SLIDES - 1) * WINDOW_HEIGHT_PIXELS;
-let INTER_HEIGHT = (INTER_SLIDES - 1) * WINDOW_HEIGHT_PIXELS;
-let ADV_HEIGHT = (ADV_SLIDES - 1) * WINDOW_HEIGHT_PIXELS;
+let BASIC_HEIGHT = (BASIC_SLIDES + TITLE_SLIDES - 1) * WINDOW_HEIGHT_PIXELS;
+let INTER_HEIGHT = (INTER_SLIDES - 1) * WINDOW_HEIGHT_PIXELS + BASIC_HEIGHT;
+let ADV_HEIGHT = (ADV_SLIDES - 1) * WINDOW_HEIGHT_PIXELS + INTER_HEIGHT;
 
 function App() {
   /* Functions ****************************************************************/
@@ -36,7 +37,7 @@ function App() {
     switch (true) {
       // Slide 0 / Title Page
       case scrollHeight <= WINDOW_HEIGHT_PIXELS: {
-        let grid = document.getElementById("tutorial-visual-grid");
+        let grid = document.getElementById("basic-tutorial-visual-grid");
 
         // default settings for all changes
         for (const row of grid.childNodes) {
@@ -46,15 +47,23 @@ function App() {
         break;
       }
       // Basic Tutorial
-      // TODO: Uncomment
-      // case scrollHeight <= BASIC_HEIGHT: {
-      //   onPageScrollBasic(scrollHeight);
-      //   break;
-      // }
+      case scrollHeight <= BASIC_HEIGHT: {
+        onPageScrollBasic(scrollHeight);
+
+        let grid = document.getElementById("inter-tutorial-visual-grid");
+
+        // default settings for all changes
+        for (const row of grid.childNodes) {
+          row.style.transform = "translateY(0px)";
+          row.style.background = "rgba(0,255,0,0)";
+        }
+        break;
+      }
 
       // Intermediate Tutorial
       case scrollHeight <= INTER_HEIGHT: {
-        onPageScrollInter(scrollHeight);
+        console.log((scrollHeight - BASIC_HEIGHT) / WINDOW_HEIGHT_PIXELS);
+        onPageScrollInter(scrollHeight - BASIC_HEIGHT);
         break;
       }
 
@@ -105,7 +114,7 @@ function App() {
       downArrow.style.opacity = 1;
     }
     // If in the middle, make both arrows usuable
-    else if (scrollHeight / WINDOW_HEIGHT_PIXELS < TOTAL_SLIDES - 1) {
+    else if (scrollHeight / WINDOW_HEIGHT_PIXELS < TOTAL_SLIDES - 2) {
       upArrow.value = "regular";
       upArrow.style.cursor = "pointer";
       upArrow.style.opacity = 1;
@@ -184,8 +193,8 @@ function App() {
           />
         </header>
         {/* Visual and Slides */}
-        {/* <BasicTutorial grid={grid} /> */}
-        <InterTutorial grid={grid} />
+        <BasicTutorial id={"basic-tutorial"} grid={grid} />
+        <InterTutorial id={"inter-tutorial"} grid={grid} />
       </div>
     </MathJaxContext>
   );

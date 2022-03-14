@@ -213,7 +213,7 @@ const intoSlide5 = (scrollHeight, grid) => {
       let outlineOpacity =
         1 - ((scrollHeight / WINDOW_HEIGHT_PIXELS - 4.25) * 4) ** 5;
 
-      let outline = document.getElementById("tutorial-visual-outline");
+      let outline = document.getElementById("basic-tutorial-visual-outline");
       outline.childNodes[0].style.opacity = outlineOpacity;
       outline.childNodes[1].style.opacity = outlineOpacity;
 
@@ -258,7 +258,7 @@ const intoSlide5 = (scrollHeight, grid) => {
       for (const row of grid.childNodes) {
         let index = row.getAttribute("index");
 
-        let outline = document.getElementById("tutorial-visual-outline");
+        let outline = document.getElementById("basic-tutorial-visual-outline");
         outline.childNodes[0].style.opacity = 0;
         outline.childNodes[1].style.opacity = 0;
 
@@ -304,7 +304,7 @@ const intoSlide5 = (scrollHeight, grid) => {
 
       // prep math visual
       if (scrollHeight === 5 * WINDOW_HEIGHT_PIXELS) {
-        let math = document.getElementById("tutorial-visual-math");
+        let math = document.getElementById("basic-tutorial-visual-math");
         math.style.opacity = 1;
         math.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
       }
@@ -317,13 +317,13 @@ const intoSlide6 = (scrollHeight, grid) => {
 
   grid.style.transform = "translateY(" + -sep + "px)";
 
-  let math = document.getElementById("tutorial-visual-math");
+  let math = document.getElementById("basic-tutorial-visual-math");
   math.style.transform = "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
 };
 
 const onPageScrollBasic = (scrollHeight) => {
-  let grid = document.getElementById("tutorial-visual-grid");
-  let outline = document.getElementById("tutorial-visual-outline");
+  let grid = document.getElementById("basic-tutorial-visual-grid");
+  let outline = document.getElementById("basic-tutorial-visual-outline");
 
   switch (true) {
     // Slide 0 - Slide 1 Transition
@@ -360,20 +360,20 @@ const onPageScrollBasic = (scrollHeight) => {
       break;
   }
 };
-const BasicTutorial = ({ grid }) => {
+const BasicTutorial = ({ id, grid }) => {
   return (
-    <div id="Tutorial-body" className="Tutorial-body">
+    <div id={id} className="Tutorial-body">
       <div class="Tutorial-visual">
-        <div id="tutorial-visual-outline" class="outline">
+        <div id="basic-tutorial-visual-outline" class="outline">
           <div class="outline-back-bottom" />
           <div class="outline-back-top" />
           <div class="outline-front-bottom" />
           <div class="outline-front-top" />
         </div>
-        <Grid id="tutorial-visual-grid" className="Grid">
+        <Grid id="basic-tutorial-visual-grid" className="Grid">
           {grid}
         </Grid>
-        <div id="tutorial-visual-math" class="visual-math">
+        <div id="basic-tutorial-visual-math" class="visual-math">
           <MathJax>
             {"Positive Predictive Value = \\(\\frac{128}{144 + 128}\\)"}
           </MathJax>

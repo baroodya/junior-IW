@@ -32,9 +32,7 @@ const intoSlide2 = (scrollHeight, grid, outline) => {
       for (const block of row.childNodes) {
         let blockIndex = Number(block.getAttribute("index"));
         if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
-          console.log(typeof index);
           if (index === NUM_INFECTED_ROWS - 1 && blockIndex === 0) {
-            console.log("shift!");
             block.style.transform =
               "translateX(" +
               -(bigSep + littleSep) +
@@ -77,7 +75,7 @@ const intoSlide2 = (scrollHeight, grid, outline) => {
   }
   // prep math visual
   if (scrollHeight === 2 * WINDOW_HEIGHT_PIXELS) {
-    let math = document.getElementById("tutorial-visual-math");
+    let math = document.getElementById("inter-tutorial-visual-math");
     math.style.opacity = 1;
     math.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
     let index = 0;
@@ -98,7 +96,7 @@ const intoSlide3 = (scrollHeight, grid, outline) => {
   grid.style.transform = "translateY(" + -sep + "px)";
   outline.style.transform = "translateY(" + -sep + "px)";
 
-  let math = document.getElementById("tutorial-visual-math");
+  let math = document.getElementById("inter-tutorial-visual-math");
   math.style.transform = "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
   math.style.right = "18vw";
   math.style.fontSize = "30px";
@@ -117,7 +115,7 @@ const intoSlide4and6 = (scrollHeight, grid, outline, slide) => {
   outline.style.transform =
     "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
 
-  let math = document.getElementById("tutorial-visual-math");
+  let math = document.getElementById("inter-tutorial-visual-math");
   math.style.transform = "translateY(" + -sep + "px)";
 
   let properEquation = Number(slide == 6);
@@ -151,7 +149,7 @@ const intoSlide5 = (scrollHeight, grid, outline) => {
   grid.style.transform = "translateY(" + -sep + "px)";
   outline.style.transform = "translateY(" + -sep + "px)";
 
-  let math = document.getElementById("tutorial-visual-math");
+  let math = document.getElementById("inter-tutorial-visual-math");
   math.style.transform = "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
   math.style.right = "18vw";
   math.style.fontSize = "30px";
@@ -309,41 +307,45 @@ const intoSlide7 = (scrollHeight, grid, outline) => {
 };
 
 const onPageScrollInter = (scrollHeight) => {
-  let grid = document.getElementById("tutorial-visual-grid");
-  let outline = document.getElementById("tutorial-visual-outline");
+  let grid = document.getElementById("inter-tutorial-visual-grid");
+  let outline = document.getElementById("inter-tutorial-visual-outline");
 
   switch (true) {
     // Slide 0 - 1 Transition
+    case scrollHeight <= WINDOW_HEIGHT_PIXELS:
+      break;
+
+    // Slide 1 - 2 Transition
     case scrollHeight <= 2 * WINDOW_HEIGHT_PIXELS: {
       intoSlide2(scrollHeight, grid, outline);
       break;
     }
 
-    // Slide 1 - 2 Transition
+    // Slide 3 - 4 Transition
     case scrollHeight <= 3 * WINDOW_HEIGHT_PIXELS: {
       intoSlide3(scrollHeight, grid, outline);
       break;
     }
 
-    // Slide 3 - 4 Transition
+    // Slide 4 - 5 Transition
     case scrollHeight <= 4 * WINDOW_HEIGHT_PIXELS: {
       intoSlide4and6(scrollHeight, grid, outline, 4);
       break;
     }
 
-    // Slide 4 - 5 Transition
+    // Slide 5 - 6 Transition
     case scrollHeight <= 5 * WINDOW_HEIGHT_PIXELS: {
       intoSlide5(scrollHeight, grid, outline);
       break;
     }
 
-    // Slide 5 - 6 Transition
+    // Slide 6 - 7 Transition
     case scrollHeight <= 6 * WINDOW_HEIGHT_PIXELS: {
       intoSlide4and6(scrollHeight, grid, outline, 6);
       break;
     }
 
-    // Slide 6 - 7 Transition
+    // Slide 7 - 8 Transition
     case scrollHeight <= 7 * WINDOW_HEIGHT_PIXELS: {
       intoSlide7(scrollHeight, grid, outline);
       break;
@@ -353,20 +355,20 @@ const onPageScrollInter = (scrollHeight) => {
       break;
   }
 };
-const InterTutorial = ({ grid }) => {
+const InterTutorial = ({ id, grid }) => {
   return (
-    <div id="Tutorial-body" className="Tutorial-body">
+    <div id={id} className="Tutorial-body">
       <div class="Tutorial-visual">
-        <div id="tutorial-visual-outline" class="outline">
+        <div id="inter-tutorial-visual-outline" class="outline">
           <div class="outline-back-bottom" />
           <div class="outline-back-top" />
           <div class="outline-front-bottom" />
           <div class="outline-front-top" />
         </div>
-        <Grid id="tutorial-visual-grid" className="Grid">
+        <Grid id="inter-tutorial-visual-grid" className="-nter-grid">
           {grid}
         </Grid>
-        <div id="tutorial-visual-math" class="visual-math">
+        <div id="inter-tutorial-visual-math" class="visual-math">
           <MathJax>
             {
               "\\(\\mathbb{P}\\{A|B\\} = \\frac{\\mathbb{P}\\{A \\cap B\\}}{\\mathbb{P}\\{B\\}}\\)"
