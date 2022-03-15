@@ -5,6 +5,7 @@ import { SlideContent } from "./SlideContent.js";
 import { MathJaxContext, MathJax } from "better-react-mathjax";
 import { BasicTutorial, onPageScrollBasic } from "./Tutorials/Basic.js";
 import { InterTutorial, onPageScrollInter } from "./Tutorials/Inter.js";
+import { AdvTutorial, onPageScrollAdv } from "./Tutorials/Adv.js";
 
 /* Constants ******************************************************************/
 
@@ -17,7 +18,7 @@ let CELL_HEIGHT = 4;
 let TITLE_SLIDES = 1;
 let BASIC_SLIDES = 6;
 let INTER_SLIDES = 8;
-let ADV_SLIDES = 0;
+let ADV_SLIDES = 7;
 let TOTAL_SLIDES = TITLE_SLIDES + BASIC_SLIDES + INTER_SLIDES + ADV_SLIDES;
 let TOTAL_HEIGHT = (TOTAL_SLIDES - 1) * WINDOW_HEIGHT_PIXELS; // start at height 0
 let BASIC_HEIGHT = (BASIC_SLIDES + TITLE_SLIDES - 1) * WINDOW_HEIGHT_PIXELS;
@@ -38,36 +39,53 @@ function App() {
       // Slide 0 / Title Page
       case scrollHeight <= WINDOW_HEIGHT_PIXELS: {
         let grid = document.getElementById("basic-tutorial-visual-grid");
+        let outline = document.getElementById("basic-tutorial-visual-outline");
 
         // default settings for all changes
         for (const row of grid.childNodes) {
           row.style.transform = "translateY(0px)";
           row.style.background = "rgba(0,255,0,0)";
         }
+        outline.style.opacity = 0;
+
         break;
       }
-      // Basic Tutorial
-      case scrollHeight <= BASIC_HEIGHT: {
-        onPageScrollBasic(scrollHeight);
+      // // Basic Tutorial
+      // case scrollHeight <= BASIC_HEIGHT: {
+      //   onPageScrollBasic(scrollHeight);
 
-        let grid = document.getElementById("inter-tutorial-visual-grid");
+      //   let grid = document.getElementById("inter-tutorial-visual-grid");
+      // let outline = document.getElementById("inter-tutorial-visual-outline");
 
-        // default settings for all changes
-        for (const row of grid.childNodes) {
-          row.style.transform = "translateY(0px)";
-          row.style.background = "rgba(0,255,0,0)";
-        }
-        break;
-      }
+      //   // default settings for all changes
+      //   for (const row of grid.childNodes) {
+      //     row.style.transform = "translateY(0px)";
+      //     row.style.background = "rgba(0,255,0,0)";
+      //   }
+      // outline.style.opacity = 0;
 
-      // Intermediate Tutorial
-      case scrollHeight <= INTER_HEIGHT: {
-        console.log((scrollHeight - BASIC_HEIGHT) / WINDOW_HEIGHT_PIXELS);
-        onPageScrollInter(scrollHeight - BASIC_HEIGHT);
-        break;
-      }
+      //   break;
+      // }
+
+      // // Intermediate Tutorial
+      // case scrollHeight <= INTER_HEIGHT: {
+      //   onPageScrollInter(scrollHeight - BASIC_HEIGHT);
+
+      //   let grid = document.getElementById("adv-tutorial-visual-grid");
+      // let outline = document.getElementById("adv-tutorial-visual-outline");
+
+      //   // default settings for all changes
+      //   for (const row of grid.childNodes) {
+      //     row.style.transform = "translateY(0px)";
+      //     row.style.background = "rgba(0,255,0,0)";
+      //   }
+      // outline.style.opacity = 0;
+      //   break;
+      // }
 
       case scrollHeight <= ADV_HEIGHT: {
+        // onPageScrollAdv(scrollHeight - INTER_HEIGHT);
+        onPageScrollAdv(scrollHeight);
         break;
       }
 
@@ -211,8 +229,9 @@ function App() {
           />
         </header>
         {/* Visual and Slides */}
-        <BasicTutorial id={"basic-tutorial"} grid={grid} />
-        <InterTutorial id={"inter-tutorial"} grid={grid} />
+        {/* <BasicTutorial id={"basic-tutorial"} grid={grid} />
+        <InterTutorial id={"inter-tutorial"} grid={grid} /> */}
+        <AdvTutorial id={"adv-tutorial"} grid={grid} />
       </div>
     </MathJaxContext>
   );

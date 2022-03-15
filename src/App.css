@@ -69,7 +69,8 @@
   font-size: 48px;
   text-decoration: underline;
   width: 100%;
-  margin-bottom: 5vh;
+  margin-bottom: 10vh;
+  margin-top: -2vh;
 }
 
 .Tutorial-text {
