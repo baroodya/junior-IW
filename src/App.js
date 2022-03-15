@@ -38,15 +38,18 @@ function App() {
     switch (true) {
       // Slide 0 / Title Page
       case scrollHeight <= WINDOW_HEIGHT_PIXELS: {
-        let grid = document.getElementById("basic-tutorial-visual-grid");
-        let outline = document.getElementById("basic-tutorial-visual-outline");
+        // let grid = document.getElementById("basic-tutorial-visual-grid");
+        // let outline = document.getElementById("basic-tutorial-visual-outline");
+        let grid = document.getElementById("adv-tutorial-visual-grid");
+        let outline = document.getElementById("adv-tutorial-visual-outline");
 
         // default settings for all changes
         for (const row of grid.childNodes) {
           row.style.transform = "translateY(0px)";
           row.style.background = "rgba(0,255,0,0)";
         }
-        outline.style.opacity = 0;
+        outline.childNodes[0].style.opacity = 0;
+        outline.childNodes[1].style.opacity = 0;
 
         break;
       }
@@ -62,7 +65,8 @@ function App() {
       //     row.style.transform = "translateY(0px)";
       //     row.style.background = "rgba(0,255,0,0)";
       //   }
-      // outline.style.opacity = 0;
+      //         outline.childNodes[0].style.opacity = 0;
+      // outline.childNodes[1].style.opacity = 0;
 
       //   break;
       // }
@@ -79,7 +83,8 @@ function App() {
       //     row.style.transform = "translateY(0px)";
       //     row.style.background = "rgba(0,255,0,0)";
       //   }
-      // outline.style.opacity = 0;
+      //         outline.childNodes[0].style.opacity = 0;
+      // outline.childNodes[1].style.opacity = 0;
       //   break;
       // }
 
