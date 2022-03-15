@@ -241,7 +241,7 @@ const intoSlide7 = (scrollHeight, grid, outline) => {
         // Split half of uninfected people
         if (index < NUM_INFECTED_ROWS) {
           row.style.background = "rgba(0,0,0,0)";
-          row.style.transform = "translateX(0px) translateY(0px)";
+          row.style.transform = "translateX(" + -sep + "px) translateY(0px)";
           for (const block of row.childNodes) {
             let blockIndex = block.getAttribute("index");
             if (blockIndex < NUM_COLS / CELL_WIDTH / 2) {
@@ -265,30 +265,55 @@ const intoSlide7 = (scrollHeight, grid, outline) => {
             "translateY(" +
             prevVertSep +
             "px) translateX(" +
-            (-prevHorSep + sep) +
+            -prevHorSep +
             "px)";
         }
       }
+
+      let dots = document.getElementById("ldots");
+      dots.style.display = "none";
       break;
     }
 
     // Last Third of slide 4 - 5 transition
     case scrollHeight <= 7 * WINDOW_HEIGHT_PIXELS: {
+      let prevHorSep = WINDOW_HEIGHT_PIXELS / 16;
       let prevVertSep = WINDOW_HEIGHT_PIXELS / 16;
       let sep = ((scrollHeight - 6.66 * WINDOW_HEIGHT_PIXELS) * 3) / 16;
+      let dotOpacity = (scrollHeight / WINDOW_HEIGHT_PIXELS - 6.66) * 3;
+      let dotSep = WINDOW_HEIGHT_PIXELS / 9;
+
+      let dots = document.getElementById("ldots");
+      dots.style.display = "block";
+      dots.style.opacity = dotOpacity;
 
       // Change position and opacity linearly over transition
       for (const row of grid.childNodes) {
         let index = row.getAttribute("index");
+        if (index == null) {
+          row.style.transform =
+            "translateX(" + -prevHorSep + "px) translateY(" + dotSep + "px)";
+          continue;
+        }
 
         outline.childNodes[0].style.opacity = 0;
         outline.childNodes[1].style.opacity = 0;
 
         // split based on NUM_INFECTED_ROWS
         if (index >= NUM_INFECTED_ROWS) {
-          row.style.transform = "translateY(" + (prevVertSep - sep) + "px)";
+          row.style.transform =
+            "translateX(" +
+            -prevHorSep +
+            "px) translateY(" +
+            (prevVertSep - sep) +
+            "px)";
         } else {
-          row.style.transform = "translateY(" + (-prevVertSep + sep) + "px)";
+          row.style.transform =
+            "translateX(" +
+            -prevHorSep +
+            "px) translateY(" +
+            (-prevVertSep + sep) +
+            "px)";
         }
 
         for (const block of row.childNodes) {
@@ -365,8 +390,11 @@ const InterTutorial = ({ id, grid }) => {
           <div class="outline-front-bottom" />
           <div class="outline-front-top" />
         </div>
-        <Grid id="inter-tutorial-visual-grid" className="-nter-grid">
+        <Grid id="inter-tutorial-visual-grid" className="inter-grid">
           {grid}
+          <div id="ldots" className="ldots">
+            <MathJax>{"\\(\\ldots\\)"}</MathJax>
+          </div>
         </Grid>
         <div id="inter-tutorial-visual-math" class="visual-math">
           <MathJax>
@@ -381,8 +409,9 @@ const InterTutorial = ({ id, grid }) => {
           </MathJax>
         </div>
       </div>
-      <div className="Tutorial-section">
+      <div className="Tutorial-section first-section">
         <div className="Tutorial-text">
+          <div className="Tutorial-header">Intermediate Tutorial</div>
           <MathJax>{SlideContent["Inter"][1]}</MathJax>
         </div>
       </div>

@@ -382,8 +382,9 @@ const BasicTutorial = ({ id, grid }) => {
           </MathJax>
         </div>
       </div>
-      <div className="Tutorial-section">
+      <div className="Tutorial-section first-section">
         <div className="Tutorial-text">
+          <div className="Tutorial-header">Basic Tutorial</div>
           <MathJax>{SlideContent["Basic"][1]}</MathJax>
         </div>
       </div>
