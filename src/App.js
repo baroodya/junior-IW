@@ -19,7 +19,7 @@ let CELL_HEIGHT = 4;
 let TITLE_SLIDES = 1;
 let BASIC_SLIDES = 6;
 let INTER_SLIDES = 8;
-let ADV_SLIDES = 7;
+let ADV_SLIDES = 8;
 let TOTAL_SLIDES = TITLE_SLIDES + BASIC_SLIDES + INTER_SLIDES + ADV_SLIDES;
 let TOTAL_HEIGHT = (TOTAL_SLIDES - 1) * WINDOW_HEIGHT_PIXELS; // start at height 0
 let BASIC_HEIGHT = (BASIC_SLIDES + TITLE_SLIDES - 1) * WINDOW_HEIGHT_PIXELS;
@@ -41,8 +41,8 @@ function App() {
       case scrollHeight <= WINDOW_HEIGHT_PIXELS: {
         // let grid = document.getElementById("basic-tutorial-visual-grid");
         // let outline = document.getElementById("basic-tutorial-visual-outline");
-        let grid = document.getElementById("adv-tutorial-visual-grid");
-        let outline = document.getElementById("adv-tutorial-visual-outline");
+        let grid = document.getElementById("basic-tutorial-visual-grid");
+        let outline = document.getElementById("basic-tutorial-visual-outline");
 
         // default settings for all changes
         for (const row of grid.childNodes) {
@@ -54,44 +54,45 @@ function App() {
 
         break;
       }
-      // // Basic Tutorial
-      // case scrollHeight <= BASIC_HEIGHT: {
-      //   onPageScrollBasic(scrollHeight);
 
-      //   let grid = document.getElementById("inter-tutorial-visual-grid");
-      // let outline = document.getElementById("inter-tutorial-visual-outline");
+      // Basic Tutorial
+      case scrollHeight <= BASIC_HEIGHT: {
+        onPageScrollBasic(scrollHeight);
 
-      //   // default settings for all changes
-      //   for (const row of grid.childNodes) {
-      //     row.style.transform = "translateY(0px)";
-      //     row.style.background = "rgba(0,255,0,0)";
-      //   }
-      //         outline.childNodes[0].style.opacity = 0;
-      // outline.childNodes[1].style.opacity = 0;
+        let grid = document.getElementById("inter-tutorial-visual-grid");
+        let outline = document.getElementById("inter-tutorial-visual-outline");
 
-      //   break;
-      // }
+        // default settings for all changes
+        for (const row of grid.childNodes) {
+          row.style.transform = "translateY(0px)";
+          row.style.background = "rgba(0,255,0,0)";
+        }
+        outline.childNodes[0].style.opacity = 0;
+        outline.childNodes[1].style.opacity = 0;
 
-      // // Intermediate Tutorial
-      // case scrollHeight <= INTER_HEIGHT: {
-      //   onPageScrollInter(scrollHeight - BASIC_HEIGHT);
+        break;
+      }
 
-      //   let grid = document.getElementById("adv-tutorial-visual-grid");
-      // let outline = document.getElementById("adv-tutorial-visual-outline");
+      // Intermediate Tutorial
+      case scrollHeight <= INTER_HEIGHT: {
+        onPageScrollInter(scrollHeight - BASIC_HEIGHT);
 
-      //   // default settings for all changes
-      //   for (const row of grid.childNodes) {
-      //     row.style.transform = "translateY(0px)";
-      //     row.style.background = "rgba(0,255,0,0)";
-      //   }
-      //         outline.childNodes[0].style.opacity = 0;
-      // outline.childNodes[1].style.opacity = 0;
-      //   break;
-      // }
+        let grid = document.getElementById("adv-tutorial-visual-grid");
+        let outline = document.getElementById("adv-tutorial-visual-outline");
+
+        // default settings for all changes
+        for (const row of grid.childNodes) {
+          row.style.transform = "translateY(0px)";
+          row.style.background = "rgba(0,255,0,0)";
+        }
+        outline.childNodes[0].style.opacity = 0;
+        outline.childNodes[1].style.opacity = 0;
+        break;
+      }
 
       case scrollHeight <= ADV_HEIGHT: {
         // onPageScrollAdv(scrollHeight - INTER_HEIGHT);
-        onPageScrollAdv(scrollHeight);
+        onPageScrollAdv(scrollHeight - INTER_HEIGHT);
         break;
       }
 
@@ -142,7 +143,7 @@ function App() {
       downArrow.style.opacity = 1;
     }
     // If in the middle, make both arrows usuable
-    else if (scrollHeight / WINDOW_HEIGHT_PIXELS < TOTAL_SLIDES - 2) {
+    else if (scrollHeight / WINDOW_HEIGHT_PIXELS < TOTAL_SLIDES - 3) {
       upArrow.value = "regular";
       upArrow.style.cursor = "pointer";
       upArrow.style.opacity = 1;
@@ -242,8 +243,8 @@ function App() {
           aboutScroll={ADV_HEIGHT}
         />
         {/* Visual and Slides */}
-        {/* <BasicTutorial id={"basic-tutorial"} grid={grid} />
-        <InterTutorial id={"inter-tutorial"} grid={grid} /> */}
+        <BasicTutorial id={"basic-tutorial"} grid={grid} />
+        <InterTutorial id={"inter-tutorial"} grid={grid} />
         <AdvTutorial id={"adv-tutorial"} grid={grid} />
       </div>
     </MathJaxContext>

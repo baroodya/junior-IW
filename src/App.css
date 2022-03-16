@@ -53,8 +53,8 @@
  {
    display: block;
    position: fixed;
-   top: 4vh;
-   left: 2vw;
+   top: 6vh;
+   left: 3vw;
    
    z-index: 1;
    
@@ -163,21 +163,21 @@
  #menu
  {
    position: absolute;
-   width: 300px;
+   width: 30vh;
    height: 83vh;
    margin: -100px 0 0 -50px;
    padding: 6.5vh;
    padding-top: 125px;
    
-   background: #232323;
+   background: #0e1522;
    list-style-type: none;
    -webkit-font-smoothing: antialiased;
    /* to stop flickering of text in safari */
    
    transform-origin: 0% 0%;
-   transform: translate(-100%, 0);
+   transform: translate(-150%, 0);
    
-   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+   transition: transform 0.75s cubic-bezier(0.77,0.2,0.05,1.0);
 
    box-shadow: 2px 2px 25px black;
  }
@@ -193,7 +193,7 @@
   font-size: 22px;
 
   position: absolute;
-  bottom: 10px;
+  bottom: 4vh;
  }
  
  /*
@@ -368,9 +368,9 @@
 
 .visual-graph {
   position: absolute;
-  width: 54%;
+  width: 47.5%;
   right: 0;
-  top: -3.5vh;
+  top: 4vh;
   opacity: 0;
 }
 

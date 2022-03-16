@@ -10,6 +10,12 @@ let CELL_HEIGHT = 4;
 let NUM_INFECTED_ROWS = NUM_ROWS / (CELL_HEIGHT * 2);
 let NUM_INFECTED_ROWS_EX_2 = (9 * NUM_ROWS) / (CELL_HEIGHT * 10);
 
+const intoSlide1 = (scrollHeight, grid, outline) => {
+  let oldMath = document.getElementById("basic-tutorial-visual-math");
+
+  oldMath.style.transform = "translateY(" + -scrollHeight + "px)";
+};
+
 const intoSlide2 = (scrollHeight, grid, outline) => {
   let outlineOpacity =
     ((scrollHeight - WINDOW_HEIGHT_PIXELS) / WINDOW_HEIGHT_PIXELS) ** 5;
@@ -337,8 +343,10 @@ const onPageScrollInter = (scrollHeight) => {
 
   switch (true) {
     // Slide 0 - 1 Transition
-    case scrollHeight <= WINDOW_HEIGHT_PIXELS:
+    case scrollHeight <= WINDOW_HEIGHT_PIXELS: {
+      intoSlide1(scrollHeight, grid, outline);
       break;
+    }
 
     // Slide 1 - 2 Transition
     case scrollHeight <= 2 * WINDOW_HEIGHT_PIXELS: {

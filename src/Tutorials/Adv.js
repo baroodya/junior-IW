@@ -11,6 +11,36 @@ let CELL_HEIGHT = 4;
 let NUM_INFECTED_ROWS = NUM_ROWS / (CELL_HEIGHT * 2);
 let NUM_INFECTED_ROWS_EX_2 = (9 * NUM_ROWS) / (CELL_HEIGHT * 10);
 
+const intoSlide1 = (scrollHeight, grid, outline, math) => {
+  grid.style.opacity = 0;
+  outline.style.opacity = 0;
+  let oldGrid = document.getElementById("inter-tutorial-visual-grid");
+
+  oldGrid.style.opacity = 1;
+
+  let ldots = document.getElementById("ldots");
+
+  let ldotOpacity = 1 - scrollHeight / WINDOW_HEIGHT_PIXELS;
+
+  console.log(WINDOW_HEIGHT_PIXELS - scrollHeight);
+  let sep = scrollHeight / 16;
+  let vertSep =
+    scrollHeight > WINDOW_HEIGHT_PIXELS / 4
+      ? scrollHeight - WINDOW_HEIGHT_PIXELS / 4
+      : 0;
+
+  oldGrid.style.transform =
+    "translateX(" + sep + "px) translateY(" + vertSep + "px)";
+
+  ldots.style.opacity = ldotOpacity;
+
+  if (scrollHeight == WINDOW_HEIGHT_PIXELS) {
+    grid.style.opacity = 1;
+    outline.style.opacity = 1;
+    oldGrid.style.opacity = 0;
+  }
+};
+
 const intoSlide2 = (scrollHeight, grid, outline, math) => {
   let outlineOpacity =
     ((scrollHeight - WINDOW_HEIGHT_PIXELS) / WINDOW_HEIGHT_PIXELS) ** 5;
@@ -184,8 +214,10 @@ const onPageScrollAdv = (scrollHeight) => {
 
   switch (true) {
     // Slide 0 - 1 Transition
-    case scrollHeight <= WINDOW_HEIGHT_PIXELS:
+    case scrollHeight <= WINDOW_HEIGHT_PIXELS: {
+      intoSlide1(scrollHeight, grid, outline, math);
       break;
+    }
 
     // Slide 1 - 2 Transition
     case scrollHeight <= 2 * WINDOW_HEIGHT_PIXELS: {
@@ -238,12 +270,9 @@ const AdvTutorial = ({ id, grid }) => {
         </div>
         <Grid id="adv-tutorial-visual-grid" className="adv-grid">
           {grid}
-          <div id="ldots" className="ldots">
-            <MathJax>{"\\(\\ldots\\)"}</MathJax>
-          </div>
         </Grid>
         <div id="adv-tutorial-visual-math" class="visual-math">
-          <MathJax>
+          <MathJax style={{ width: "50%" }}>
             {
               "\\(\\mathbb{P}\\{A|B\\} = \\frac{\\mathbb{P}\\{B|A\\} \\cdot \\mathbb{P}\\{A\\}}{\\mathbb{P}\\{B\\}}\\)"
             }
