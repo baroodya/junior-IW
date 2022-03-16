@@ -6,6 +6,7 @@ import { MathJaxContext, MathJax } from "better-react-mathjax";
 import { BasicTutorial, onPageScrollBasic } from "./Tutorials/Basic.js";
 import { InterTutorial, onPageScrollInter } from "./Tutorials/Inter.js";
 import { AdvTutorial, onPageScrollAdv } from "./Tutorials/Adv.js";
+import HamburgerMenu from "./HamburgerMenu.js";
 
 /* Constants ******************************************************************/
 
@@ -233,6 +234,13 @@ function App() {
             onClick={onDownArrowClick}
           />
         </header>
+        <HamburgerMenu
+          homeScroll={0}
+          basicScroll={WINDOW_HEIGHT_PIXELS}
+          interScroll={BASIC_HEIGHT}
+          advScroll={INTER_HEIGHT}
+          aboutScroll={ADV_HEIGHT}
+        />
         {/* Visual and Slides */}
         {/* <BasicTutorial id={"basic-tutorial"} grid={grid} />
         <InterTutorial id={"inter-tutorial"} grid={grid} /> */}
