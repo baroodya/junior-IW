@@ -238,9 +238,9 @@ function App() {
         <HamburgerMenu
           homeScroll={0}
           basicScroll={WINDOW_HEIGHT_PIXELS}
-          interScroll={BASIC_HEIGHT}
-          advScroll={INTER_HEIGHT}
-          aboutScroll={ADV_HEIGHT}
+          interScroll={BASIC_HEIGHT + WINDOW_HEIGHT_PIXELS}
+          advScroll={INTER_HEIGHT + WINDOW_HEIGHT_PIXELS}
+          aboutScroll={ADV_HEIGHT + WINDOW_HEIGHT_PIXELS}
         />
         {/* Visual and Slides */}
         <BasicTutorial id={"basic-tutorial"} grid={grid} />
