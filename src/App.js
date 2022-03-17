@@ -1,7 +1,6 @@
 import "./App.css";
-import { Grid, Row, Cell } from "./grid.js";
+import { Row, Cell } from "./grid.js";
 import personIcon from "./person-icon-16.png";
-import { SlideContent } from "./SlideContent.js";
 import { MathJaxContext, MathJax } from "better-react-mathjax";
 import { BasicTutorial, onPageScrollBasic } from "./Tutorials/Basic.js";
 import { InterTutorial, onPageScrollInter } from "./Tutorials/Inter.js";
@@ -25,6 +24,7 @@ let TOTAL_HEIGHT = (TOTAL_SLIDES - 1) * WINDOW_HEIGHT_PIXELS; // start at height
 let BASIC_HEIGHT = (BASIC_SLIDES + TITLE_SLIDES - 1) * WINDOW_HEIGHT_PIXELS;
 let INTER_HEIGHT = (INTER_SLIDES - 1) * WINDOW_HEIGHT_PIXELS + BASIC_HEIGHT;
 let ADV_HEIGHT = (ADV_SLIDES - 1) * WINDOW_HEIGHT_PIXELS + INTER_HEIGHT;
+let ABOUT_HEIGHT = ADV_HEIGHT + WINDOW_HEIGHT_PIXELS;
 
 let HALF_BUFFER = WINDOW_HEIGHT_PIXELS / 16;
 
@@ -101,7 +101,7 @@ function App() {
         break;
       }
 
-      case scrollHeight <= ADV_HEIGHT: {
+      case scrollHeight <= ADV_HEIGHT + WINDOW_HEIGHT_PIXELS: {
         // onPageScrollAdv(scrollHeight - INTER_HEIGHT);
         onPageScrollAdv(scrollHeight - INTER_HEIGHT);
         break;

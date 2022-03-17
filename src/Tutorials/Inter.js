@@ -16,7 +16,7 @@ const intoSlide1 = (scrollHeight, grid, outline) => {
   oldMath.style.transform = "translateY(" + -scrollHeight + "px)";
 };
 
-const intoSlide2 = (scrollHeight, grid, outline) => {
+const intoSlide2 = (scrollHeight, grid, outline, fromSlide3) => {
   let outlineOpacity =
     ((scrollHeight - WINDOW_HEIGHT_PIXELS) / WINDOW_HEIGHT_PIXELS) ** 5;
 
@@ -80,7 +80,7 @@ const intoSlide2 = (scrollHeight, grid, outline) => {
     }
   }
   // prep math visual
-  if (scrollHeight >= 1.75 * WINDOW_HEIGHT_PIXELS) {
+  if (scrollHeight >= 1.75 * WINDOW_HEIGHT_PIXELS && !fromSlide3) {
     let math = document.getElementById("inter-tutorial-visual-math");
     math.style.opacity = 1;
     math.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
@@ -110,7 +110,7 @@ const intoSlide3 = (scrollHeight, grid, outline) => {
   if (scrollHeight >= 2.875 * WINDOW_HEIGHT_PIXELS) {
     grid.style.transform = "translateY(" + sep + "px)";
     // Ensure that grid is in right place for next slide
-    intoSlide2(2 * WINDOW_HEIGHT_PIXELS, grid, outline);
+    intoSlide2(2 * WINDOW_HEIGHT_PIXELS, grid, outline, true);
     outline.style.transform = "translateY(" + sep + "px)";
     outline.style.opacity = 1;
   }
