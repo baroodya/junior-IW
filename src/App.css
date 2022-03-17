@@ -53,8 +53,8 @@
  {
    display: block;
    position: fixed;
-   top: 6vh;
-   left: 3vw;
+   top: 5vh;
+   left: 2.5vw;
    
    z-index: 1;
    
@@ -81,8 +81,8 @@
  #menuToggle input
  {
    display: block;
-   width: 40px;
-   height: 32px;
+   width: 42px;
+   height: 34px;
    position: absolute;
    top: -7px;
    left: -5px;
@@ -101,9 +101,9 @@
  #menuToggle span
  {
    display: block;
-   width: 33px;
+   width: 40px;
    height: 4px;
-   margin-bottom: 5px;
+   margin-bottom: 7px;
    position: relative;
    
    background: white;
@@ -428,6 +428,8 @@ th {
   border-radius: 0px;
 
   transition: opacity 1s ease-in;
+
+  z-index: 1;
 }
 
 .up {

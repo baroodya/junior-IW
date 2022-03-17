@@ -107,8 +107,10 @@ const intoSlide3 = (scrollHeight, grid, outline) => {
   math.style.right = "18vw";
   math.style.fontSize = "30px";
 
-  if (scrollHeight >= 2.75 * WINDOW_HEIGHT_PIXELS) {
+  if (scrollHeight >= 2.875 * WINDOW_HEIGHT_PIXELS) {
     grid.style.transform = "translateY(" + sep + "px)";
+    // Ensure that grid is in right place for next slide
+    intoSlide2(2 * WINDOW_HEIGHT_PIXELS, grid, outline);
     outline.style.transform = "translateY(" + sep + "px)";
     outline.style.opacity = 1;
   }
@@ -135,7 +137,7 @@ const intoSlide4and6 = (scrollHeight, grid, outline, slide) => {
     index++;
   }
 
-  if (scrollHeight >= (slide - 0.25) * WINDOW_HEIGHT_PIXELS && slide === 4) {
+  if (scrollHeight >= (slide - 0.125) * WINDOW_HEIGHT_PIXELS && slide === 4) {
     math.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
     let index = 0;
     for (const equation of math.childNodes) {
@@ -160,7 +162,7 @@ const intoSlide5 = (scrollHeight, grid, outline) => {
   math.style.right = "18vw";
   math.style.fontSize = "30px";
 
-  if (scrollHeight >= 4.75 * WINDOW_HEIGHT_PIXELS) {
+  if (scrollHeight >= 4.875 * WINDOW_HEIGHT_PIXELS) {
     grid.style.transform = "translateY(" + sep + "px)";
     outline.style.transform = "translateY(" + sep + "px)";
     outline.style.opacity = 1;
@@ -299,6 +301,7 @@ const intoSlide7 = (scrollHeight, grid, outline) => {
         if (index == null) {
           row.style.transform =
             "translateX(" + -prevHorSep + "px) translateY(" + dotSep + "px)";
+          row.background = "rgba(0,0,0,0)";
           continue;
         }
 
@@ -331,7 +334,6 @@ const intoSlide7 = (scrollHeight, grid, outline) => {
     }
 
     default: {
-      console.log("Oops!");
       break;
     }
   }
@@ -391,12 +393,12 @@ const onPageScrollInter = (scrollHeight) => {
 const InterTutorial = ({ id, grid }) => {
   return (
     <div id={id} className="Tutorial-body">
-      <div class="Tutorial-visual">
-        <div id="inter-tutorial-visual-outline" class="outline">
-          <div class="outline-back-bottom" />
-          <div class="outline-back-top" />
-          <div class="outline-front-bottom" />
-          <div class="outline-front-top" />
+      <div className="Tutorial-visual">
+        <div id="inter-tutorial-visual-outline" className="outline">
+          <div className="outline-back-bottom" />
+          <div className="outline-back-top" />
+          <div className="outline-front-bottom" />
+          <div className="outline-front-top" />
         </div>
         <Grid id="inter-tutorial-visual-grid" className="inter-grid">
           {grid}
@@ -404,7 +406,7 @@ const InterTutorial = ({ id, grid }) => {
             <MathJax>{"\\(\\ldots\\)"}</MathJax>
           </div>
         </Grid>
-        <div id="inter-tutorial-visual-math" class="visual-math">
+        <div id="inter-tutorial-visual-math" className="visual-math">
           <MathJax>
             {
               "\\(\\mathbb{P}\\{A|B\\} = \\frac{\\mathbb{P}\\{A \\cap B\\}}{\\mathbb{P}\\{B\\}}\\)"

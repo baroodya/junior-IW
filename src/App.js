@@ -26,6 +26,8 @@ let BASIC_HEIGHT = (BASIC_SLIDES + TITLE_SLIDES - 1) * WINDOW_HEIGHT_PIXELS;
 let INTER_HEIGHT = (INTER_SLIDES - 1) * WINDOW_HEIGHT_PIXELS + BASIC_HEIGHT;
 let ADV_HEIGHT = (ADV_SLIDES - 1) * WINDOW_HEIGHT_PIXELS + INTER_HEIGHT;
 
+let HALF_BUFFER = WINDOW_HEIGHT_PIXELS / 16;
+
 function App() {
   /* Functions ****************************************************************/
 
@@ -37,7 +39,8 @@ function App() {
     setArrowVisibility(scrollHeight);
 
     switch (true) {
-      case scrollHeight == WINDOW_HEIGHT_PIXELS: {
+      case scrollHeight >= WINDOW_HEIGHT_PIXELS - HALF_BUFFER &&
+        scrollHeight <= WINDOW_HEIGHT_PIXELS + HALF_BUFFER: {
         let grid = document.getElementById("basic-tutorial-visual-grid");
         let outline = document.getElementById("basic-tutorial-visual-outline");
 
@@ -46,7 +49,8 @@ function App() {
         break;
       }
 
-      case scrollHeight == BASIC_HEIGHT + WINDOW_HEIGHT_PIXELS: {
+      case scrollHeight >= BASIC_HEIGHT + WINDOW_HEIGHT_PIXELS - HALF_BUFFER &&
+        scrollHeight <= BASIC_HEIGHT + WINDOW_HEIGHT_PIXELS + HALF_BUFFER: {
         let grid = document.getElementById("inter-tutorial-visual-grid");
         let outline = document.getElementById("inter-tutorial-visual-outline");
 
@@ -55,7 +59,8 @@ function App() {
         break;
       }
 
-      case scrollHeight == INTER_HEIGHT + WINDOW_HEIGHT_PIXELS: {
+      case scrollHeight >= INTER_HEIGHT + WINDOW_HEIGHT_PIXELS - HALF_BUFFER &&
+        scrollHeight <= INTER_HEIGHT + WINDOW_HEIGHT_PIXELS + HALF_BUFFER: {
         let grid = document.getElementById("adv-tutorial-visual-grid");
         let outline = document.getElementById("adv-tutorial-visual-outline");
 

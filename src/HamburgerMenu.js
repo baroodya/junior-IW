@@ -44,7 +44,10 @@ const HamburgerMenu = ({
           <a onClick={() => scrollToSection(advScroll)}>
             <li>Advanced Tutorial</li>
           </a>
-          <a class="last-entry" onClick={() => scrollToSection(aboutScroll)}>
+          <a
+            className="last-entry"
+            onClick={() => scrollToSection(aboutScroll)}
+          >
             <li>About This Project</li>
           </a>
         </ul>

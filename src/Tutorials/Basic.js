@@ -363,17 +363,17 @@ const onPageScrollBasic = (scrollHeight) => {
 const BasicTutorial = ({ id, grid }) => {
   return (
     <div id={id} className="Tutorial-body">
-      <div class="Tutorial-visual">
-        <div id="basic-tutorial-visual-outline" class="outline">
-          <div class="outline-back-bottom" />
-          <div class="outline-back-top" />
-          <div class="outline-front-bottom" />
-          <div class="outline-front-top" />
+      <div className="Tutorial-visual">
+        <div id="basic-tutorial-visual-outline" className="outline">
+          <div className="outline-back-bottom" />
+          <div className="outline-back-top" />
+          <div className="outline-front-bottom" />
+          <div className="outline-front-top" />
         </div>
         <Grid id="basic-tutorial-visual-grid" className="Grid">
           {grid}
         </Grid>
-        <div id="basic-tutorial-visual-math" class="visual-math">
+        <div id="basic-tutorial-visual-math" className="visual-math">
           <MathJax>
             {"Positive Predictive Value = \\(\\frac{128}{144 + 128}\\)"}
           </MathJax>

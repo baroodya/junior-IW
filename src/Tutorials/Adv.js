@@ -11,7 +11,7 @@ let CELL_HEIGHT = 4;
 let NUM_INFECTED_ROWS = NUM_ROWS / (CELL_HEIGHT * 2);
 let NUM_INFECTED_ROWS_EX_2 = (9 * NUM_ROWS) / (CELL_HEIGHT * 10);
 
-const intoSlide1 = (scrollHeight, grid, outline, math) => {
+const intoSlide1 = (scrollHeight, grid, outline) => {
   grid.style.opacity = 0;
   outline.style.opacity = 0;
   let oldGrid = document.getElementById("inter-tutorial-visual-grid");
@@ -20,22 +20,25 @@ const intoSlide1 = (scrollHeight, grid, outline, math) => {
 
   let ldots = document.getElementById("ldots");
 
-  let ldotOpacity = 1 - scrollHeight / WINDOW_HEIGHT_PIXELS;
+  let ldotOpacity = (1 - scrollHeight / WINDOW_HEIGHT_PIXELS) * (8 / 7);
 
-  console.log(WINDOW_HEIGHT_PIXELS - scrollHeight);
-  let sep = scrollHeight / 16;
+  let sep = (scrollHeight / 16) * (8 / 7);
   let vertSep =
-    scrollHeight > WINDOW_HEIGHT_PIXELS / 4
+    (scrollHeight > WINDOW_HEIGHT_PIXELS / 4
       ? scrollHeight - WINDOW_HEIGHT_PIXELS / 4
-      : 0;
+      : 0) *
+    (8 / 7);
 
   oldGrid.style.transform =
     "translateX(" + sep + "px) translateY(" + vertSep + "px)";
 
   ldots.style.opacity = ldotOpacity;
   ldots.style.background = "rgba(0,0,0,0)";
+  for (const child of ldots.childNodes) {
+    child.style.background = "rgba(0,0,0,0)";
+  }
 
-  if (scrollHeight >= (WINDOW_HEIGHT_PIXELS * 3) / 4) {
+  if (scrollHeight >= (WINDOW_HEIGHT_PIXELS * 7) / 8) {
     grid.style.opacity = 1;
     outline.style.opacity = 1;
     oldGrid.style.opacity = 0;
@@ -58,6 +61,9 @@ const intoSlide2 = (scrollHeight, grid, outline, math) => {
 
   for (const row of grid.childNodes) {
     let index = Number(row.getAttribute("index"));
+    if (index == null) {
+      continue;
+    }
 
     // Split half of uninfected people
     if (index < NUM_INFECTED_ROWS) {
@@ -106,7 +112,7 @@ const intoSlide2 = (scrollHeight, grid, outline, math) => {
     }
   }
   // prep math visual
-  if (scrollHeight >= 1.75 * WINDOW_HEIGHT_PIXELS) {
+  if (scrollHeight >= 1.875 * WINDOW_HEIGHT_PIXELS) {
     math.style.opacity = 1;
     math.style.fontSize = "30px";
 
@@ -168,7 +174,7 @@ const intoSlide4 = (scrollHeight, grid, outline, math, graph) => {
   }
 
   // Prep graph visual
-  if (scrollHeight >= 3.75 * WINDOW_HEIGHT_PIXELS) {
+  if (scrollHeight >= 3.875 * WINDOW_HEIGHT_PIXELS) {
     graph.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
     graph.style.opacity = 1;
   }
@@ -185,7 +191,7 @@ const intoSlide6 = (scrollHeight, grid, outline, math, graph, graphCover) => {
   graph.style.transform = "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
   graphCover.style.width = widthChange + "%";
 
-  if (scrollHeight >= 5.75 * WINDOW_HEIGHT_PIXELS) {
+  if (scrollHeight >= 5.875 * WINDOW_HEIGHT_PIXELS) {
     grid.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
     outline.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
     outline.style.opacity = 1;
@@ -216,7 +222,7 @@ const onPageScrollAdv = (scrollHeight) => {
   switch (true) {
     // Slide 0 - 1 Transition
     case scrollHeight <= WINDOW_HEIGHT_PIXELS: {
-      intoSlide1(scrollHeight, grid, outline, math);
+      intoSlide1(scrollHeight, grid, outline);
       break;
     }
 
@@ -262,17 +268,17 @@ const onPageScrollAdv = (scrollHeight) => {
 const AdvTutorial = ({ id, grid }) => {
   return (
     <div id={id} className="Tutorial-body">
-      <div class="Tutorial-visual">
-        <div id="adv-tutorial-visual-outline" class="outline">
-          <div class="outline-back-bottom" />
-          <div class="outline-back-top" />
-          <div class="outline-front-bottom" />
-          <div class="outline-front-top" />
+      <div className="Tutorial-visual">
+        <div id="adv-tutorial-visual-outline" className="outline">
+          <div className="outline-back-bottom" />
+          <div className="outline-back-top" />
+          <div className="outline-front-bottom" />
+          <div className="outline-front-top" />
         </div>
         <Grid id="adv-tutorial-visual-grid" className="adv-grid">
           {grid}
         </Grid>
-        <div id="adv-tutorial-visual-math" class="visual-math">
+        <div id="adv-tutorial-visual-math" className="visual-math">
           <MathJax style={{ width: "50%" }}>
             {
               "\\(\\mathbb{P}\\{A|B\\} = \\frac{\\mathbb{P}\\{B|A\\} \\cdot \\mathbb{P}\\{A\\}}{\\mathbb{P}\\{B\\}}\\)"
@@ -306,13 +312,13 @@ const AdvTutorial = ({ id, grid }) => {
             </tbody>
           </table>
         </div>
-        <div id="adv-tutorial-visual-graph" class="visual-graph">
+        <div id="adv-tutorial-visual-graph" className="visual-graph">
           <div id="graph-img">
             <img src={graph} alt="graph displaying a p-value" />
           </div>
           <div
             id="adv-tutorial-visual-graph-cover"
-            class="visual-graph-cover"
+            className="visual-graph-cover"
           />
         </div>
       </div>
