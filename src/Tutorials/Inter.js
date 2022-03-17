@@ -80,7 +80,7 @@ const intoSlide2 = (scrollHeight, grid, outline) => {
     }
   }
   // prep math visual
-  if (scrollHeight === 2 * WINDOW_HEIGHT_PIXELS) {
+  if (scrollHeight >= 1.75 * WINDOW_HEIGHT_PIXELS) {
     let math = document.getElementById("inter-tutorial-visual-math");
     math.style.opacity = 1;
     math.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
@@ -107,7 +107,7 @@ const intoSlide3 = (scrollHeight, grid, outline) => {
   math.style.right = "18vw";
   math.style.fontSize = "30px";
 
-  if (scrollHeight === 3 * WINDOW_HEIGHT_PIXELS) {
+  if (scrollHeight >= 2.75 * WINDOW_HEIGHT_PIXELS) {
     grid.style.transform = "translateY(" + sep + "px)";
     outline.style.transform = "translateY(" + sep + "px)";
     outline.style.opacity = 1;
@@ -135,7 +135,7 @@ const intoSlide4and6 = (scrollHeight, grid, outline, slide) => {
     index++;
   }
 
-  if (scrollHeight === slide * WINDOW_HEIGHT_PIXELS && slide === 4) {
+  if (scrollHeight >= (slide - 0.25) * WINDOW_HEIGHT_PIXELS && slide === 4) {
     math.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
     let index = 0;
     for (const equation of math.childNodes) {
@@ -160,7 +160,7 @@ const intoSlide5 = (scrollHeight, grid, outline) => {
   math.style.right = "18vw";
   math.style.fontSize = "30px";
 
-  if (scrollHeight === 5 * WINDOW_HEIGHT_PIXELS) {
+  if (scrollHeight >= 4.75 * WINDOW_HEIGHT_PIXELS) {
     grid.style.transform = "translateY(" + sep + "px)";
     outline.style.transform = "translateY(" + sep + "px)";
     outline.style.opacity = 1;

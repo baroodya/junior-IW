@@ -303,7 +303,7 @@ const intoSlide5 = (scrollHeight, grid) => {
       }
 
       // prep math visual
-      if (scrollHeight === 5 * WINDOW_HEIGHT_PIXELS) {
+      if (scrollHeight >= 4.75 * WINDOW_HEIGHT_PIXELS) {
         let math = document.getElementById("basic-tutorial-visual-math");
         math.style.opacity = 1;
         math.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";

@@ -37,56 +37,62 @@ function App() {
     setArrowVisibility(scrollHeight);
 
     switch (true) {
-      // Slide 0 / Title Page
-      case scrollHeight <= WINDOW_HEIGHT_PIXELS: {
-        // let grid = document.getElementById("basic-tutorial-visual-grid");
-        // let outline = document.getElementById("basic-tutorial-visual-outline");
+      case scrollHeight == WINDOW_HEIGHT_PIXELS: {
         let grid = document.getElementById("basic-tutorial-visual-grid");
         let outline = document.getElementById("basic-tutorial-visual-outline");
 
-        // default settings for all changes
-        for (const row of grid.childNodes) {
-          row.style.transform = "translateY(0px)";
-          row.style.background = "rgba(0,255,0,0)";
-        }
-        outline.childNodes[0].style.opacity = 0;
-        outline.childNodes[1].style.opacity = 0;
+        resetGrid(grid, outline);
 
+        break;
+      }
+
+      case scrollHeight == BASIC_HEIGHT + WINDOW_HEIGHT_PIXELS: {
+        let grid = document.getElementById("inter-tutorial-visual-grid");
+        let outline = document.getElementById("inter-tutorial-visual-outline");
+
+        resetGrid(grid, outline);
+
+        break;
+      }
+
+      case scrollHeight == INTER_HEIGHT + WINDOW_HEIGHT_PIXELS: {
+        let grid = document.getElementById("adv-tutorial-visual-grid");
+        let outline = document.getElementById("adv-tutorial-visual-outline");
+
+        resetGrid(grid, outline);
+
+        break;
+      }
+
+      default:
+        break;
+    }
+
+    switch (true) {
+      // Slide 0 / Title Page
+      case scrollHeight <= WINDOW_HEIGHT_PIXELS: {
+        let basicOutline = document.getElementById(
+          "basic-tutorial-visual-outline"
+        );
+        basicOutline.style.opacity = 0;
         break;
       }
 
       // Basic Tutorial
       case scrollHeight <= BASIC_HEIGHT: {
+        let interOutline = document.getElementById(
+          "inter-tutorial-visual-outline"
+        );
+        interOutline.style.opacity = 0;
         onPageScrollBasic(scrollHeight);
-
-        let grid = document.getElementById("inter-tutorial-visual-grid");
-        let outline = document.getElementById("inter-tutorial-visual-outline");
-
-        // default settings for all changes
-        for (const row of grid.childNodes) {
-          row.style.transform = "translateY(0px)";
-          row.style.background = "rgba(0,255,0,0)";
-        }
-        outline.childNodes[0].style.opacity = 0;
-        outline.childNodes[1].style.opacity = 0;
-
         break;
       }
 
       // Intermediate Tutorial
       case scrollHeight <= INTER_HEIGHT: {
+        let advOutline = document.getElementById("adv-tutorial-visual-outline");
+        advOutline.style.opacity = 0;
         onPageScrollInter(scrollHeight - BASIC_HEIGHT);
-
-        let grid = document.getElementById("adv-tutorial-visual-grid");
-        let outline = document.getElementById("adv-tutorial-visual-outline");
-
-        // default settings for all changes
-        for (const row of grid.childNodes) {
-          row.style.transform = "translateY(0px)";
-          row.style.background = "rgba(0,255,0,0)";
-        }
-        outline.childNodes[0].style.opacity = 0;
-        outline.childNodes[1].style.opacity = 0;
         break;
       }
 
@@ -99,6 +105,21 @@ function App() {
       default:
         break;
     }
+  }
+
+  function resetGrid(grid, outline) {
+    // default settings for all changes
+    grid.style.transform = "translateY(0px)";
+    for (const row of grid.childNodes) {
+      row.style.transform = "translateY(0px)";
+      row.style.background = "rgba(0,0,0,0)";
+      for (const block of row.childNodes) {
+        block.style.transform = "translateX(0px) translateY(0px)";
+        block.style.background = "rgba(0,0,0,0)";
+      }
+    }
+    outline.childNodes[0].style.opacity = 0;
+    outline.childNodes[1].style.opacity = 0;
   }
 
   // Scroll to previous page when user clicks up arrow; check the arrow opacity

@@ -33,8 +33,9 @@ const intoSlide1 = (scrollHeight, grid, outline, math) => {
     "translateX(" + sep + "px) translateY(" + vertSep + "px)";
 
   ldots.style.opacity = ldotOpacity;
+  ldots.style.background = "rgba(0,0,0,0)";
 
-  if (scrollHeight == WINDOW_HEIGHT_PIXELS) {
+  if (scrollHeight >= (WINDOW_HEIGHT_PIXELS * 3) / 4) {
     grid.style.opacity = 1;
     outline.style.opacity = 1;
     oldGrid.style.opacity = 0;
@@ -105,7 +106,7 @@ const intoSlide2 = (scrollHeight, grid, outline, math) => {
     }
   }
   // prep math visual
-  if (scrollHeight === 2 * WINDOW_HEIGHT_PIXELS) {
+  if (scrollHeight >= 1.75 * WINDOW_HEIGHT_PIXELS) {
     math.style.opacity = 1;
     math.style.fontSize = "30px";
 
@@ -167,7 +168,7 @@ const intoSlide4 = (scrollHeight, grid, outline, math, graph) => {
   }
 
   // Prep graph visual
-  if (scrollHeight == 4 * WINDOW_HEIGHT_PIXELS) {
+  if (scrollHeight >= 3.75 * WINDOW_HEIGHT_PIXELS) {
     graph.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
     graph.style.opacity = 1;
   }
@@ -184,7 +185,7 @@ const intoSlide6 = (scrollHeight, grid, outline, math, graph, graphCover) => {
   graph.style.transform = "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
   graphCover.style.width = widthChange + "%";
 
-  if (scrollHeight === 6 * WINDOW_HEIGHT_PIXELS) {
+  if (scrollHeight >= 5.75 * WINDOW_HEIGHT_PIXELS) {
     grid.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
     outline.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
     outline.style.opacity = 1;
