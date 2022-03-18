@@ -20,6 +20,7 @@ const intoSlide2 = (scrollHeight, grid, outline, fromSlide3) => {
   let outlineOpacity =
     ((scrollHeight - WINDOW_HEIGHT_PIXELS) / WINDOW_HEIGHT_PIXELS) ** 5;
 
+  outline.style.opacity = outlineOpacity;
   outline.childNodes[0].style.opacity = outlineOpacity;
   outline.childNodes[1].style.opacity = outlineOpacity;
 

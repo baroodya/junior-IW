@@ -41,9 +41,9 @@ const intoSlide3 = (scrollHeight, grid, outline) => {
   // move from 255 green to 175 green
   let subtractedGreen =
     255 - ((2 * scrollHeight) / (3 * WINDOW_HEIGHT_PIXELS) - 1) * (255 - 175);
-  let outlineOpacity =
-    ((scrollHeight - 2 * WINDOW_HEIGHT_PIXELS) / WINDOW_HEIGHT_PIXELS) ** 5;
+  let outlineOpacity = (scrollHeight / WINDOW_HEIGHT_PIXELS - 2) ** 5;
 
+  outline.style.opacity = outlineOpacity;
   outline.childNodes[0].style.opacity = outlineOpacity;
   outline.childNodes[1].style.opacity = outlineOpacity;
 
