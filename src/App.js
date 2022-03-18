@@ -8,6 +8,7 @@ import { BasicTutorial, onPageScrollBasic } from "./Tutorials/Basic.js";
 import { InterTutorial, onPageScrollInter } from "./Tutorials/Inter.js";
 import { AdvTutorial, onPageScrollAdv } from "./Tutorials/Adv.js";
 import HamburgerMenu from "./HamburgerMenu.js";
+import { SlideContent } from "./SlideContent";
 
 /* Constants ******************************************************************/
 
@@ -283,6 +284,8 @@ function App() {
 
     document.getElementById("upper-left-arrow").style.opacity = 1;
     document.getElementById("lower-right-arrow").style.opacity = 1;
+
+    document.getElementById("down-arrow").style.cursor = "pointer";
   };
 
   /* Stuff that happens on page load ******************************************/
@@ -334,12 +337,7 @@ function App() {
             Begin
           </button>
           <div id="explanation" className="explanation">
-            Welcome! To navigate this page, use the up and down arrows on screen
-            or on your keyboard. You can also use the menu in the top left to
-            jump around the page. If you want to learn more about this project
-            and it author, complete all three tutorials or click 'About this
-            Project' at the bottom of the menu. To start with the basic
-            tutorial, click the down arrow below: have fun!
+            {SlideContent["Explanation"]}
           </div>
           <div
             id="down-arrow"

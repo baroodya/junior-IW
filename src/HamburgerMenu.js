@@ -73,7 +73,7 @@ const HamburgerMenu = ({
         {/* Too bad the menu has to be inside of the button
     but hey, it's pure CSS magic. */}
         <ul id="menu">
-          <a onClick={() => scrollToSection(homeScroll)}>
+          <a onClick={() => scrollToSection(homeScroll) + 0.01}>
             <li>Home</li>
           </a>
           <a onClick={() => scrollToSection(basicScroll)}>

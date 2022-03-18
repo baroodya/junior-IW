@@ -45,6 +45,9 @@ const intoSlide1 = (scrollHeight, grid, outline) => {
 };
 
 const intoSlide2 = (scrollHeight, grid, outline, math, fromSlide7) => {
+  document.getElementById("ldots").style.display = "none";
+  document.getElementById("inter-tutorial-visual-grid").style.display = "none";
+
   let outlineOpacity =
     ((scrollHeight - WINDOW_HEIGHT_PIXELS) / WINDOW_HEIGHT_PIXELS) ** 5;
 
