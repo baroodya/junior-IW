@@ -490,6 +490,7 @@ const onPageScrollAdv = (scrollHeight) => {
 
     // Slide 1 - 2 Transition
     case scrollHeight <= 2 * WINDOW_HEIGHT_PIXELS: {
+      document.getElementById("ldots").style.display = "none";
       intoSlide2(scrollHeight, grid, outline, math);
       break;
     }

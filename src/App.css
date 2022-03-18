@@ -5,6 +5,8 @@
   line-height: 30px;
   color: white;
   font-family: 'Trebuchet MS', 'Lucida Sans', Arial, sans-serif;
+
+  /* overflow-x: hidden; */
 }
 
 /* Header Stuff ***************************************************************/
@@ -44,6 +46,26 @@
   opacity: 0;
 
   transition: 0.5s ease-in;
+}
+
+.curved-arrow {
+  position: absolute;
+
+  transition: opacity 0.5s ease-in;
+
+  opacity: 0;
+}
+
+.lower {
+  bottom: 2vh;
+  left: 77vh; 
+}
+
+.upper {
+  top: 8vh;
+  left: 5vw;
+
+  transform: rotate(-90deg);
 }
 
 .App-header-container button {
@@ -331,9 +353,9 @@
 .ldots {
   display: none;
   font-size: 100px;
-  margin-left: 30vw;
   position: absolute;
   top: 14vh;
+  right: 0vw;
 }
 
 /* Visual Stuff ***************************************************************/

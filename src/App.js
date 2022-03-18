@@ -2,6 +2,7 @@ import "./App.css";
 import { Row, Cell } from "./grid.js";
 import personIcon from "./person-icon-16.png";
 import singlePerson from "./person-icon.png";
+import curvedArrow from "./curved-arrow.png";
 import { MathJaxContext, MathJax } from "better-react-mathjax";
 import { BasicTutorial, onPageScrollBasic } from "./Tutorials/Basic.js";
 import { InterTutorial, onPageScrollInter } from "./Tutorials/Inter.js";
@@ -166,7 +167,7 @@ function App() {
           top: newHeight - WINDOW_HEIGHT_PIXELS,
           behavior: "smooth",
         });
-      }, 1000);
+      }, 750);
     }
 
     return Promise.resolve;
@@ -189,7 +190,7 @@ function App() {
           top: newHeight + WINDOW_HEIGHT_PIXELS,
           behavior: "smooth",
         });
-      }, 1000);
+      }, 750);
     }
 
     return Promise.resolve;
@@ -279,6 +280,9 @@ function App() {
 
     document.getElementById("title").style.transform = "translateY(-10vh)";
     document.getElementById("sub-title").style.transform = "translateY(-15vh)";
+
+    document.getElementById("upper-left-arrow").style.opacity = 1;
+    document.getElementById("lower-right-arrow").style.opacity = 1;
   };
 
   /* Stuff that happens on page load ******************************************/
@@ -292,22 +296,23 @@ function App() {
   window.onscroll = onPageScroll;
   document.onkeyup = function (event) {
     switch (event.key) {
-      case "ArrowUp":
-        onUpArrowClick().then(() => {
+      case "ArrowUp": {
+        try {
+          onUpArrowClick().then(() => {
+            return;
+          });
+        } catch (error) {
           return;
-        });
-      case "ArrowDown":
-        onDownArrowClick().then(() => {
-          return;
-        });
+        }
+      }
+      case "ArrowDown": {
+        onDownArrowClick();
+      }
+      case "Enter": {
+        onBeginButtonClick();
+      }
       default:
-        break;
-    }
-  };
-
-  document.onkeyup = function (event) {
-    if (event.key === "Enter") {
-      onBeginButtonClick();
+        return;
     }
   };
 
@@ -341,6 +346,12 @@ function App() {
             className="arrow down"
             onClick={onDownArrowClick}
           />
+          <div id="upper-left-arrow" className="curved-arrow upper">
+            <img src={curvedArrow}></img>
+          </div>
+          <div id="lower-right-arrow" className="curved-arrow lower">
+            <img className="lower" src={curvedArrow}></img>
+          </div>
         </header>
         <HamburgerMenu
           homeScroll={0}
