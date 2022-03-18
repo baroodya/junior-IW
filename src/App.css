@@ -9,22 +9,60 @@
 
 /* Header Stuff ***************************************************************/
 
-.App-header {
+.App-header-container {
   height: 100vh;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
-  font-size: calc(40px + 2vmin);
+  font-size: calc(60px + 2vmin);
+}
+
+.App-header {
+  margin-top: 30vh;
+  margin-bottom: 10vh;
+
+  transition: transform 0.5s ease-in;
 }
 
 .App-sub-header {
-  margin-top: 10vh; 
+  margin-top: 5vh; 
   margin-bottom: -5vh;
 
   font-size: calc(10px + 2vmin);
+
+  transition: transform 0.5s ease-in;
+}
+
+.explanation {
+  font-size: 1rem;
+  width: 50%;
+  text-align: center;
+  margin-top: -27.5vh;
+  opacity: 0;
+
+  transition: 0.5s ease-in;
+}
+
+.App-header-container button {
+  height: 7vh;
+  width: 10vw;
+  background: none;
+  border: solid;
+  border-color: white;
+  border-radius: 0.75rem;
+  border-width: 0.1rem;
+  color: white;
+  margin-top: 37.5vh;
+  font-size: 1.75rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans', Arial, sans-serif;
+  cursor: pointer;
+
+  transition: 0.5s ease-in;
+
+  z-index: 2;
 }
 
 /* Hamburger Menu *****/
@@ -116,6 +154,8 @@
    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
                opacity 0.55s ease;
+
+  opacity: 0;
  }
  
  #menuToggle span:first-child
@@ -421,6 +461,34 @@ th {
   padding: 10px;
 }
 
+.single-person {
+  display: flex;
+  position: fixed;
+  top: 48.8vh; 
+  right: 46.75vh;
+  height: 1.2vh;
+  width: 1.2vh;
+  z-index: 2;
+  opacity: 0;
+}
+
+.single-person-background {
+  display: flex;
+  position: fixed;
+  top: 48.8vh; 
+  right: 46.75vh;
+  height: 1.2vh;
+  width: 1.2vh;
+  background-color: #1f283a;
+  z-index: 1;
+  opacity: 0;
+}
+
+.single-person img {
+  height: 100%;
+  z-index: 2;
+}
+
 /* Arrow Stuff ****************************************************************/
 
 .arrow {
@@ -438,7 +506,9 @@ th {
   border-width: 0 8px 8px 0;
   border-radius: 0px;
 
-  transition: opacity 1s ease-in;
+  transition: opacity 0.5s ease-in;
+
+  opacity: 0;
 
   z-index: 1;
 }

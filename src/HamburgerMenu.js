@@ -6,7 +6,41 @@ const HamburgerMenu = ({
   aboutScroll,
 }) => {
   function scrollToSection(sectionHeight) {
-    window.scroll({ top: sectionHeight, behavior: "smooth" });
+    console.log(sectionHeight);
+    let heightInterval = 100;
+    let timeout = 250;
+
+    let currHeight = document.documentElement.scrollTop;
+    let goingDown = sectionHeight > currHeight;
+    let interval;
+    if (goingDown) {
+      currHeight += heightInterval;
+      interval = setInterval(() => {
+        while (currHeight < sectionHeight) {
+          if (sectionHeight - currHeight < heightInterval) {
+            currHeight = sectionHeight;
+          }
+          window.scroll({ top: currHeight, behavior: "smooth" });
+          currHeight += heightInterval;
+        }
+        clearInterval(interval);
+      }, timeout);
+    } else {
+      currHeight -= interval;
+      setInterval(() => {
+        while (currHeight > sectionHeight) {
+          if (currHeight - sectionHeight < heightInterval) {
+            currHeight = sectionHeight;
+          }
+          setTimeout(() => {
+            window.scroll({ top: currHeight, behavior: "smooth" });
+          }, timeout);
+          currHeight -= heightInterval;
+        }
+        clearInterval(interval);
+      }, timeout);
+    }
+
     let checkbox = document.getElementById("hidden-checkbox");
     checkbox.checked = false;
   }

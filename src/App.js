@@ -1,6 +1,7 @@
 import "./App.css";
 import { Row, Cell } from "./grid.js";
 import personIcon from "./person-icon-16.png";
+import singlePerson from "./person-icon.png";
 import { MathJaxContext, MathJax } from "better-react-mathjax";
 import { BasicTutorial, onPageScrollBasic } from "./Tutorials/Basic.js";
 import { InterTutorial, onPageScrollInter } from "./Tutorials/Inter.js";
@@ -19,12 +20,14 @@ let TITLE_SLIDES = 1;
 let BASIC_SLIDES = 6;
 let INTER_SLIDES = 8;
 let ADV_SLIDES = 8;
-let TOTAL_SLIDES = TITLE_SLIDES + BASIC_SLIDES + INTER_SLIDES + ADV_SLIDES;
+let ABOUT_SLIDES = 2;
+let TOTAL_SLIDES =
+  TITLE_SLIDES + BASIC_SLIDES + INTER_SLIDES + ADV_SLIDES + ABOUT_SLIDES;
 let TOTAL_HEIGHT = (TOTAL_SLIDES - 1) * WINDOW_HEIGHT_PIXELS; // start at height 0
 let BASIC_HEIGHT = (BASIC_SLIDES + TITLE_SLIDES - 1) * WINDOW_HEIGHT_PIXELS;
 let INTER_HEIGHT = (INTER_SLIDES - 1) * WINDOW_HEIGHT_PIXELS + BASIC_HEIGHT;
 let ADV_HEIGHT = (ADV_SLIDES - 1) * WINDOW_HEIGHT_PIXELS + INTER_HEIGHT;
-let ABOUT_HEIGHT = ADV_HEIGHT + WINDOW_HEIGHT_PIXELS;
+let ABOUT_HEIGHT = ADV_HEIGHT + 2 * WINDOW_HEIGHT_PIXELS;
 
 let HALF_BUFFER = WINDOW_HEIGHT_PIXELS / 16;
 
@@ -39,6 +42,9 @@ function App() {
     setArrowVisibility(scrollHeight);
 
     switch (true) {
+      case scrollHeight <= WINDOW_HEIGHT_PIXELS / 4: {
+        onBeginButtonClick();
+      }
       case scrollHeight >= WINDOW_HEIGHT_PIXELS - HALF_BUFFER &&
         scrollHeight <= WINDOW_HEIGHT_PIXELS + HALF_BUFFER: {
         let grid = document.getElementById("basic-tutorial-visual-grid");
@@ -101,14 +107,30 @@ function App() {
         break;
       }
 
-      case scrollHeight <= ADV_HEIGHT + WINDOW_HEIGHT_PIXELS: {
+      case scrollHeight <= ABOUT_HEIGHT: {
         // onPageScrollAdv(scrollHeight - INTER_HEIGHT);
         onPageScrollAdv(scrollHeight - INTER_HEIGHT);
         break;
       }
 
-      default:
+      default: {
+        let singlePerson = document.getElementById("single-person");
+        let singlePersonBackground = document.getElementById(
+          "single-person-background"
+        );
+
+        singlePersonBackground.style.transform =
+          "translateY(" + -WINDOW_HEIGHT_PIXELS + "px)";
+
+        singlePerson.style.height = "9.2vh";
+        singlePerson.style.transform =
+          "translateX(" +
+          -WINDOW_HEIGHT_PIXELS / 32 +
+          "px) translateY(" +
+          -WINDOW_HEIGHT_PIXELS / 32 +
+          "px)";
         break;
+      }
     }
   }
 
@@ -133,9 +155,19 @@ function App() {
       -0.001 + document.documentElement.scrollTop / WINDOW_HEIGHT_PIXELS
     );
     let newHeight = slideNum * WINDOW_HEIGHT_PIXELS;
-    window.scroll({ top: newHeight, behavior: "smooth" });
 
     setArrowVisibility(newHeight);
+
+    window.scroll({ top: newHeight, behavior: "smooth" });
+
+    if (slideNum >= TOTAL_SLIDES - 4) {
+      setTimeout(() => {
+        window.scroll({
+          top: newHeight - WINDOW_HEIGHT_PIXELS,
+          behavior: "smooth",
+        });
+      }, 1000);
+    }
 
     return Promise.resolve;
   }
@@ -146,9 +178,19 @@ function App() {
       0.001 + document.documentElement.scrollTop / WINDOW_HEIGHT_PIXELS
     );
     let newHeight = slideNum * WINDOW_HEIGHT_PIXELS;
-    window.scroll({ top: newHeight, behavior: "smooth" });
 
     setArrowVisibility(newHeight);
+
+    window.scroll({ top: newHeight, behavior: "smooth" });
+
+    if (slideNum >= TOTAL_SLIDES - 4) {
+      setTimeout(() => {
+        window.scroll({
+          top: newHeight + WINDOW_HEIGHT_PIXELS,
+          behavior: "smooth",
+        });
+      }, 1000);
+    }
 
     return Promise.resolve;
   }
@@ -219,6 +261,26 @@ function App() {
     return grid;
   }
 
+  const onBeginButtonClick = () => {
+    document.getElementById("down-arrow").style.opacity = 1;
+    let menuToggle = document.getElementById("menuToggle");
+    for (const span of menuToggle.querySelectorAll("span")) {
+      span.style.opacity = 1;
+    }
+    let beginButton = document.getElementById("begin-button");
+    beginButton.style.opacity = 0;
+    beginButton.style.cursor = "auto";
+    beginButton.disabled = true;
+    beginButton.style.transform = "translateY(-10vh)";
+
+    let explanation = document.getElementById("explanation");
+    explanation.style.opacity = 1;
+    explanation.style.transform = "translateY(-10vh)";
+
+    document.getElementById("title").style.transform = "translateY(-10vh)";
+    document.getElementById("sub-title").style.transform = "translateY(-15vh)";
+  };
+
   /* Stuff that happens on page load ******************************************/
 
   // Reset to top of page
@@ -243,18 +305,37 @@ function App() {
     }
   };
 
+  document.onkeyup = function (event) {
+    if (event.key === "Enter") {
+      onBeginButtonClick();
+    }
+  };
+
   /* HTML Rendering ***********************************************************/
 
   return (
     <MathJaxContext>
       <div className="App">
         {/* Title Page */}
-        <header className="App-header">
+        <header id="header" className="App-header-container">
           <div id="up-arrow" className="arrow up" onClick={onUpArrowClick} />
-          <p>Visual Statistics</p>
-          <p className="App-sub-header">
+          <p id="title" className="App-header">
+            Visual Statistics
+          </p>
+          <p id="sub-title" className="App-sub-header">
             An Independent Work Project by Alex Baroody
           </p>
+          <button id="begin-button" type="button" onClick={onBeginButtonClick}>
+            Begin
+          </button>
+          <div id="explanation" className="explanation">
+            Welcome! To navigate this page, use the up and down arrows on screen
+            or on your keyboard. You can also use the menu in the top left to
+            jump around the page. If you want to learn more about this project
+            and it author, complete all three tutorials or click 'About this
+            Project' at the bottom of the menu. To start with the basic
+            tutorial, click the down arrow below: have fun!
+          </div>
           <div
             id="down-arrow"
             className="arrow down"
@@ -266,12 +347,19 @@ function App() {
           basicScroll={WINDOW_HEIGHT_PIXELS}
           interScroll={BASIC_HEIGHT + WINDOW_HEIGHT_PIXELS}
           advScroll={INTER_HEIGHT + WINDOW_HEIGHT_PIXELS}
-          aboutScroll={ADV_HEIGHT + WINDOW_HEIGHT_PIXELS}
+          aboutScroll={ABOUT_HEIGHT + WINDOW_HEIGHT_PIXELS}
         />
         {/* Visual and Slides */}
         <BasicTutorial id={"basic-tutorial"} grid={grid} />
         <InterTutorial id={"inter-tutorial"} grid={grid} />
         <AdvTutorial id={"adv-tutorial"} grid={grid} />
+        <div id="single-person" className="single-person">
+          <img src={singlePerson}></img>
+        </div>
+        <div
+          id="single-person-background"
+          className="single-person-background"
+        ></div>
       </div>
     </MathJaxContext>
   );
