@@ -107,15 +107,15 @@ export const SlideContent = {
     7: `To end this tutorial, let's make some conclusions about our example from above. We have \\(464\\) total positive tests and \\(736\\) total negative tests: this leads to a mean of \\(0.387\\) with a standard deviation of \\(0.487\\) (assuming a positive test is \\(1\\) and a negative test is \\(0\\)). In real life, we have \\(400\\) actual healthy people and \\(800\\) actually infected people: this leads to a mean of \\(0.333\\) and a standard deviation of \\(0.472\\). After running a T-Test on the data, we end up with a p-value of \\(0.0065\\). What does this mean? It means that we must reject the null hypothesis that our test and the actual population are statistically insignificantly different: that is, our test isn't quite good enough! There is a statistically significant difference in the number of positive and negative results and the number of actual infected and healthy people. That's ok: COVID-19 PCR tests have \\(\\textbf{Sensitivity}\\)  and \\(\\textbf{Specificity}\\)  near \\(1\\), much better than our \\(0.9\\) \\(\\textbf{Sensitivity}\\)  and \\(0.96\\) \\(\\textbf{Specificity}\\). `,
   },
   About: {
-    1: `Hello! My name is Alex Baroody, and this set of tutorials is my Independent Work Project at Princeton University. I completed this page in the spring of 2022, my junior year. These tutorials are designed to be supplemental to classroom learning, giving a different perspective or easaly accessible information for those who are confused. You can find the source code for this project \\(\\href{https://github.com/baroodya/visual-statistics}{\\textcolor{cyan}{\\text{here.}}}\\) You can keep up to date with me and my projects on \\(\\href{https://github.com/baroodya}{\\textcolor{cyan}{\\text{github}}}\\) and \\(\\href{https://www.linkedin.com/in/alex-baroody/}{\\textcolor{cyan}{\\text{linkedin.}}}\\) Thanks for reading this far, I hope you enjoyed!`,
-    2: `Hello! My name is Alex Baroody, and this set of tutorials is my Independent Work Project at Princeton University. I completed this page in the spring of 2022, my junior year. These tutorials are designed to be supplemental to classroom learning, giving a different perspective or easaly accessible information for those who are confused. You can find the source code for this project \\(\\href{https://github.com/baroodya/visual-statistics}{\\textcolor{cyan}{\\text{here.}}}\\) You can keep up to date with me and my projects on \\(\\href{https://github.com/baroodya}{\\textcolor{cyan}{\\text{github}}}\\) and \\(\\href{https://www.linkedin.com/in/alex-baroody/}{\\textcolor{cyan}{\\text{linkedin.}}}\\) Thanks for reading this far, I hope you enjoyed!`,
-    3: {
-      1: `Hello! My name is Alex Baroody, and this set of tutorials is my Independent Work Project at Princeton University. `,
-      2: `I completed this page in the spring of 2022, my junior year.`,
-      3: `These tutorials are designed to be supplemental to classroom learning, giving a different perspective or easaly accessible information for those who are confused.`,
-      4: `You can find the source code for this project \\(\\href{https://github.com/baroodya/visual-statistics}{\\textcolor{cyan}{\\text{here.}}}\\)`,
-      5: `You can keep up to date with me and my projects on \\(\\href{https://github.com/baroodya}{\\textcolor{cyan}{\\text{github}}}\\) and \\(\\href{https://www.linkedin.com/in/alex-baroody/}{\\textcolor{cyan}{\\text{linkedin.}}}\\)`,
-      6: `Thanks for reading this far, I hope you enjoyed!`,
+    About: `Hello! My name is Alex Baroody, and this set of tutorials is my Independent Work Project at Princeton University. I completed this page in the spring of 2022, my junior year. These tutorials are designed to be supplemental to classroom learning, giving a different perspective or easaly accessible information for those who are confused. You can find the source code for this project \\(\\href{https://github.com/baroodya/visual-statistics}{\\textcolor{cyan}{\\text{here.}}}\\) You can keep up to date with me and my projects on \\(\\href{https://github.com/baroodya}{\\textcolor{cyan}{\\text{github}}}\\) and \\(\\href{https://www.linkedin.com/in/alex-baroody/}{\\textcolor{cyan}{\\text{linkedin.}}}\\) Thanks for reading this far, I hope you enjoyed!`,
+    Ack: `Coming Soon...`,
+    Sources: {
+      1: `Coming Soon...`,
+      2: `Coming Soon...`,
+      3: `Coming Soon...`,
+      4: `Coming Soon...`,
+      5: `Coming Soon...`,
+      6: `Coming Soon...`,
     },
   },
   Explanation: `Welcome! To navigate this page, use the up and down arrows on screen

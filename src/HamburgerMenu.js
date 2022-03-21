@@ -6,7 +6,7 @@ const HamburgerMenu = ({
   aboutScroll,
 }) => {
   function scrollToSection(sectionHeight) {
-    let heightInterval = 40;
+    let heightInterval = 30;
     let timeout = 10;
 
     let currHeight = document.documentElement.scrollTop;
