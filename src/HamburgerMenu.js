@@ -1,4 +1,5 @@
 const HamburgerMenu = ({
+  id,
   homeScroll,
   basicScroll,
   interScroll,
@@ -53,7 +54,7 @@ const HamburgerMenu = ({
     // Made by Erik Terwan
     // 24th of November 2015
     // MIT License
-    <nav role="navigation">
+    <nav id={id} role="navigation">
       <div id="menuToggle">
         {/* A fake / hidden checkbox is used as click reciever,
     so you can use the :checked selector on it. */}

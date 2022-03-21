@@ -352,6 +352,7 @@ function App() {
           </div>
         </header>
         <HamburgerMenu
+          id={"hamburger-menu"}
           homeScroll={0}
           basicScroll={WINDOW_HEIGHT_PIXELS}
           interScroll={BASIC_HEIGHT + WINDOW_HEIGHT_PIXELS}
