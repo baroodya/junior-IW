@@ -3,7 +3,7 @@ import { Row, Cell } from "./grid.js";
 import personIcon from "./person-icon-16.png";
 import singlePerson from "./person-icon.png";
 import curvedArrow from "./curved-arrow.png";
-import { MathJaxContext, MathJax } from "better-react-mathjax";
+import { MathJaxContext } from "better-react-mathjax";
 import { BasicTutorial, onPageScrollBasic } from "./Tutorials/Basic.js";
 import { InterTutorial, onPageScrollInter } from "./Tutorials/Inter.js";
 import { AdvTutorial, onPageScrollAdv } from "./Tutorials/Adv.js";
@@ -26,7 +26,6 @@ let ADV_SLIDES = 8;
 let ABOUT_SLIDES = 4;
 let TOTAL_SLIDES =
   TITLE_SLIDES + BASIC_SLIDES + INTER_SLIDES + ADV_SLIDES + ABOUT_SLIDES;
-let TOTAL_HEIGHT = (TOTAL_SLIDES - 1) * WINDOW_HEIGHT_PIXELS; // start at height 0
 let BASIC_HEIGHT = (BASIC_SLIDES + TITLE_SLIDES - 1) * WINDOW_HEIGHT_PIXELS;
 let INTER_HEIGHT = (INTER_SLIDES - 1) * WINDOW_HEIGHT_PIXELS + BASIC_HEIGHT;
 let ADV_HEIGHT = (ADV_SLIDES - 1) * WINDOW_HEIGHT_PIXELS + INTER_HEIGHT;
@@ -47,6 +46,7 @@ function App() {
     switch (true) {
       case scrollHeight <= WINDOW_HEIGHT_PIXELS / 4: {
         onBeginButtonClick();
+        break;
       }
       case scrollHeight >= WINDOW_HEIGHT_PIXELS - HALF_BUFFER &&
         scrollHeight <= WINDOW_HEIGHT_PIXELS + HALF_BUFFER: {
@@ -163,7 +163,7 @@ function App() {
 
     window.scroll({ top: newHeight, behavior: "smooth" });
 
-    if (slideNum == TOTAL_SLIDES - ABOUT_SLIDES - 2) {
+    if (slideNum === TOTAL_SLIDES - ABOUT_SLIDES - 2) {
       setTimeout(() => {
         window.scroll({
           top: newHeight - WINDOW_HEIGHT_PIXELS,
@@ -186,7 +186,7 @@ function App() {
 
     window.scroll({ top: newHeight, behavior: "smooth" });
 
-    if (slideNum == TOTAL_SLIDES - ABOUT_SLIDES - 2) {
+    if (slideNum === TOTAL_SLIDES - ABOUT_SLIDES - 2) {
       setTimeout(() => {
         window.scroll({
           top: newHeight + WINDOW_HEIGHT_PIXELS,
@@ -323,12 +323,15 @@ function App() {
         } catch (error) {
           return;
         }
+        break;
       }
       case "ArrowDown": {
         onDownArrowClick();
+        break;
       }
       case "Enter": {
         onBeginButtonClick();
+        break;
       }
       default:
         return;
@@ -361,10 +364,17 @@ function App() {
             onClick={onDownArrowClick}
           />
           <div id="upper-left-arrow" className="curved-arrow upper">
-            <img src={curvedArrow}></img>
+            <img
+              src={curvedArrow}
+              alt="curved arrow pointing to menu button"
+            ></img>
           </div>
           <div id="lower-right-arrow" className="curved-arrow lower">
-            <img className="lower" src={curvedArrow}></img>
+            <img
+              className="lower"
+              src={curvedArrow}
+              alt="curved arrow pointing to down arrow"
+            ></img>
           </div>
         </header>
         <HamburgerMenu
@@ -380,7 +390,7 @@ function App() {
         <InterTutorial id={"inter-tutorial"} grid={grid} />
         <AdvTutorial id={"adv-tutorial"} grid={grid} />
         <div id="single-person" className="single-person">
-          <img src={singlePerson}></img>
+          <img src={singlePerson} alt="representation of a single person"></img>
         </div>
         <div
           id="single-person-background"
