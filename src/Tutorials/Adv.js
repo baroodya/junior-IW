@@ -553,6 +553,20 @@ const onPageScrollAdv = (scrollHeight) => {
   }
 };
 const AdvTutorial = ({ id, grid }) => {
+  // Make Visual Grid
+  function makeCitations() {
+    let citations = [];
+    for (var i = 1; i < NUM_ROWS / CELL_HEIGHT; i++) {
+      citations.push(
+        <MathJax className="bullets">
+          {SlideContent["About"]["Sources"][i]}
+        </MathJax>
+      );
+    }
+
+    return citations;
+  }
+  let citations = makeCitations();
   return (
     <div id={id} className="Tutorial-body">
       <div className="Tutorial-visual">
@@ -662,14 +676,7 @@ const AdvTutorial = ({ id, grid }) => {
       </div>
       <div className="about-section last-section">
         <div className="about-sub-header">Sources</div>
-        <div className="Tutorial-text sources">
-          <MathJax>{SlideContent["About"]["Sources"][1]}</MathJax>
-          <MathJax>{SlideContent["About"]["Sources"][2]}</MathJax>
-          <MathJax>{SlideContent["About"]["Sources"][3]}</MathJax>
-          <MathJax>{SlideContent["About"]["Sources"][4]}</MathJax>
-          <MathJax>{SlideContent["About"]["Sources"][5]}</MathJax>
-          <MathJax>{SlideContent["About"]["Sources"][6]}</MathJax>
-        </div>
+        <div className="Tutorial-text sources">{citations}</div>
       </div>
     </div>
   );
