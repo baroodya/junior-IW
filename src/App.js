@@ -185,7 +185,7 @@ function App() {
 
     window.scroll({ top: newHeight, behavior: "smooth" });
 
-    if ((slideNum = TOTAL_SLIDES - ABOUT_SLIDES - 2)) {
+    if (slideNum == TOTAL_SLIDES - ABOUT_SLIDES - 2) {
       setTimeout(() => {
         window.scroll({
           top: newHeight + WINDOW_HEIGHT_PIXELS,
@@ -356,7 +356,7 @@ function App() {
           basicScroll={WINDOW_HEIGHT_PIXELS}
           interScroll={BASIC_HEIGHT + WINDOW_HEIGHT_PIXELS}
           advScroll={INTER_HEIGHT + WINDOW_HEIGHT_PIXELS}
-          aboutScroll={ABOUT_HEIGHT + WINDOW_HEIGHT_PIXELS}
+          aboutScroll={ADV_HEIGHT + WINDOW_HEIGHT_PIXELS}
         />
         {/* Visual and Slides */}
         <BasicTutorial id={"basic-tutorial"} grid={grid} />

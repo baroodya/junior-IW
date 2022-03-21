@@ -292,15 +292,25 @@
   margin-bottom: 60vh;
 }
 
+.first-about-section {
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin-top: -62vh;
+  margin-bottom: 62vh;
+}
+
 .about-section {
   height: 100vh;
 
   display: flex;
-  flex-direction: row;
-  align-content: flex-start;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
 
   padding-left: 5vw;
+  margin-top: -60vh;
+  margin-bottom: 60vh;
 }
 
 .first-section {
@@ -320,6 +330,14 @@
   text-decoration: underline;
   width: 100%;
   margin-bottom: 7vh;
+  margin-top: -2vh;
+}
+
+.about-sub-header {
+  font-size: 24px;
+  text-decoration: underline;
+  width: 100%;
+  margin-bottom: 4vh;
   margin-top: -2vh;
 }
 
