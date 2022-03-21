@@ -71,19 +71,20 @@ const HamburgerMenu = ({
         {/* Too bad the menu has to be inside of the button
     but hey, it's pure CSS magic. */}
         <ul id="menu">
-          <a onClick={() => scrollToSection(homeScroll) + 0.01}>
+          <a href="/#" onClick={() => scrollToSection(homeScroll) + 0.01}>
             <li>Home</li>
           </a>
-          <a onClick={() => scrollToSection(basicScroll)}>
+          <a href="/#" onClick={() => scrollToSection(basicScroll)}>
             <li>Basic Tutorial</li>
           </a>
-          <a onClick={() => scrollToSection(interScroll)}>
+          <a href="/#" onClick={() => scrollToSection(interScroll)}>
             <li>Intermediate Tutorial</li>
           </a>
-          <a onClick={() => scrollToSection(advScroll)}>
+          <a href="/#" onClick={() => scrollToSection(advScroll)}>
             <li>Advanced Tutorial</li>
           </a>
           <a
+            href="/#"
             className="last-entry"
             onClick={() => scrollToSection(aboutScroll)}
           >
