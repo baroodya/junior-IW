@@ -356,7 +356,7 @@ function App() {
           basicScroll={WINDOW_HEIGHT_PIXELS}
           interScroll={BASIC_HEIGHT + WINDOW_HEIGHT_PIXELS}
           advScroll={INTER_HEIGHT + WINDOW_HEIGHT_PIXELS}
-          aboutScroll={ADV_HEIGHT + WINDOW_HEIGHT_PIXELS}
+          aboutScroll={ADV_HEIGHT + 2 * WINDOW_HEIGHT_PIXELS}
         />
         {/* Visual and Slides */}
         <BasicTutorial id={"basic-tutorial"} grid={grid} />

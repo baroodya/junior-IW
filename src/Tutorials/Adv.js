@@ -436,7 +436,7 @@ const intoAboutSlide1 = (
         }
       }
 
-      if (scrollHeight >= 7.875 * WINDOW_HEIGHT_PIXELS) {
+      if (scrollHeight >= 7.9625 * WINDOW_HEIGHT_PIXELS) {
         singlePerson.style.opacity = 1;
         singlePersonBackground.style.opacity = 1;
       } else {
