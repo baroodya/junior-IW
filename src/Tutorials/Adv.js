@@ -662,7 +662,7 @@ const AdvTutorial = ({ id, grid }) => {
       </div>
       <div className="about-section last-section">
         <div className="about-sub-header">Sources</div>
-        <div className="Tutorial-text">
+        <div className="Tutorial-text sources">
           <MathJax>{SlideContent["About"][3][1]}</MathJax>
           <MathJax>{SlideContent["About"][3][2]}</MathJax>
           <MathJax>{SlideContent["About"][3][3]}</MathJax>
