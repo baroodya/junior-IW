@@ -22,7 +22,7 @@ let TITLE_SLIDES = 1;
 let BASIC_SLIDES = 6;
 let INTER_SLIDES = 8;
 let ADV_SLIDES = 8;
-let ABOUT_SLIDES = 2;
+let ABOUT_SLIDES = 4;
 let TOTAL_SLIDES =
   TITLE_SLIDES + BASIC_SLIDES + INTER_SLIDES + ADV_SLIDES + ABOUT_SLIDES;
 let TOTAL_HEIGHT = (TOTAL_SLIDES - 1) * WINDOW_HEIGHT_PIXELS; // start at height 0
@@ -162,7 +162,7 @@ function App() {
 
     window.scroll({ top: newHeight, behavior: "smooth" });
 
-    if (slideNum >= TOTAL_SLIDES - 4) {
+    if (slideNum == TOTAL_SLIDES - ABOUT_SLIDES - 2) {
       setTimeout(() => {
         window.scroll({
           top: newHeight - WINDOW_HEIGHT_PIXELS,
@@ -185,7 +185,7 @@ function App() {
 
     window.scroll({ top: newHeight, behavior: "smooth" });
 
-    if (slideNum >= TOTAL_SLIDES - 4) {
+    if ((slideNum = TOTAL_SLIDES - ABOUT_SLIDES - 2)) {
       setTimeout(() => {
         window.scroll({
           top: newHeight + WINDOW_HEIGHT_PIXELS,

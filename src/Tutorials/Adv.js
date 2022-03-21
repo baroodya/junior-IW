@@ -648,9 +648,19 @@ const AdvTutorial = ({ id, grid }) => {
       <div className="Tutorial-section">
         <div className="Tutorial-text"></div>
       </div>
+      <div className="Tutorial-section">
+        <div className="Tutorial-text">
+          <MathJax>{SlideContent["About"][1]}</MathJax>
+        </div>
+      </div>
+      <div className="Tutorial-section">
+        <div className="Tutorial-text">
+          <MathJax>{SlideContent["About"][2]}</MathJax>
+        </div>
+      </div>
       <div className="Tutorial-section last-section">
         <div className="Tutorial-text">
-          <MathJax>{SlideContent["About"]}</MathJax>
+          <MathJax>{SlideContent["About"][3]}</MathJax>
         </div>
       </div>
     </div>

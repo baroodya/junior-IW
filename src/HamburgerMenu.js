@@ -6,7 +6,6 @@ const HamburgerMenu = ({
   aboutScroll,
 }) => {
   function scrollToSection(sectionHeight) {
-    console.log(sectionHeight);
     let heightInterval = 40;
     let timeout = 10;
 
@@ -15,7 +14,6 @@ const HamburgerMenu = ({
     let interval;
 
     function scrollDownByHeight() {
-      console.log(sectionHeight - currHeight + " < " + heightInterval);
       if (sectionHeight - currHeight < heightInterval) {
         currHeight = sectionHeight;
       }
@@ -28,7 +26,6 @@ const HamburgerMenu = ({
     }
 
     function scrollUpByHeight() {
-      console.log(currHeight - sectionHeight + " < " + heightInterval);
       if (currHeight - sectionHeight < heightInterval) {
         currHeight = sectionHeight;
       }
