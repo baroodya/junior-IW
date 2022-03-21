@@ -9,7 +9,7 @@ let NUM_COLS = 40;
 let CELL_WIDTH = 4;
 let CELL_HEIGHT = 4;
 let NUM_INFECTED_ROWS = NUM_ROWS / (CELL_HEIGHT * 2);
-let NUM_CITATIONS = 18;
+let NUM_CITATIONS = 19;
 
 const intoSlide1 = (scrollHeight, grid, outline) => {
   grid.style.opacity = 0;
@@ -567,6 +567,7 @@ const onPageScrollAdv = (scrollHeight) => {
 
     case scrollHeight <= 11 * WINDOW_HEIGHT_PIXELS: {
       intoAboutSlide4(scrollHeight, singlePerson, singlePersonBackground);
+      break;
     }
 
     default:

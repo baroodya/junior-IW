@@ -8,7 +8,6 @@ let NUM_COLS = 40;
 let CELL_WIDTH = 4;
 let CELL_HEIGHT = 4;
 let NUM_INFECTED_ROWS = NUM_ROWS / (CELL_HEIGHT * 2);
-let NUM_INFECTED_ROWS_EX_2 = (9 * NUM_ROWS) / (CELL_HEIGHT * 10);
 
 const intoSlide1 = (scrollHeight, grid, outline) => {
   let oldMath = document.getElementById("basic-tutorial-visual-math");
@@ -127,7 +126,7 @@ const intoSlide4and6 = (scrollHeight, grid, outline, slide) => {
   let math = document.getElementById("inter-tutorial-visual-math");
   math.style.transform = "translateY(" + -sep + "px)";
 
-  let properEquation = Number(slide == 6);
+  let properEquation = Number(slide === 6);
   let index = 0;
   for (const equation of math.childNodes) {
     if (index === properEquation) {

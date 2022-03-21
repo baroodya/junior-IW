@@ -310,6 +310,9 @@ const intoSlide5 = (scrollHeight, grid) => {
       }
       break;
     }
+
+    default:
+      break;
   }
 };
 const intoSlide6 = (scrollHeight, grid) => {
