@@ -9,6 +9,7 @@ import { InterTutorial, onPageScrollInter } from "./Tutorials/Inter.js";
 import { AdvTutorial, onPageScrollAdv } from "./Tutorials/Adv.js";
 import HamburgerMenu from "./HamburgerMenu.js";
 import { SlideContent } from "./SlideContent";
+import smoothscroll from "smoothscroll-polyfill";
 
 /* Constants ******************************************************************/
 
@@ -29,7 +30,7 @@ let TOTAL_HEIGHT = (TOTAL_SLIDES - 1) * WINDOW_HEIGHT_PIXELS; // start at height
 let BASIC_HEIGHT = (BASIC_SLIDES + TITLE_SLIDES - 1) * WINDOW_HEIGHT_PIXELS;
 let INTER_HEIGHT = (INTER_SLIDES - 1) * WINDOW_HEIGHT_PIXELS + BASIC_HEIGHT;
 let ADV_HEIGHT = (ADV_SLIDES - 1) * WINDOW_HEIGHT_PIXELS + INTER_HEIGHT;
-let ABOUT_HEIGHT = ADV_HEIGHT + 2 * WINDOW_HEIGHT_PIXELS;
+let ABOUT_HEIGHT = ADV_HEIGHT + ABOUT_SLIDES * WINDOW_HEIGHT_PIXELS;
 
 let HALF_BUFFER = WINDOW_HEIGHT_PIXELS / 16;
 
@@ -199,8 +200,19 @@ function App() {
 
   // Transition arrow opacities based on scroll height
   function setArrowVisibility(scrollHeight) {
+    console.log(scrollHeight / WINDOW_HEIGHT_PIXELS);
     let upArrow = document.getElementById("up-arrow");
     let downArrow = document.getElementById("down-arrow");
+    let upperLeftArrow = document.getElementById("upper-left-arrow");
+    let lowerRightArrow = document.getElementById("lower-right-arrow");
+
+    if (scrollHeight > 0.25 * WINDOW_HEIGHT_PIXELS) {
+      upperLeftArrow.style.opacity = 0;
+      lowerRightArrow.style.opacity = 0;
+    } else {
+      upperLeftArrow.style.opacity = 1;
+      lowerRightArrow.style.opacity = 1;
+    }
 
     // If on title page, make only down arrow usable
     if (scrollHeight / WINDOW_HEIGHT_PIXELS < 1) {
@@ -213,7 +225,7 @@ function App() {
       downArrow.style.opacity = 1;
     }
     // If in the middle, make both arrows usuable
-    else if (scrollHeight / WINDOW_HEIGHT_PIXELS < TOTAL_SLIDES - 3) {
+    else if (scrollHeight / WINDOW_HEIGHT_PIXELS <= TOTAL_SLIDES - 4) {
       upArrow.value = "regular";
       upArrow.style.cursor = "pointer";
       upArrow.style.opacity = 1;
@@ -224,6 +236,7 @@ function App() {
     }
     // If on last page, make only up arrow usable
     else {
+      console.log("here");
       upArrow.value = "regular";
       upArrow.style.cursor = "pointer";
       upArrow.style.opacity = 1;
@@ -294,6 +307,9 @@ function App() {
   window.onbeforeunload = () => {
     window.scrollTo(0, 0);
   };
+
+  // kick off the polyfill!
+  smoothscroll.polyfill();
 
   let grid = makeGrid();
   window.onscroll = onPageScroll;

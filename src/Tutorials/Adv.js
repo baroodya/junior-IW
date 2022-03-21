@@ -9,7 +9,7 @@ let NUM_COLS = 40;
 let CELL_WIDTH = 4;
 let CELL_HEIGHT = 4;
 let NUM_INFECTED_ROWS = NUM_ROWS / (CELL_HEIGHT * 2);
-let NUM_INFECTED_ROWS_EX_2 = (9 * NUM_ROWS) / (CELL_HEIGHT * 10);
+let NUM_CITATIONS = 18;
 
 const intoSlide1 = (scrollHeight, grid, outline) => {
   grid.style.opacity = 0;
@@ -472,6 +472,19 @@ const intoAboutSlide2 = (
     "translateX(" + -personSep + "px) translateY(" + -personSep + "px)";
 };
 
+const intoAboutSlide4 = (
+  scrollHeight,
+  singlePerson,
+  singlePersonBackground
+) => {
+  let xSep = WINDOW_HEIGHT_PIXELS / 32;
+  let ySep = scrollHeight - 10 * WINDOW_HEIGHT_PIXELS + xSep;
+  singlePerson.style.transform =
+    "translateX(" + -xSep + "px) translateY(" + -ySep + "px)";
+  singlePersonBackground.style.transform =
+    "translateX(" + -xSep + "px) translateY(" + -ySep + "px)";
+};
+
 const onPageScrollAdv = (scrollHeight) => {
   let grid = document.getElementById("adv-tutorial-visual-grid");
   let outline = document.getElementById("adv-tutorial-visual-outline");
@@ -548,6 +561,14 @@ const onPageScrollAdv = (scrollHeight) => {
       break;
     }
 
+    case scrollHeight <= 10 * WINDOW_HEIGHT_PIXELS: {
+      break;
+    }
+
+    case scrollHeight <= 11 * WINDOW_HEIGHT_PIXELS: {
+      intoAboutSlide4(scrollHeight, singlePerson, singlePersonBackground);
+    }
+
     default:
       break;
   }
@@ -556,9 +577,9 @@ const AdvTutorial = ({ id, grid }) => {
   // Make Visual Grid
   function makeCitations() {
     let citations = [];
-    for (var i = 1; i < NUM_ROWS / CELL_HEIGHT; i++) {
+    for (var i = 1; i <= NUM_CITATIONS; i++) {
       citations.push(
-        <MathJax className="bullets">
+        <MathJax className="bullets" key={i}>
           {SlideContent["About"]["Sources"][i]}
         </MathJax>
       );

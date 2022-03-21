@@ -49,11 +49,12 @@
 }
 
 .curved-arrow {
-  position: absolute;
+  position: fixed;
 
   transition: opacity 0.5s ease-in;
 
   opacity: 0;
+  z-index: 0;
 }
 
 .lower {
@@ -311,8 +312,8 @@
   align-content: center;
 
   padding-left: 12.5vw;
-  margin-top: -60vh;
-  margin-bottom: 60vh;
+  margin-top: -64vh;
+  margin-bottom: 64vh;
 }
 
 .first-section {
@@ -353,7 +354,8 @@
 }
 
 .sources {
-  font-size: 12px;
+  font-size: 10px;
+  width: 100%;
 }
 
 .Tutorial-visual {
