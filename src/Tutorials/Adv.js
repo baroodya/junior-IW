@@ -9,7 +9,6 @@ let NUM_COLS = 40;
 let CELL_WIDTH = 4;
 let CELL_HEIGHT = 4;
 let NUM_INFECTED_ROWS = NUM_ROWS / (CELL_HEIGHT * 2);
-let NUM_CITATIONS = 19;
 
 const intoSlide1 = (scrollHeight, grid, outline) => {
   grid.style.opacity = 0;
@@ -575,20 +574,6 @@ const onPageScrollAdv = (scrollHeight) => {
   }
 };
 const AdvTutorial = ({ id, grid }) => {
-  // Make Visual Grid
-  function makeCitations() {
-    let citations = [];
-    for (var i = 1; i <= NUM_CITATIONS; i++) {
-      citations.push(
-        <MathJax className="bullets" key={i}>
-          {SlideContent["About"]["Sources"][i]}
-        </MathJax>
-      );
-    }
-
-    return citations;
-  }
-  let citations = makeCitations();
   return (
     <div id={id} className="Tutorial-body">
       <div className="Tutorial-visual">
@@ -690,15 +675,11 @@ const AdvTutorial = ({ id, grid }) => {
           <MathJax>{SlideContent["About"]["About"]}</MathJax>
         </div>
       </div>
-      <div className="about-section">
+      <div className="about-section last-section">
         <div className="about-sub-header">Acknowledgements</div>
         <div className="Tutorial-text">
           <MathJax>{SlideContent["About"]["Ack"]}</MathJax>
         </div>
-      </div>
-      <div className="about-section last-section">
-        <div className="about-sub-header">Sources</div>
-        <div className="Tutorial-text sources">{citations}</div>
       </div>
     </div>
   );
