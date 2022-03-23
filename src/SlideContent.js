@@ -134,7 +134,7 @@ export const SlideContent = {
   Explanation: `Welcome! To navigate this page, use the up and down arrows on screen
   or on your keyboard. You can also use the menu in the top left to
   jump around the page. If you want to learn more about this project
-  and it author, complete all three tutorials or click 'About this
+  and its author, complete all three tutorials or click 'About this
   Project' at the bottom of the menu. To start with the basic
   tutorial, click the down arrow below: have fun!`,
 };
