@@ -17,6 +17,7 @@ A set of small web based tutorials on Type I and Type II Errors, focused on visu
 - javascript—Loop inside React JSX. (n.d.). Stack Overflow. Retrieved March 21, 2022, from https://stackoverflow.com/questions/22876978/loop-inside-react-jsx
 - Kasten, D. (2022). Smooth Scroll behavior polyfill [JavaScript]. https://github.com/iamdustan/smoothscroll (Original work published 2013)
 - Measuring Fairness. (n.d.). Retrieved March 14, 2022, from https://pair.withgoogle.com/explorables/measuring-fairness/
+- Nodemon. (n.d.). Retrieved March 23, 2022, from https://nodemon.io/
 - Png-transparent-p-value-statistical-significance-statistics-null-hypothesis-test-statistic-statistical-significance.png (920×486). (n.d.). Retrieved March 21, 2022, from https://w7.pngwing.com/pngs/281/694/png-transparent-p-value-statistical-significance-statistics-null-hypothesis-test-statistic-statistical-significance.png
 - Pngtree-arc-arrow-vector-diagram-3511887-png-image_1733870.jpg (360×360). (n.d.). Retrieved March 21, 2022, from https://png.pngtree.com/png-clipart/20190918/ourmid/pngtree-arc-arrow-vector-diagram-3511887-png-image_1733870.jpg
 - Pure CSS Hamburger fold-out menu. (n.d.). CodePen. Retrieved March 21, 2022, from https://codepen.io/erikterwan/details/EVzeRP
