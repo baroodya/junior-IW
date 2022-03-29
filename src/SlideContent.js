@@ -45,7 +45,7 @@ export const SlideContent = {
     \\(29\\%\\) of the population. To find the \\(\\textbf{Positive }\\) \\(\\textbf{Predictive Value,}\\) we need 
     to find the ratio of the number of true positive tests to the number 
     of positive tests in total. This is \\(\\frac{720}{736}\\), which is about \\(98\\%\\). That 
-    means that, if you test positive, you have a \\(97\\%\\) chance of actually 
+    means that, if you test positive, you have a \\(98\\%\\) chance of actually 
     being infected. That's pretty good! However, the \\(\\textbf{Negative Predictive Value}\\)
     is not as promising: \\(384\\) healthy people tested negative out of 
     464 total negative tests, which puts the \\(\\textbf{Negative Predictive Value}\\)  at 
