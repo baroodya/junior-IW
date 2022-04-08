@@ -385,35 +385,76 @@ const BasicTutorial = ({ id, grid }) => {
           </MathJax>
         </div>
       </div>
-      <div className="Tutorial-section first-section">
-        <div className="Tutorial-text">
-          <div className="Tutorial-header">Basic Tutorial</div>
-          <MathJax>{SlideContent["Basic"][1]}</MathJax>
+      <div className="Tutorial-text">
+        <div className="Tutorial-header">Basic Tutorial</div>
+        <div className="Tutorial-section">
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][1][1]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][1][2]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][1][3]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][1][4]}
+          </MathJax>
         </div>
-      </div>
-      <div className="Tutorial-section">
-        <div className="Tutorial-text">
-          <MathJax>{SlideContent["Basic"][2]}</MathJax>
+        <div className="Tutorial-section">
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][2][1]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][2][2]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][2][3]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][2][4]}
+          </MathJax>
         </div>
-      </div>
-      <div className="Tutorial-section">
-        <div className="Tutorial-text">
-          <MathJax> {SlideContent["Basic"][3]} </MathJax>
+        <div className="Tutorial-section">
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][3][1]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][3][2]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][3][3]}
+          </MathJax>
         </div>
-      </div>
-      <div className="Tutorial-section">
-        <div className="Tutorial-text">
-          <MathJax>{SlideContent["Basic"][4]}</MathJax>
+        <div className="Tutorial-section">
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][4][1]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][4][2]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][4][3]}
+          </MathJax>
         </div>
-      </div>
-      <div className="Tutorial-section">
-        <div className="Tutorial-text">
-          <MathJax>{SlideContent["Basic"][5]}</MathJax>
+        <div className="Tutorial-section">
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][5][1]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][5][2]}
+          </MathJax>
         </div>
-      </div>
-      <div className="Tutorial-section last-section">
-        <div className="Tutorial-text">
-          <MathJax>{SlideContent["Basic"][6]}</MathJax>
+        <div className="Tutorial-section">
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][6][1]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][6][2]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Basic"][6][3]}
+          </MathJax>
         </div>
       </div>
     </div>

@@ -200,7 +200,6 @@ function App() {
 
   // Transition arrow opacities based on scroll height
   function setArrowVisibility(scrollHeight) {
-    console.log(scrollHeight / WINDOW_HEIGHT_PIXELS);
     let upArrow = document.getElementById("up-arrow");
     let downArrow = document.getElementById("down-arrow");
     let upperLeftArrow = document.getElementById("upper-left-arrow");
@@ -236,7 +235,6 @@ function App() {
     }
     // If on last page, make only up arrow usable
     else {
-      console.log("here");
       upArrow.value = "regular";
       upArrow.style.cursor = "pointer";
       upArrow.style.opacity = 1;

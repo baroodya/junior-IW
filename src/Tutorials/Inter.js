@@ -419,40 +419,90 @@ const InterTutorial = ({ id, grid }) => {
           </MathJax>
         </div>
       </div>
-      <div className="Tutorial-section first-section">
-        <div className="Tutorial-text">
-          <div className="Tutorial-header">Intermediate Tutorial</div>
-          <MathJax>{SlideContent["Inter"][1]}</MathJax>
+      <div className="Tutorial-text">
+        <div className="Tutorial-header">Intermediate Tutorial</div>
+        <div className="Tutorial-section">
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][1][1]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][1][2]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][1][3]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][1][4]}
+          </MathJax>
         </div>
-      </div>
-      <div className="Tutorial-section">
-        <div className="Tutorial-text">
-          <MathJax>{SlideContent["Inter"][2]}</MathJax>
+        <div className="Tutorial-section">
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][2][1]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][2][2]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][2][3]}
+          </MathJax>
         </div>
-      </div>
-      <div className="Tutorial-section">
-        <div className="Tutorial-text">
-          <MathJax> {SlideContent["Inter"][3]} </MathJax>
+        <div className="Tutorial-section">
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][3][1]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][3][2]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][3][3]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][3][4]}
+          </MathJax>
         </div>
-      </div>
-      <div className="Tutorial-section">
-        <div className="Tutorial-text">
-          <MathJax>{SlideContent["Inter"][4]}</MathJax>
+        <div className="Tutorial-section">
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][4][1]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][4][2]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][4][3]}
+          </MathJax>
         </div>
-      </div>
-      <div className="Tutorial-section">
-        <div className="Tutorial-text">
-          <MathJax>{SlideContent["Inter"][5]}</MathJax>
+        <div className="Tutorial-section">
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][5][1]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][5][2]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][5][3]}
+          </MathJax>
         </div>
-      </div>
-      <div className="Tutorial-section">
-        <div className="Tutorial-text">
-          <MathJax>{SlideContent["Inter"][6]}</MathJax>
+        <div className="Tutorial-section">
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][6][1]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][6][2]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][6][3]}
+          </MathJax>
         </div>
-      </div>
-      <div className="Tutorial-section last-section">
-        <div className="Tutorial-text">
-          <MathJax>{SlideContent["Inter"][7]}</MathJax>
+        <div className="Tutorial-section last-section">
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][7][1]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][7][2]}
+          </MathJax>
+          <MathJax class="Tutorial-paragraph">
+            {SlideContent["Inter"][7][3]}
+          </MathJax>
         </div>
       </div>
     </div>
