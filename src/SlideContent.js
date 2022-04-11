@@ -24,7 +24,9 @@ export const SlideContent = {
         healthy portion is in green). While the high \\(\\textbf{Specificity}\\) and 
         \\(\\textbf{Sensitivity}\\) values seem to bode well for this test, they do not tell 
         the whole story. There are a few more values that can help fill out 
-        our view of this test: \\(\\textbf{Positive Predictive Value}\\)  and \\(\\textbf{Negative}\\) \\(\\textbf{Predictive Value}\\).`,
+        our view of this test: \\(\\textbf{Positive Predictive}\\) 
+        \\(\\textbf{Value}\\) and \\(\\textbf{Negative}\\) 
+        \\(\\textbf{Predictive Value}\\).`,
       2: `
         \\(\\textbf{Positive Predictive Value}\\)  is the likelihood that I 
         actually have this disease, given that I have tested positive.`,
@@ -83,9 +85,11 @@ export const SlideContent = {
     },
     6: {
       1: `
-        This means that the \\(\\textbf{Positive Predictive Value}\\)  is \\(\\frac{128}{144+128}\\), which 
-        is only around \\(47\\%\\)! However, it also means that the \\(\\textbf{Negative Predictive Value}\\)
-        is \\(\\frac{1,296}{1,296 + 32}\\), which is almost \\(98\\%\\).`,
+        This means that the \\(\\textbf{Positive Predictive Value}\\)  is 
+        \\(\\frac{128}{144+128}\\), which is only around \\(47\\%\\)! However, 
+        it also means that the \\(\\textbf{Negative Predictive}\\) 
+        \\(\\textbf{Value}\\) is \\(\\frac{1,296}{1,296 + 32}\\), which is 
+        almost \\(98\\%\\).`,
       2: `
         This makes sense because the disease is so much less infectious: we are 
         much more likely to be healthy, so negative tests are more likely to 
@@ -167,7 +171,7 @@ export const SlideContent = {
     4: {
       1: `
         Let's use the idea of \\(\\textbf{Conditional Probability}\\) to 
-        calculate the Positive and \\(\\textbf{Negative Predictive Values}\\) in 
+        calculate the \\(\\textbf{Positive}\\) and \\(\\textbf{Negative Predictive Values}\\) in 
         our example.`,
       2: `
         Let's do \\(\\textbf{PPV}\\) first: event A is being infected, while 
@@ -192,7 +196,7 @@ export const SlideContent = {
         easy and intuitive in this case, it is not always so nice. Because of 
         that, we need a more general way to calculate 
         \\(\\textbf{Conditional Probability}\\): 
-        \\(\\textbf{Bayes' Theorem}\\).`,
+        \\(\\textbf{Bayes'}\\) \\(\\textbf{Theorem}\\).`,
       2: `
         This theorem (defined to the right) acts as both a way to calculate a 
         single probability and move between conditional probabilities easily. 
@@ -362,7 +366,7 @@ export const SlideContent = {
         possible: one way to do this is by using a very small 
         \\(\\alpha\\)-value. A standard \\(\\alpha\\) is \\(0.05\\), which means 
         we think that there is only a \\(5\\%\\) chance that we will make a 
-        \\(\\textbf{type I error}\\). While we would like this value to be as 
+        \\(\\textbf{type}\\)  \\(\\textbf{I error}\\). While we would like this value to be as 
         low as possible, the value of \\(\\alpha\\) depends on a number of 
         factors.`,
       4: `

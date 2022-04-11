@@ -185,8 +185,10 @@ const intoSlide4 = (scrollHeight, grid, outline, math, graph) => {
 
 const intoSlide6 = (scrollHeight, grid, outline, math, graph, graphCover) => {
   let sep = scrollHeight - 5 * WINDOW_HEIGHT_PIXELS;
-  let widthChange =
-    (100 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 5) * 100) ** 1 / 3;
+  let widthChange = Math.min(
+    (100 - (scrollHeight / WINDOW_HEIGHT_PIXELS - 5) * 100) ** 2 / 5,
+    100
+  );
 
   math.style.transform = "translateY(" + -sep + "px)";
 
@@ -206,28 +208,31 @@ const intoSlide6 = (scrollHeight, grid, outline, math, graph, graphCover) => {
 };
 
 const intoSlide7 = (scrollHeight, grid, outline, math, graph, graphCover) => {
+  let sep = scrollHeight - 6 * WINDOW_HEIGHT_PIXELS;
   if (scrollHeight <= 6.0625 * WINDOW_HEIGHT_PIXELS) {
     grid.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
     outline.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
     outline.style.opacity = 1;
+    graphCover.style.width = "0%";
   } else {
-    let sep = scrollHeight - 6 * WINDOW_HEIGHT_PIXELS;
-
     if (sep <= WINDOW_HEIGHT_PIXELS / 8) {
       intoSlide2(2 * WINDOW_HEIGHT_PIXELS, grid, outline, math, true);
     }
 
-    let widthChange =
-      ((scrollHeight / WINDOW_HEIGHT_PIXELS - 6) * 100) ** 1 / 3;
+    let widthChange = Math.min(
+      ((scrollHeight / WINDOW_HEIGHT_PIXELS - 6) * 100) ** 2 / 5,
+      100
+    );
 
     // push the graph out
-    graph.style.transform = "translateY(" + -sep + "px)";
+
     graphCover.style.width = widthChange + "%";
 
     grid.style.transform = "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
     outline.style.transform =
       "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
   }
+  graph.style.transform = "translateY(" + -sep + "px)";
 };
 
 const intoAboutSlide1 = (
