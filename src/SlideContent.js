@@ -158,9 +158,11 @@ export const SlideContent = {
         that needs to be done is to change the size of the population we're 
         searching through.`,
       4: `
-        If we're searching for the Probability of event A given event B, all we 
-        need to do is count the number of times event A and event B both happen, 
-        and divide by the number of times event B happens.`,
+        If we're searching for the Probability of event A given event B, 
+        \\(\\mathbb{P}\\{A|B\\}\\), all we need to do is count the probability 
+        that event A and event B both happen, \\(\\mathbb{P}\\{A\\cap B\\}\\), 
+        and divide by the probability that event B happens, 
+        \\(\\mathbb{P}\\{B\\}\\).`,
     },
     4: {
       1: `
@@ -396,31 +398,10 @@ export const SlideContent = {
   About: {
     About: `Hello! My name is Alex Baroody, and this set of tutorials is my Independent Work Project at Princeton University. I completed this page in the spring of 2022, my junior year. These tutorials are designed to be supplemental to classroom learning, giving a different perspective or easily accessible information for those who are confused. You can find the source code for this project \\(\\href{https://github.com/baroodya/visual-statistics}{\\textcolor{royalblue}{\\text{here.}}}\\) You can keep up to date with me and my projects on \\(\\href{https://github.com/baroodya}{\\textcolor{royalblue}{\\text{github}}}\\) and \\(\\href{https://www.linkedin.com/in/alex-baroody/}{\\textcolor{royalblue}{\\text{linkedin.}}}\\) Thanks for reading this far, I hope you enjoyed!`,
     Ack: `The sources and related work I used to complete this project can be found \\(\\href{https://github.com/baroodya/visual-statistics/tree/about-section-v2#sources-and-related-work}{\\textcolor{royalblue}{\\text{in the github ReadMe.}}}\\) More Coming Soon...`,
-    Sources: {
-      1: `6.1—Type I and Type II Errors | STAT 200. (n.d.). PennState: Statistics Online Courses. Retrieved March 14, 2022, from https://online.stat.psu.edu/stat200/lesson/6/6.1`,
-      2: `Banerjee, A., Chitnis, U. B., Jadhav, S. L., Bhawalkar, J. S., & Chaudhury, S. (2009). Hypothesis testing, type I and type II errors. Industrial Psychiatry Journal, 18(2), 127–131. https://doi.org/10.4103/0972-6748.62274`,
-      3: `Better-react-mathjax. (n.d.). Npm. Retrieved March 21, 2022, from https://www.npmjs.com/package/better-react-mathjax`,
-      4: `Blog, F. (n.d.). Type I vs Type II Errors: Causes, Examples & Prevention. Retrieved March 14, 2022, from https://www.formpl.us/blog/https//www.formpl.us/blog/type-errors`,
-      5: `Brihn, A. (2021). Diagnostic Performance of an Antigen Test with RT-PCR for the Detection of SARS-CoV-2 in a Hospital Setting—Los Angeles County, California, June–August 2020. MMWR. Morbidity and Mortality Weekly Report, 70. https://doi.org/10.15585/mmwr.mm7019a3`,
-      6: `CSS Tutorial. (n.d.). Retrieved March 21, 2022, from https://www.w3schools.com/css/`,
-      7: `Express Tutorial: The Local Library website - Learn web development | MDN. (n.d.). Retrieved March 21, 2022, from https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website`,
-      8: `False Positive Rate | Split Glossary. (n.d.). Split. Retrieved March 14, 2022, from https://www.split.io/glossary/false-positive-rate/`,
-      9: `html - How to: “Separate table rows with a line.” (n.d.). Stack Overflow. Retrieved March 21, 2022, from https://stackoverflow.com/questions/13624276/how-to-separate-table-rows-with-a-line`,
-      10: `HTML Tutorial. (n.d.). Retrieved March 21, 2022, from https://www.w3schools.com/html/default.asp`,
-      11: `javascript—Force page scroll position to top at page refresh in HTML. (n.d.). Stack Overflow. Retrieved March 21, 2022, from https://stackoverflow.com/questions/3664381/force-page-scroll-position-to-top-at-page-refresh-in-html`,
-      12: `javascript—Loop inside React JSX. (n.d.). Stack Overflow. Retrieved March 21, 2022, from https://stackoverflow.com/questions/22876978/loop-inside-react-jsx`,
-      13: `Measuring Fairness. (n.d.). Retrieved March 14, 2022, from https://pair.withgoogle.com/explorables/measuring-fairness/`,
-      14: `Png-transparent-p-value-statistical-significance-statistics-null-hypothesis-test-statistic-statistical-significance.png (920×486). (n.d.). Retrieved March 21, 2022, from https://w7.pngwing.com/pngs/281/694/png-transparent-p-value-statistical-significance-statistics-null-hypothesis-test-statistic-statistical-significance.png`,
-      15: `Pngtree-arc-arrow-vector-diagram-3511887-png-image_1733870.jpg (360×360). (n.d.). Retrieved March 21, 2022, from https://png.pngtree.com/png-clipart/20190918/ourmid/pngtree-arc-arrow-vector-diagram-3511887-png-image_1733870.jpg`,
-      16: `Pure CSS Hamburger fold-out menu. (n.d.). CodePen. Retrieved March 21, 2022, from https://codepen.io/erikterwan/details/EVzeRP`,
-      17: `Kasten, D. (2022). Smooth Scroll behavior polyfill [JavaScript]. https://github.com/iamdustan/smoothscroll (Original work published 2013)`,
-      18: `Statistic Symbols Clipart—Clipart Suggest. (n.d.). Retrieved March 21, 2022, from http://www.clipartsuggest.com/statistic-symbols-cliparts/`,
-      19: `Type I and Type II errors. (2021, January 18). Scribbr. https://www.scribbr.com/statistics/type-i-and-type-ii-errors/`,
-    },
   },
   Explanation: `Welcome! To navigate this page, use the up and down arrows on screen
   or on your keyboard. You can also use the menu in the top left to
-  jump around the page. If you want to learn more about this project
+  skip to the beginning of the tutorials. If you want to learn more about this project
   and its author, complete all three tutorials or click 'About this
   Project' at the bottom of the menu. To start with the basic
   tutorial, click the down arrow below: have fun!`,

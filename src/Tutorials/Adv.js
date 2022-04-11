@@ -51,6 +51,7 @@ const intoSlide2 = (scrollHeight, grid, outline, math, fromSlide7) => {
 
   outline.childNodes[0].style.opacity = outlineOpacity;
   outline.childNodes[1].style.opacity = outlineOpacity;
+  outline.lastChild.style.opacity = outlineOpacity;
 
   let littleSep = (scrollHeight - WINDOW_HEIGHT_PIXELS) / 64;
   let bigSep = (scrollHeight - WINDOW_HEIGHT_PIXELS) / 16;
@@ -120,11 +121,10 @@ const intoSlide2 = (scrollHeight, grid, outline, math, fromSlide7) => {
     for (const equation of math.childNodes) {
       equation.style.display = "block";
       if (index === 0) {
-        equation.style.transform =
-          "translateX(200px) translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
+        equation.style.transform = "translateY(" + WINDOW_HEIGHT_PIXELS + "px)";
       } else {
         equation.style.transform =
-          "translateX(60px) translateY(" + 2 * WINDOW_HEIGHT_PIXELS + "px)";
+          "translateX(-100px) translateY(" + 2 * WINDOW_HEIGHT_PIXELS + "px)";
       }
       index++;
     }
@@ -141,10 +141,10 @@ const intoSlide3 = (scrollHeight, grid, outline, math) => {
   for (const equation of math.childNodes) {
     if (index === 0) {
       equation.style.transform =
-        "translateX(200px) translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
+        "translateY(" + (WINDOW_HEIGHT_PIXELS - sep) + "px)";
     } else {
       equation.style.transform =
-        "translateX(60px) translateY(" +
+        "translateX(-100px) translateY(" +
         (2 * WINDOW_HEIGHT_PIXELS - sep) +
         "px)";
     }
@@ -163,10 +163,10 @@ const intoSlide4 = (scrollHeight, grid, outline, math, graph) => {
   let index = 0;
   for (const equation of math.childNodes) {
     if (index === 0) {
-      equation.style.transform = "translateX(200px) translateY(" + -sep + "px)";
+      equation.style.transform = "translateY(" + -sep + "px)";
     } else {
       equation.style.transform =
-        "translateX(60px) translateY(" +
+        "translateX(-100px) translateY(" +
         (WINDOW_HEIGHT_PIXELS - sep - vertAdj) +
         "px)";
     }
@@ -368,6 +368,7 @@ const intoAboutSlide1 = (
 
       outline.childNodes[0].style.opacity = outlineOpacity;
       outline.childNodes[1].style.opacity = outlineOpacity;
+      outline.lastChild.style.opacity = outlineOpacity;
 
       for (const row of grid.childNodes) {
         let index = row.getAttribute("index");
@@ -421,6 +422,7 @@ const intoAboutSlide1 = (
 
         outline.childNodes[0].style.opacity = 0;
         outline.childNodes[1].style.opacity = 0;
+        outline.lastChild.style.opacity = 0;
 
         // split based on NUM_INFECTED_ROWS
         if (index >= NUM_INFECTED_ROWS) {
@@ -582,12 +584,13 @@ const AdvTutorial = ({ id, grid }) => {
           <div className="outline-back-top" />
           <div className="outline-front-bottom" />
           <div className="outline-front-top" />
+          <div className="outline-label">People who took the test</div>
         </div>
         <Grid id="adv-tutorial-visual-grid" className="adv-grid">
           {grid}
         </Grid>
         <div id="adv-tutorial-visual-math" className="visual-math">
-          <MathJax style={{ width: "50%" }}>
+          <MathJax>
             {
               "\\(\\mathbb{P}\\{A|B\\} = \\frac{\\mathbb{P}\\{B|A\\} \\cdot \\mathbb{P}\\{A\\}}{\\mathbb{P}\\{B\\}}\\)"
             }

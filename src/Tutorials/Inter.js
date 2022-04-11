@@ -22,6 +22,7 @@ const intoSlide2 = (scrollHeight, grid, outline, fromSlide3) => {
   outline.style.opacity = outlineOpacity;
   outline.childNodes[0].style.opacity = outlineOpacity;
   outline.childNodes[1].style.opacity = outlineOpacity;
+  outline.lastChild.style.opacity = outlineOpacity;
 
   let littleSep = (scrollHeight - WINDOW_HEIGHT_PIXELS) / 64;
   let bigSep = (scrollHeight - WINDOW_HEIGHT_PIXELS) / 16;
@@ -242,6 +243,7 @@ const intoSlide7 = (scrollHeight, grid, outline) => {
 
       outline.childNodes[0].style.opacity = outlineOpacity;
       outline.childNodes[1].style.opacity = outlineOpacity;
+      outline.lastChild.style.opacity = outlineOpacity;
 
       for (const row of grid.childNodes) {
         let index = row.getAttribute("index");
@@ -307,6 +309,7 @@ const intoSlide7 = (scrollHeight, grid, outline) => {
 
         outline.childNodes[0].style.opacity = 0;
         outline.childNodes[1].style.opacity = 0;
+        outline.lastChild.style.opacity = 0;
 
         // split based on NUM_INFECTED_ROWS
         if (index >= NUM_INFECTED_ROWS) {
@@ -399,6 +402,7 @@ const InterTutorial = ({ id, grid }) => {
           <div className="outline-back-top" />
           <div className="outline-front-bottom" />
           <div className="outline-front-top" />
+          <div className="outline-label">People who took the test</div>
         </div>
         <Grid id="inter-tutorial-visual-grid" className="inter-grid">
           {grid}

@@ -46,6 +46,7 @@ const intoSlide3 = (scrollHeight, grid, outline) => {
   outline.style.opacity = outlineOpacity;
   outline.childNodes[0].style.opacity = outlineOpacity;
   outline.childNodes[1].style.opacity = outlineOpacity;
+  outline.lastChild.style.opacity = outlineOpacity;
 
   for (const row of grid.childNodes) {
     let index = row.getAttribute("index");
@@ -216,6 +217,7 @@ const intoSlide5 = (scrollHeight, grid) => {
       let outline = document.getElementById("basic-tutorial-visual-outline");
       outline.childNodes[0].style.opacity = outlineOpacity;
       outline.childNodes[1].style.opacity = outlineOpacity;
+      outline.lastChild.style.opacity = outlineOpacity;
 
       for (const row of grid.childNodes) {
         let index = row.getAttribute("index");
@@ -261,6 +263,7 @@ const intoSlide5 = (scrollHeight, grid) => {
         let outline = document.getElementById("basic-tutorial-visual-outline");
         outline.childNodes[0].style.opacity = 0;
         outline.childNodes[1].style.opacity = 0;
+        outline.lastChild.style.opacity = 0;
 
         // split based on NUM_INFECTED_ROWS
         if (index >= NUM_INFECTED_ROWS) {
@@ -372,15 +375,16 @@ const BasicTutorial = ({ id, grid }) => {
           <div className="outline-back-top" />
           <div className="outline-front-bottom" />
           <div className="outline-front-top" />
+          <div className="outline-label">People who took the test</div>
         </div>
         <Grid id="basic-tutorial-visual-grid" className="Grid">
           {grid}
         </Grid>
         <div id="basic-tutorial-visual-math" className="visual-math">
-          <MathJax>
+          <MathJax style={{ marginLeft: "-5vw" }}>
             {"Positive Predictive Value = \\(\\frac{128}{144 + 128}\\)"}
           </MathJax>
-          <MathJax>
+          <MathJax style={{ marginLeft: "-5vw" }}>
             {"Negative Predictive Value = \\(\\frac{1296}{1296 + 32}\\)"}
           </MathJax>
         </div>
