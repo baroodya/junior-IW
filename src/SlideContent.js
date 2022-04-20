@@ -401,7 +401,13 @@ export const SlideContent = {
   },
   About: {
     About: `Hello! My name is Alex Baroody, and this set of tutorials is my Independent Work Project at Princeton University. I completed this page in the spring of 2022, my junior year. These tutorials are designed to be supplemental to classroom learning, giving a different perspective or easily accessible information for those who are confused. You can find the source code for this project \\(\\href{https://github.com/baroodya/visual-statistics}{\\textcolor{royalblue}{\\text{here.}}}\\) You can keep up to date with me and my projects on \\(\\href{https://github.com/baroodya}{\\textcolor{royalblue}{\\text{github}}}\\) and \\(\\href{https://www.linkedin.com/in/alex-baroody/}{\\textcolor{royalblue}{\\text{linkedin.}}}\\) Thanks for reading this far, I hope you enjoyed!`,
-    Ack: `The sources and related work I used to complete this project can be found \\(\\href{https://github.com/baroodya/visual-statistics/tree/about-section-v2#sources-and-related-work}{\\textcolor{royalblue}{\\text{in the github ReadMe.}}}\\) More Coming Soon...`,
+    Ack: `The sources and related work I used to complete this project can be found \\(\\href{https://github.com/baroodya/visual-statistics/tree/about-section-v2#sources-and-related-work}{\\textcolor{royalblue}{\\text{in the github ReadMe.}}}\\) I would like to thank Prof. David Walker for teaching an extremely useful seminar and seeming
+    to have the answers to my questions before I needed to ask them; thanks must also be extended
+    to my classmates in his seminar, who consistently gave helpful and constructive feedback on my
+    project, from start to finish. I would also like to thank Jérémie Lumbroso for inspiring my love
+    for using technology for education, in any and all forms. Although I no longer work with Jérémie,
+    his influence is still very much felt. Lastly, I would like to thank my parents, Jim and Karen, for
+    opening endless doors so that I could be here and work on such a project.`,
   },
   Explanation: `Welcome! To navigate this page, use the up and down arrows on screen
   or on your keyboard. You can also use the menu in the top left to
