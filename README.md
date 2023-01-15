@@ -1,5 +1,5 @@
 # Visual Statistics
-A set of small web based tutorials on Type I and Type II Errors, focused on visuals rather than text. The tutorials can be accessed [here.](https://visual-stats.vercel.app/)
+A set of small web based tutorials on Type I and Type II Errors, focused on visuals rather than text. The tutorials can be accessed [here.](https://visual-statistics.vercel.app/)
 
 ## Sources and Related Work
 #### Throughout the creation of these tutorials, I used many sources both to help me compile the content of the tutorials and to create the page itself:
